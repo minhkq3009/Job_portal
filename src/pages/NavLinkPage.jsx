@@ -1,12 +1,13 @@
-import React from "react";
-import CategoryCard from "../components/Categories/CategoryCard";
-import CategoryCardFeatured from "../components/Categories/CategoryCardFeatured";
-
+import React from 'react';
+import JobCardVertical from '../components/Card/JobCardVertical.jsx';
+import JobCardHorizontal from '../components/Card/JobCardHorizontal.jsx';
 export default function NavLinkPage() {
   return (
     <>
-      <CategoryCard />
-      <CategoryCardFeatured />
+      {/* <JobCardHorizontal featured={true} /> */}
+      <JobCardVertical featured={false} />
+      <JobCardHorizontal featured={true} />
+  
     </>
   );
 }
