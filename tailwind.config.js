@@ -9,8 +9,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', ...defaultTheme.fontFamily.sans],
+        sans: ['Noto Sans', 'Inter', ...defaultTheme.fontFamily.sans],
         inter: ['Inter', ...defaultTheme.fontFamily.sans],
+        noto: ['Noto Sans', ...defaultTheme.fontFamily.sans],
       },
 
       fontSize: {

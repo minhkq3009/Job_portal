@@ -1,17 +1,18 @@
 import Header from "../components/Header/Header";
 import KeywordInput from "../components/InputField/KeywordInput";
-import { MapPin } from "lucide-react";
+import { MapPin, PenTool, Building2, Users, FolderPlus } from "lucide-react";
 import CompanyCard from "../components/Card/CompanyCard";
 import CategoryCard from "../components/Categories/CategoryCard";
+import Illustration from "../assets/Illustration.svg";
 
 export default function Home() {
   return (
     <>
       <Header />
 
-      <main className="bg-gray-50">
+      <main className="bg-gray-50 py-12 md:py-16 lg:py-[100px]">
         {/* Hero Section */}
-        <section className="container py-16 grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
+        <section className="container grid grid-cols-1 lg:grid-cols-2 items-center gap-10">
           {/* Left Content */}
           <div>
             <div className="mb-8">
@@ -49,17 +50,50 @@ export default function Home() {
 
           {/* Right Image */}
           <div className="hidden lg:block">
-            <img
-              src="/images/home-illustration.png"
-              alt="Hero illustration"
-              className="w-full max-w-[480px] mx-auto"
-            />
+            <div className="w-full max-w-[492px] mx-auto aspect-[492/382]">
+              <img
+                src={Illustration}
+                alt="Hero illustration"
+                className="w-full h-full object-contain"
+              />
+            </div>
           </div>
         </section>
 
-        {/* Stats Section */}
-        <section className="container py-12">
-          <CategoryCard />
+        {/* Categories Section */}
+        <section className="mt-12 md:mt-16 lg:mt-[100px]">
+          <div className="container">
+            <div className="grid grid-cols-12 gap-6">
+              <div className="col-span-3">
+                <CategoryCard 
+                  icon={PenTool}
+                  title="1,75,324"
+                  subtitle="Live Job"
+                />
+              </div>
+              <div className="col-span-3">
+                <CategoryCard 
+                  icon={Building2}
+                  title="97,354"
+                  subtitle="Companies"
+                />
+              </div>
+              <div className="col-span-3">
+                <CategoryCard 
+                  icon={Users}
+                  title="38,47,154"
+                  subtitle="Candidates"
+                />
+              </div>
+              <div className="col-span-3">
+                <CategoryCard 
+                  icon={FolderPlus}
+                  title="7,532"
+                  subtitle="New Jobs"
+                />
+              </div>
+            </div>
+          </div>
         </section>
       </main>
     </>
