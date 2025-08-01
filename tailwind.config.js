@@ -32,6 +32,7 @@ export default {
         'button': ['16px', { lineHeight: '24px' }],
         'caption': ['14px', { lineHeight: '24px' }],
       },
+
       colors: {
         white: '#FFFFFF',
         gray: {
@@ -47,7 +48,7 @@ export default {
           900: '#18191C',
         },
         primary: {
-          50:  '#E7F0FA',
+          50: '#E7F0FA',
           100: '#CEE0F5',
           200: '#9DC1EB',
           300: '#6CA3E0',
@@ -59,7 +60,7 @@ export default {
           900: '#021429',
         },
         success: {
-          50:  '#E7F6EA',
+          50: '#E7F6EA',
           100: '#CEECD5',
           200: '#9DD9AB',
           300: '#6DC680',
@@ -71,7 +72,7 @@ export default {
           900: '#022009',
         },
         warning: {
-          50:  '#FFF6E5',
+          50: '#FFF6E5',
           100: '#FFECDC',
           200: '#FFD899',
           300: '#FFC066',
@@ -83,7 +84,7 @@ export default {
           900: '#332100',
         },
         danger: {
-          50:  '#FCEEEE',
+          50: '#FCEEEE',
           100: '#FBDCDC',
           200: '#F3B9B9',
           300: '#EC9797',
@@ -95,31 +96,36 @@ export default {
           900: '#2D1010',
         },
       },
+
       boxShadow: {
-        'primary': '0px 12px 48px rgba(0, 44, 109, 0.1)',
+        primary: '0px 12px 48px rgba(0, 44, 109, 0.1)',
       },
+
       container: {
         center: true,
         padding: {
           DEFAULT: '24px',
           sm: '16px',
         },
-        },
-        screens: {
-          sm: '640px',
-          md: '768px',
-          lg: '1024px',
-          xl: '1280px',
-        },
-        gridTemplateColumns: {
-          '12': 'repeat(12, minmax(0, 1fr))',
-          '4': 'repeat(4, minmax(0, 1fr))',
-        },
-        spacing: {
-          4.5: '18px',
-          6: '24px',
-        },
       },
+
+      screens: {
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px',
+      },
+
+      gridTemplateColumns: {
+        '12': 'repeat(12, minmax(0, 1fr))',
+        '4': 'repeat(4, minmax(0, 1fr))',
+      },
+
+      spacing: {
+        4.5: '18px',
+        6: '24px',
+      },
+    },
   },
   plugins: [],
-}
+};

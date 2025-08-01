@@ -1,9 +1,13 @@
+import { Link, useLocation } from "react-router-dom";
 import clsx from "clsx";
 
-export default function NavLinkSimple({ label, isActive, onClick }) {
+export default function NavLinkSimple({ label, to }) {
+  const location = useLocation();
+  const isActive = location.pathname === to;
+
   return (
-    <button
-      onClick={onClick}
+    <Link
+      to={to}
       className={clsx(
         "text-left py-[14px] px-0 bg-gray-50 rounded-none text-body-sm focus:outline-none",
         isActive
@@ -12,6 +16,6 @@ export default function NavLinkSimple({ label, isActive, onClick }) {
       )}
     >
       {label}
-    </button>
+    </Link>
   );
 }
