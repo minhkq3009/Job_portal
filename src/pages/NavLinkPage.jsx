@@ -1,13 +1,11 @@
 import React from 'react';
-import CompanyCard from '../components/Card/CompanyCard.jsx';
-import JobCardHorizontal from '../components/Card/JobCardHorizontal.jsx';
+import Header from '../components/Header/Header';
+import JobCardHorizontal from '../components/Card/JobCardHorizontal';
 export default function NavLinkPage() {
   return (
     <>
-      {/* <JobCardHorizontal featured={true} /> */}
       
-        
-        <CompanyCard/>
+      <Header/>
     
     </>
   );

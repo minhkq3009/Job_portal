@@ -16,7 +16,7 @@ export default function JobCardVertical({
   logoText = "D",
 }) {
   return (
-    <div className="rounded-xl p-8 bg-white hover:shadow-lg transition-all duration-200 border border-gray-100 space-y-6 hover:ring-1 hover:outline-primary-500 hover:shadow-primary">
+    <div className="rounded-xl p-8 bg-white hover:shadow-lg transition-all duration-200 outline outline-gray-100 space-y-6 hover:ring-1 hover:outline-primary-500 hover:shadow-primary">
       {/* Header */}
       <div className="flex items-center gap-4">
         <LogoCompany logo={logo} logoText={logoText} size="md" />

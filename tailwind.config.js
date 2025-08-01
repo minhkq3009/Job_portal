@@ -95,9 +95,30 @@ export default {
           900: '#2D1010',
         },
       },
-    },
-    boxShadow: {
+      boxShadow: {
         'primary': '0px 12px 48px rgba(0, 44, 109, 0.1)',
+      },
+      container: {
+        center: true,
+        padding: {
+          DEFAULT: '24px',
+          sm: '16px',
+        },
+        },
+        screens: {
+          sm: '640px',
+          md: '768px',
+          lg: '1024px',
+          xl: '1280px',
+        },
+        gridTemplateColumns: {
+          '12': 'repeat(12, minmax(0, 1fr))',
+          '4': 'repeat(4, minmax(0, 1fr))',
+        },
+        spacing: {
+          4.5: '18px',
+          6: '24px',
+        },
       },
   },
   plugins: [],

@@ -10,7 +10,7 @@ const CompanyCard = ({
   onOpen,
 }) => {
   return (
-    <div className="rounded-2xl p-8 bg-white border border-gray-100 hover:shadow-primary transition-all flex flex-col items-start gap-8 w-auto max-w-fit ">
+    <div className="group rounded-2xl p-8 bg-white outline outline-gray-100 transition-all flex flex-col items-start gap-8 w-auto max-w-fit hover:outline-primary-500 hover:shadow-primary">
       {/* Top section: logo + name + location */}
       <div className="flex items-start gap-4">
         {/* Logo */}
