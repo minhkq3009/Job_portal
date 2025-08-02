@@ -10,7 +10,7 @@ export default function LogoCompany({ logo, logoText = "?", alt = "", size = "md
   };
 
   return (
-    <div className={clsx("rounded bg-pink-500 flex items-center justify-center text-white font-bold", sizeMap[size])}>
+    <div className={clsx("rounded bg-transparent flex items-center justify-center text-gray-900 font-bold", sizeMap[size])}>
       {logo ? <img src={logo} alt={alt} className="w-full h-full object-cover rounded" /> : logoText}
     </div>
   );

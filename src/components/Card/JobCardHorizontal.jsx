@@ -17,7 +17,7 @@ export default function JobCardHorizontal({
   logoText = "D",
 }) {
   return (
-    <div className="rounded-xl p-8 bg-white outline outline-gray-100 hover:shadow-lg transition-all duration-200 flex justify-between items-center gap-5 hover:ring-1 hover:outline-primary-500 hover:shadow-primary">
+    <div className="rounded-xl p-8 bg-white border border-gray-100 hover:shadow-lg transition-all duration-200 flex justify-between items-center gap-5 hover:border-primary-500 hover:shadow-primary">
       {/* Left */}
       <div className="flex items-center gap-4">
         <LogoCompany logo={logo} logoText={logoText} size="lg" />

@@ -1,6 +1,6 @@
 import { Phone, ChevronDown } from "lucide-react";
-import Logo from "../../assets/Logo.svg";
-import FlagUS from "../../assets/FlagUS.svg";
+import Logo from "../../assets/icons/Logo.svg";
+import FlagUS from "../../assets/images/FlagUS.svg";
 import NavLinkSimple from "../NavLink/NavLinkSimple";
 import SearchInput from "../InputField/SearchInput";
 import Button from "../Button/Button";

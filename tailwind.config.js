@@ -9,9 +9,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Noto Sans', 'Inter', ...defaultTheme.fontFamily.sans],
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
         inter: ['Inter', ...defaultTheme.fontFamily.sans],
-        noto: ['Noto Sans', ...defaultTheme.fontFamily.sans],
+        noto: ['Inter', ...defaultTheme.fontFamily.sans],
       },
 
       fontSize: {
@@ -106,7 +106,7 @@ export default {
         center: true,
         padding: {
           DEFAULT: '24px',
-          sm: '16px',
+          sm: '0px',
         },
       },
 

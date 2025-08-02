@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function CategoryCard({ icon, title, subtitle }) {
+export default function CategoryCard({ icon, title, subtitle, titleSize = "heading-04", subtitleSize = "body-md" }) {
   return (
     <div className="group rounded-xl bg-white p-5 flex items-center gap-4 hover:shadow-primary transition-all duration-200 cursor-pointer w-full">
       {/* Icon container */}
@@ -10,8 +10,8 @@ export default function CategoryCard({ icon, title, subtitle }) {
 
       {/* Text content */}
       <div className="flex flex-col gap-[6px]">
-        <h3 className="text-heading-04 font-semibold text-gray-900">{title}</h3>
-        <p className="text-body-md text-gray-400">{subtitle}</p>
+        <h3 className={`text-${titleSize} font-semibold text-gray-900`}>{title}</h3>
+        <p className={`text-${subtitleSize} text-gray-500`}>{subtitle}</p>
       </div>
     </div>
   );

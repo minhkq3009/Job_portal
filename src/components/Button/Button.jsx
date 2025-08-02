@@ -7,6 +7,7 @@ export default function Button({
   size = "medium",  // 'medium' | 'large'
   disabled = false,
   onClick,
+  className = "",
 }) {
   const baseStyles =
     "inline-flex items-center justify-center font-medium rounded transition-colors duration-200";
@@ -40,7 +41,7 @@ export default function Button({
     <button
       onClick={onClick}
       disabled={disabled}
-      className={clsx(baseStyles, sizeStyles, typeStyles)}
+      className={clsx(baseStyles, sizeStyles, typeStyles, className)}
     >
       {label}
     </button>

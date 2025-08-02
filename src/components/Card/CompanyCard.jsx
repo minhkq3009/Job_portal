@@ -8,9 +8,10 @@ const CompanyCard = ({
   location = "New York",
   onBookmark,
   onOpen,
+  showBookmark = true,
 }) => {
   return (
-    <div className="group rounded-2xl p-8 bg-white outline outline-gray-100 transition-all flex flex-col items-start gap-8 w-auto max-w-fit hover:outline-primary-500 hover:shadow-primary">
+    <div className="group rounded-2xl p-8 bg-white border border-gray-100 transition-all flex flex-col items-start gap-8 w-full hover:border-primary-500 hover:shadow-primary">
       {/* Top section: logo + name + location */}
       <div className="flex items-start gap-4">
         {/* Logo */}
@@ -29,18 +30,21 @@ const CompanyCard = ({
       </div>
 
       {/* Bottom section: Bookmark + Button */}
-      <div className="flex items-center justify-between gap-3">
-        <div
-            onClick={onBookmark}
-            className="w-12 h-12 rounded-[5px]  flex items-center justify-center text-primary-500 hover:border-primary-300 cursor-pointer transition-all"
-            >
-            <Bookmark size={18} />
-            </div>
+      <div className="flex items-center gap-3 w-full">
+        {showBookmark && (
+          <div
+              onClick={onBookmark}
+              className="w-12 h-12 rounded-[5px]  flex items-center justify-center text-primary-500 hover:border-primary-300 cursor-pointer transition-all"
+              >
+              <Bookmark size={18} />
+              </div>
+        )}
         <Button
           label="Open Position"
           type="secondary"
           size="medium"
           onClick={onOpen}
+          className={showBookmark ? "flex-1" : "w-full"}
         />
       </div>
     </div>
