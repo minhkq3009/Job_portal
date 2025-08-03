@@ -8,7 +8,7 @@ import {
 } from "@heroicons/react/24/solid"; // Dùng Heroicons dạng fill
 
 const statusStyles = {
-  default: "border-gray-300 focus:border-primary-500",
+  default: "border-gray-100 focus:border-primary-500",
   success: "border-green-600 text-green-700",
   error: "border-red-500 text-red-600",
 };

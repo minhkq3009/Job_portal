@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Header from "../components/Header/Header";
 import KeywordInput from "../components/InputField/KeywordInput";
 import { MapPin, ArrowRight } from "lucide-react";
@@ -97,9 +98,12 @@ export default function Home() {
                     className="border-0 shadow-none"
                   />
                 </div>
-                <button className="px-4 py-3 h-12 rounded-md bg-primary-500 text-white font-medium hover:bg-primary-600 transition-all shrink-0 whitespace-nowrap min-w-fit">
+                                <Link 
+                  to="/find-job"
+                  className="px-4 py-3 h-12 rounded-md bg-primary-500 text-white font-medium hover:bg-primary-600 transition-all shrink-0 whitespace-nowrap min-w-fit flex items-center justify-center"
+                >
                   Find Job
-                </button>
+                </Link>
               </div>
               <p className="text-sm text-gray-400">
                 Suggestion:{" "}

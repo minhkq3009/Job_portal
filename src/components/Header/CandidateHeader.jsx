@@ -1,13 +1,13 @@
 import React from "react";
-import { Phone, ChevronDown } from "lucide-react";
+import { Phone, ChevronDown, Bell } from "lucide-react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/icons/Logo.svg";
 import FlagUS from "../../assets/images/FlagUS.svg";
+import Avatar from "../../assets/images/Image-1.png";
 import NavLinkSimple from "../NavLink/NavLinkSimple";
 import SearchInput from "../InputField/SearchInput";
-import Button from "../Button/Button";
 
-const Header = React.memo(function Header() {
+const CandidateHeader = React.memo(function CandidateHeader() {
   return (
     <header className="w-full border-b border-gray-200">
       {/* Top row: bg-gray-50 */}
@@ -52,14 +52,23 @@ const Header = React.memo(function Header() {
             <SearchInput className="w-full max-w-none" />
           </div>
 
-          {/* Auth Buttons */}
+          {/* Notification + Avatar */}
           <div className="flex items-center gap-3">
-            <Link to="/login">
-              <Button variant="tertiary" size="medium">
-                Sign In
-              </Button>
-            </Link>
-            <Button variant="primary" size="medium">Post A Job</Button>
+            {/* Notification */}
+            <button className="relative p-2 rounded-full hover:bg-gray-100 transition-colors duration-200">
+              <Bell size={18} />
+              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+            </button>
+
+            {/* Avatar */}
+            <button className="w-8 h-8 rounded-full overflow-hidden transition-transform duration-200 hover:scale-105">
+              <img
+                src={Avatar}
+                alt="Avatar"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </button>
           </div>
         </div>
       </div>
@@ -67,4 +76,4 @@ const Header = React.memo(function Header() {
   );
 });
 
-export default Header;
+export default CandidateHeader;

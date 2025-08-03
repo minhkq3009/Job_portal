@@ -25,7 +25,7 @@ export default function SearchInput({ className = "" }) {
         <input
           type="text"
           placeholder="Job title, keyword, company"
-          className="flex-1 text-body-sm focus:outline-none text-gray-800 placeholder:text-gray-400 bg-transparent"
+          className="flex-1 text-body-md focus:outline-none text-gray-800 placeholder:text-gray-400 bg-transparent"
         />
       </div>
     </div>
