@@ -43,17 +43,17 @@ export default function Header() {
 
       {/* Bottom row: bg-white */}
       <div className="bg-white">
-        <div className="container flex items-center justify-between gap-6 py-4">
+        <div className="container flex items-center justify-between gap-64 py-4">
           {/* Logo + SearchInput */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 flex-1">
             <img src={Logo} alt="Logo" />
-            <SearchInput />
+            <SearchInput className="w-full max-w-none" />
           </div>
 
           {/* Auth Buttons */}
           <div className="flex items-center gap-3">
-            <Button label="Sign In" type="tertiary" size="medium" />
-            <Button label="Post A Job" type="primary" size="medium" />
+            <Button variant="tertiary" size="medium">Sign In</Button>
+            <Button variant="primary" size="medium">Post A Job</Button>
           </div>
         </div>
       </div>

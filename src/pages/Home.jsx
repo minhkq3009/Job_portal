@@ -16,38 +16,21 @@ import { popularCategories } from "../data/categoriesData";
 import { popularVacancies } from "../data/vacanciesData";
 import { statsData } from "../data/statsData";
 import { topCompanies } from "../data/companiesData";
+import { testimonialsData } from "../data/testimonialsData";
+import CallToRegisterCard from "../components/Card/CallToRegisterCard";
+import Footer from "../components/Footer/Footer";
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const companiesPerSlide = 8;
   const totalSlides = Math.ceil(topCompanies.length / companiesPerSlide);
 
-  const testimonialList = [
-    {
-      rating: 5,
-      content:
-        "Ut ullamcorper hendrerit tempor. Aliquam in rutrum dui. Maecenas ac placerat metus, in faucibus est.",
-      name: "Robert Fox",
-      title: "UI/UX Designer",
-      avatar: "/images/avatar1.png",
-    },
-    {
-      rating: 5,
-      content:
-        "Mauris eget lorem odio. Mauris convallis justo molestie metus aliquam lacinia.",
-      name: "Bessie Cooper",
-      title: "Creative Director",
-      avatar: "/images/avatar2.png",
-    },
-    {
-      rating: 5,
-      content:
-        "Class aptent taciti sociosqu ad litora torquent per conubia nostra. Suspendisse et magna quis nibh accumsan venenatis.",
-      name: "Jane Cooper",
-      title: "Photographer",
-      avatar: "/images/avatar3.png",
-    },
-  ];
+
+
+  // Testimonial carousel state
+  const [testimonialSlide, setTestimonialSlide] = useState(0);
+  const testimonialsPerSlide = 3; // 3 testimonials per slide
+  const totalTestimonialSlides = Math.ceil(testimonialsData.length / testimonialsPerSlide);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % totalSlides);
@@ -61,9 +44,23 @@ export default function Home() {
     setCurrentSlide(index);
   };
 
+  // Testimonial carousel functions
+  const nextTestimonialSlide = () => {
+    setTestimonialSlide((prev) => (prev + 1) % totalTestimonialSlides);
+  };
+
+  const prevTestimonialSlide = () => {
+    setTestimonialSlide((prev) => (prev - 1 + totalTestimonialSlides) % totalTestimonialSlides);
+  };
+
   const getCurrentCompanies = () => {
     const start = currentSlide * companiesPerSlide;
     return topCompanies.slice(start, start + companiesPerSlide);
+  };
+
+  const getCurrentTestimonials = () => {
+    const start = testimonialSlide * testimonialsPerSlide;
+    return testimonialsData.slice(start, start + testimonialsPerSlide);
   };
 
   return (
@@ -87,16 +84,20 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="flex flex-col gap-6">
-              <div className="flex items-center bg-white rounded-[5px] p-3 gap-0 w-full">
-                <div className="flex-1">
-                  <KeywordInput />
+            <div className="flex flex-col gap-6 max-w-4xl">
+              <div className="flex items-center bg-white rounded-md p-3 gap-2 w-full shadow-sm border border-gray-100">
+                <div className="flex-1 min-w-0">
+                  <KeywordInput placeholder="Job title, keyword..." className="border-0 shadow-none" />
                 </div>
-                <div className="w-px h-10 bg-gray-200 mx-2" />
-                <div className="flex-1">
-                  <KeywordInput Icon={MapPin} placeholder="Your Location" />
+                <div className="w-px h-12 bg-gray-200" />
+                <div className="flex-1 min-w-0">
+                  <KeywordInput 
+                    Icon={MapPin}
+                    placeholder="Your Location" 
+                    className="border-0 shadow-none"
+                  />
                 </div>
-                <button className="ml-4 px-6 h-[56px] rounded bg-primary-500 text-white font-semibold hover:bg-primary-600 transition-all">
+                <button className="px-4 py-3 h-12 rounded-md bg-primary-500 text-white font-medium hover:bg-primary-600 transition-all shrink-0 whitespace-nowrap min-w-fit">
                   Find Job
                 </button>
               </div>
@@ -193,14 +194,12 @@ export default function Home() {
             <div className="flex items-center justify-between mb-8 md:mb-10 lg:mb-[50px]">
               <h2 className="text-heading-01 font-semibold text-gray-900">Popular category</h2>
               <Button 
-                type="tertiary" 
+                variant="tertiary" 
                 size="medium"
-                label={
-                  <span className="flex items-center gap-1">
-                    View All <ArrowRight className="w-4 h-4" />
-                  </span>
-                }
-              />
+                rightIcon={ArrowRight}
+              >
+                View All
+              </Button>
             </div>
 
             {/* Grid */}
@@ -226,14 +225,12 @@ export default function Home() {
             <div className="flex items-center justify-between mb-8 md:mb-10 lg:mb-[50px]">
               <h2 className="text-heading-01 font-semibold text-gray-900">Featured job</h2>
               <Button 
-                type="tertiary" 
+                variant="tertiary" 
                 size="medium"
-                label={
-                  <span className="flex items-center gap-1">
-                    View All <ArrowRight className="w-4 h-4" />
-                  </span>
-                }
-              />
+                rightIcon={ArrowRight}
+              >
+                View All
+              </Button>
             </div>
 
             {/* Job list */}
@@ -316,20 +313,79 @@ export default function Home() {
         </section>
 
         {/* Testimonial Section */}
-        <section className="bg-gray-50 py-20">
+        <section className="bg-gray-50 py-[100px]">
           <div className="container mx-auto px-4">
-            <h2 className="text-center text-heading-02 text-gray-900 mb-12">
+            <h2 className="text-center text-heading-01 text-gray-900 font-semibold mb-12">
               Clients Testimonial
             </h2>
 
-            <div className="flex justify-center gap-6 flex-wrap">
-              {testimonialList.map((item, idx) => (
-                <TestimonialCard key={idx} {...item} />
-              ))}
+            <div className="relative px-16">
+              {/* Navigation Buttons */}
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10">
+                <NavigationButton
+                  direction="left"
+                  onClick={prevTestimonialSlide}
+                  disabled={testimonialSlide === 0}
+                  active={testimonialSlide > 0}
+                />
+              </div>
+              
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10">
+                <NavigationButton
+                  direction="right"
+                  onClick={nextTestimonialSlide}
+                  disabled={testimonialSlide === totalTestimonialSlides - 1}
+                  active={testimonialSlide < totalTestimonialSlides - 1}
+                />
+              </div>
+
+              {/* Testimonials Container */}
+              <div className="overflow-hidden">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                  {getCurrentTestimonials().map((item, idx) => (
+                    <TestimonialCard key={`${testimonialSlide}-${idx}`} {...item} />
+                  ))}
+                </div>
+              </div>
+
+              {/* Dots Indicator */}
+              <div className="flex justify-center gap-3">
+                {Array.from({ length: totalTestimonialSlides }).map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setTestimonialSlide(index)}
+                    className={`transition-all duration-300 rounded-full ${
+                      testimonialSlide === index
+                        ? "w-8 h-2 bg-primary-500"
+                        : "w-2 h-2 bg-gray-300 hover:bg-primary-300"
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Call to Register Section */}
+        <section className="py-[100px] bg-white">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <CallToRegisterCard
+                title="Become a Candidate"
+                desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus a dolor convallis efficitur."
+                variant="light"
+              />
+              <CallToRegisterCard
+                title="Become an Employers"
+                desc="Cras in massa pellentesque, mollis ligula non, luctus dui. Morbi sed efficitur dolor."
+                variant="dark"
+              />
             </div>
           </div>
         </section>
       </main>
+      
+      <Footer />
     </>
   );
 }

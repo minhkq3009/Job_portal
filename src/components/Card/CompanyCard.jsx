@@ -40,12 +40,13 @@ const CompanyCard = ({
               </div>
         )}
         <Button
-          label="Open Position"
-          type="secondary"
+          variant="secondary"
           size="medium"
           onClick={onOpen}
           className={showBookmark ? "flex-1" : "w-full"}
-        />
+        >
+          Open Position
+        </Button>
       </div>
     </div>
   );

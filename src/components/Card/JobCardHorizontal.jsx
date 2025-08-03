@@ -47,14 +47,12 @@ export default function JobCardHorizontal({
       <div className="flex items-center gap-4">
         <Bookmark className="w-5 h-5 text-gray-400 hover:text-primary-500 cursor-pointer transition-colors" />
         <Button
-          label={
-            <span className="flex items-center gap-2">
-              Apply Now <ArrowRight className="w-4 h-4" />
-            </span>
-          }
-          type="secondary"
+          variant="secondary"
           size="medium"
-        />
+          rightIcon={ArrowRight}
+        >
+          Apply Now
+        </Button>
       </div>
     </div>
   );

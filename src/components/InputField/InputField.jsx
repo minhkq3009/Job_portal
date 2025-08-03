@@ -40,15 +40,11 @@ export default function InputField({
         placeholder={placeholder}
         className={clsx(
           // Kích thước chuẩn
-          "h-[48px] w-full px-[18px] rounded-[5px] border outline-none transition-all",
-          "text-[16px] leading-[24px] placeholder:text-gray-400",
+          "h-12 w-full px-4 rounded-md border outline-none transition-all",
+          "text-body-md placeholder:text-gray-400",
 
-          // Text khi gõ (default)
-          status === "default" && value
-            ? "text-gray-500"
-            : status === "default"
-            ? "text-gray-400"
-            : "",
+          // Text color based on status and value
+          status === "default" && "text-gray-800",
 
           // Viền & màu text theo trạng thái
           statusStyles[status],
