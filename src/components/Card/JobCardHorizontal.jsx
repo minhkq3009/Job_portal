@@ -26,12 +26,12 @@ export default function JobCardHorizontal({
     if (e.target.closest('button')) {
       return;
     }
-    navigate(`/jobs/job-details/${jobId}`);
+    navigate(`/jobs/job-details`);
   };
   return (
     <div
       onClick={handleCardClick}
-      className={`rounded-xl p-8 border border-gray-100 hover:shadow-lg transition-all duration-200 flex justify-between items-center gap-5 hover:border-primary-500 hover:shadow-primary cursor-pointer ${
+      className={`rounded-xl p-8 border border-gray-100 hover:shadow-lg transition-all duration-200 flex justify-between items-center gap-5 hover:border-primary-500 cursor-pointer ${
         featured ? "bg-gradient-to-r from-[#FFF6E6] to-[#FFFFFF]" : "bg-white"
       }`}
     >

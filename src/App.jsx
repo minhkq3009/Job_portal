@@ -8,6 +8,7 @@ import EmailVerification from './pages/auth/EmailVerification.jsx';
 import ResetPassword from './pages/auth/ResetPassword.jsx';
 import FindJob from './pages/jobs/FindJob.jsx';
 import JobDetails from './pages/jobs/JobDetails.jsx';
+import FindEmployers from './pages/employers/FindEmployers.jsx';
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
       <Route path="/email-verification" element={<EmailVerification />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/find-job" element={<FindJob />} />
-      <Route path="/jobs/job-details/:id" element={<JobDetails />} />
+      <Route path="/find-employers" element={<FindEmployers />} />
+      <Route path="/jobs/job-details" element={<JobDetails />} />
     </Routes>
   );
 }

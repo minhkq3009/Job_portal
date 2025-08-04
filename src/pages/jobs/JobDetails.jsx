@@ -5,11 +5,177 @@ import LabelTag from "../../components/Label/LabelTag";
 import LogoCompany from "../../components/Company/LogoCompany";
 import Footer from "../../components/Footer/Footer";
 import JobOverviewItem from "../../components/Job/JobOverviewItem";
-import React from "react";
-import { MapPin, Clock, DollarSign, Users, ArrowRight, Bookmark, Share2, Instagram, Phone, Mail, Calendar, Briefcase, Wallet } from "lucide-react";
+import JobCardVertical from "../../components/Card/JobCardVertical";
+import NavigationButton from "../../components/Button/NavigationButton";
+import ApplyJobModal from "../../components/Modal/ApplyJobModal";
+import React, { useState } from "react";
+import { MapPin, Clock, DollarSign, Users, ArrowRight, Bookmark, Share2, Instagram, Phone, Mail, Calendar, Briefcase, Wallet, Facebook, Twitter, Youtube, Linkedin } from "lucide-react";
 import dribbbleLogo from "../../assets/icons/figma.svg"; // Sử dụng figma logo làm ví dụ cho Dribbble
 
 export default function JobDetails() {
+  // Related jobs carousel state
+  const [currentSlide, setCurrentSlide] = useState(0);
+  
+  // Apply modal state
+  const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
+  
+  // Mock related jobs data - nhiều jobs hơn để carousel
+  const relatedJobs = [
+    {
+      id: 2,
+      company: "Facebook",
+      location: "United Kingdom",
+      title: "Software Engineer",
+      salary: "$15K-$20K",
+      typeLabel: "Part Time",
+      logoText: "F"
+    },
+    {
+      id: 3,
+      company: "Google",
+      location: "California, USA",
+      title: "Product Designer",
+      salary: "$60K-$80K",
+      typeLabel: "Full Time",
+      topLabel: "Featured",
+      topVariant: "warning",
+      logoText: "G",
+      featured: true
+    },
+    {
+      id: 4,
+      company: "Microsoft",
+      location: "Seattle, USA",
+      title: "Frontend Developer",
+      salary: "$45K-$65K",
+      typeLabel: "Remote",
+      logoText: "M"
+    },
+    {
+      id: 5,
+      company: "Apple",
+      location: "Cupertino, USA",
+      title: "iOS Developer",
+      salary: "$70K-$90K",
+      typeLabel: "Full Time",
+      topLabel: "Urgent",
+      topVariant: "danger",
+      logoText: "A"
+    },
+    {
+      id: 6,
+      company: "Netflix",
+      location: "Los Angeles, USA",
+      title: "Data Scientist",
+      salary: "$80K-$100K",
+      typeLabel: "Full Time",
+      logoText: "N"
+    },
+    {
+      id: 7,
+      company: "Spotify",
+      location: "Stockholm, Sweden",
+      title: "Backend Engineer",
+      salary: "$55K-$75K",
+      typeLabel: "Remote",
+      logoText: "S"
+    },
+    {
+      id: 8,
+      company: "Amazon",
+      location: "Seattle, USA",
+      title: "Cloud Engineer",
+      salary: "$65K-$85K",
+      typeLabel: "Full Time",
+      logoText: "A"
+    },
+    {
+      id: 9,
+      company: "Tesla",
+      location: "Austin, USA",
+      title: "Mechanical Engineer",
+      salary: "$70K-$95K",
+      typeLabel: "Full Time",
+      topLabel: "Hot",
+      topVariant: "danger",
+      logoText: "T"
+    },
+    {
+      id: 10,
+      company: "Uber",
+      location: "San Francisco, USA",
+      title: "Mobile Developer",
+      salary: "$55K-$75K",
+      typeLabel: "Remote",
+      logoText: "U"
+    },
+    {
+      id: 11,
+      company: "Airbnb",
+      location: "San Francisco, USA",
+      title: "UX Designer",
+      salary: "$60K-$80K",
+      typeLabel: "Full Time",
+      topLabel: "Featured",
+      topVariant: "warning",
+      logoText: "A",
+      featured: true
+    },
+    {
+      id: 12,
+      company: "LinkedIn",
+      location: "Mountain View, USA",
+      title: "Data Analyst",
+      salary: "$50K-$70K",
+      typeLabel: "Part Time",
+      logoText: "L"
+    },
+    {
+      id: 13,
+      company: "Twitter",
+      location: "San Francisco, USA",
+      title: "DevOps Engineer",
+      salary: "$65K-$90K",
+      typeLabel: "Remote",
+      logoText: "T"
+    }
+  ];
+
+  const jobsPerSlide = 6; // 2 hàng x 3 cột = 6 jobs mỗi slide
+  const totalSlides = Math.ceil(relatedJobs.length / jobsPerSlide);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % totalSlides);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+  };
+
+  const getCurrentJobs = () => {
+    const start = currentSlide * jobsPerSlide;
+    return relatedJobs.slice(start, start + jobsPerSlide);
+  };
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+  };
+
+  // Apply modal functions
+  const handleApplyClick = () => {
+    setIsApplyModalOpen(true);
+  };
+
+  const handleApplySubmit = (applicationData) => {
+    // Handle apply logic here
+    console.log("Applied with:", applicationData);
+    setIsApplyModalOpen(false);
+  };
+
+  const handleApplyCancel = () => {
+    setIsApplyModalOpen(false);
+  };
+
   // Mock data - trong thực tế sẽ lấy từ props hoặc API
   const jobData = {
     id: 1,
@@ -58,7 +224,7 @@ Nam dapibus consectetur erat in euismod. Cras urna augue, mollis venenatis augue
       <div className="bg-white pb-8">
         <div className="container mx-auto">
           {/* Job Header */}
-          <div className="bg-white p-8 rounded-xl mb-4">
+          <div className="bg-white py-8 rounded-xl mb-4">
             <div className="flex items-center justify-between gap-6">
               {/* Left Side - Avatar + Job Info */}
               <div className="flex items-center gap-6">
@@ -107,7 +273,12 @@ Nam dapibus consectetur erat in euismod. Cras urna augue, mollis venenatis augue
                   </button>
                   
                   {/* Apply Button */}
-                  <Button variant="primary" size="large" rightIcon={ArrowRight}>
+                  <Button 
+                    variant="primary" 
+                    size="large" 
+                    rightIcon={ArrowRight}
+                    onClick={handleApplyClick}
+                  >
                     Apply Now
                   </Button>
                 </div>
@@ -120,29 +291,51 @@ Nam dapibus consectetur erat in euismod. Cras urna augue, mollis venenatis augue
             </div>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+          <div className="flex flex-col lg:flex-row gap-4 lg:gap-12">
             {/* Left Side - Job Description */}
-            <div className="lg:col-span-3">
+            <div className="lg:w-[65%]">
               <div className="bg-white rounded-xl">
-                <h2 className="text-body-lg text-gray-900 mb-4">Job Description</h2>
-                <div className="prose prose-gray max-w-none mb-6">
+                <h2 className="text-body-lg font-semibold text-gray-900 mb-4">Job Description</h2>
+                <div className="prose prose-gray max-w-none mb-8">
                   <div className="whitespace-pre-line text-body-md text-gray-600" style={{lineHeight: '1.75'}}>
                     {jobData.description}
                   </div>
                 </div>
                 
-                <h2 className="text-body-lg text-gray-900 mb-4">Responsibilities</h2>
-                <div className="prose prose-gray max-w-none">
+                <h2 className="text-body-lg font-semibold text-gray-900 mb-4">Responsibilities</h2>
+                <div className="prose prose-gray max-w-none mb-8">
                   <div className="whitespace-pre-line text-body-md text-gray-600" style={{lineHeight: '1.75'}}>
                     {jobData.responsibilities}
                   </div>
+                </div>
+
+                {/* Share Job */}
+                <div className="flex items-center gap-4 text-sm">
+                  <span className="text-gray-900 font-medium whitespace-nowrap">
+                    Share this job:
+                  </span>
+
+                  <button className="flex items-center gap-2 px-3 py-1.5 rounded-md border text-blue-600 border-blue-100 hover:bg-blue-50 transition">
+                    <Facebook size={16} />
+                    Facebook
+                  </button>
+
+                  <button className="flex items-center gap-2 px-3 py-1.5 rounded-md border text-sky-500 border-blue-100 hover:bg-blue-50 transition">
+                    <Twitter size={16} />
+                    Twitter
+                  </button>
+
+                  <button className="flex items-center gap-2 px-3 py-1.5 rounded-md border text-blue-700 border-blue-100 hover:bg-blue-50 transition">
+                    <Linkedin size={16} />
+                    LinkedIn
+                  </button>
                 </div>
               </div>
             </div>
 
             {/* Right Side - Job Overview */}
-            <div className="lg:col-span-2">
-              <section className="p-8 border rounded-xl bg-white">
+            <div className="lg:w-[35%]">
+              <section className="p-8 border-2 border-gray-50 rounded-xl bg-white">
                 <h2 className="text-body-xl font-semibold mb-6">Job Overview</h2>
                 <div className="flex flex-wrap">
                   {[
@@ -164,10 +357,158 @@ Nam dapibus consectetur erat in euismod. Cras urna augue, mollis venenatis augue
                   ))}
                 </div>
               </section>
+
+              {/* Company Info Card */}
+              <div className="p-8 rounded-xl border-2 border-gray-50 bg-white max-w-xl space-y-8 mt-4">
+                {/* Header */}
+                <div className="flex items-start gap-8">
+                  <img
+                    src={jobData.logo}
+                    alt="Instagram"
+                    className="w-16 h-16 rounded-md"
+                  />
+                  <div className="flex flex-col gap-2">
+                    <h2 className="text-body-xl font-semibold">Instagram</h2>
+                    <p className="text-body-sm text-gray-500">Social networking service</p>
+                  </div>
+                </div>
+
+                {/* Info rows */}
+                <div className="space-y-4">
+                  <div className="flex justify-between w-full">
+                    <p className="text-body-md text-gray-600">Founded in:</p>
+                    <p className="text-body-md text-gray-900">March 21, 2006</p>
+                  </div>
+
+                  <div className="flex justify-between w-full">
+                    <p className="text-body-md text-gray-600">Organization type:</p>
+                    <p className="text-body-md text-gray-900">Private Company</p>
+                  </div>
+
+                  <div className="flex justify-between w-full">
+                    <p className="text-body-md text-gray-600">Company size:</p>
+                    <p className="text-body-md text-gray-900">120–300 Employers</p>
+                  </div>
+
+                  <div className="flex justify-between w-full">
+                    <p className="text-body-md text-gray-600">Phone:</p>
+                    <p className="text-body-md text-gray-900">(406) 555-0120</p>
+                  </div>
+
+                  <div className="flex justify-between w-full">
+                    <p className="text-body-md text-gray-600">Email:</p>
+                    <p className="text-body-md text-gray-900">twitter@gmail.com</p>
+                  </div>
+
+                  <div className="flex justify-between w-full">
+                    <p className="text-body-md text-gray-600">Website:</p>
+                    <p className="text-body-md text-blue-600">https://twitter.com</p>
+                  </div>
+                </div>
+
+                {/* Social icons */}
+                <div className="flex items-center gap-3">
+                  <button className="w-9 h-9 flex items-center justify-center bg-gray-100 rounded-md hover:bg-gray-200">
+                    <Facebook className="text-blue-600" size={18} />
+                  </button>
+                  <button className="w-9 h-9 flex items-center justify-center bg-gray-100 rounded-md hover:bg-gray-200">
+                    <Twitter className="text-blue-600" size={18} />
+                  </button>
+                  <button className="w-9 h-9 flex items-center justify-center bg-gray-100 rounded-md hover:bg-gray-200">
+                    <Instagram className="text-blue-600" size={18} />
+                  </button>
+                  <button className="w-9 h-9 flex items-center justify-center bg-gray-100 rounded-md hover:bg-gray-200">
+                    <Youtube className="text-blue-600" size={18} />
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Related Jobs */}
+      <div className="bg-gray-50 py-16">
+        <div className="container mx-auto">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-heading-04 font-semibold text-gray-900">Related Jobs</h2>
+            <div className="flex items-center gap-2">
+              <NavigationButton 
+                direction="left" 
+                onClick={prevSlide}
+                disabled={currentSlide === 0}
+                active={currentSlide > 0}
+              />
+              <NavigationButton 
+                direction="right" 
+                onClick={nextSlide}
+                disabled={currentSlide === totalSlides - 1}
+                active={currentSlide < totalSlides - 1}
+              />
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-3 gap-x-6 gap-y-8">
+            {getCurrentJobs().map((job) => (
+              <div
+                key={job.id}
+                onClick={() => window.location.href = `/jobs/job-details`}
+                className={`rounded-xl p-8 hover:shadow-lg transition-all duration-200 border border-gray-100 space-y-6 hover:border-primary-500 cursor-pointer ${
+                  job.featured ? "bg-gradient-to-r from-[#FFF6E6] to-[#FFFFFF]" : "bg-white"
+                }`}
+              >
+                {/* Header */}
+                <div className="flex items-center gap-4">
+                  <LogoCompany logo={dribbbleLogo} logoText={job.logoText} size="md" />
+                  <div className="flex flex-col gap-[6px]">
+                    <div className="flex items-center gap-2">
+                      <span className="text-body-md font-medium text-gray-900">{job.company}</span>
+                      {job.topLabel && <LabelTag label={job.topLabel} variant={job.topVariant} />}
+                    </div>
+                    <div className="flex items-center gap-1 text-sm text-gray-400">
+                      <MapPin size={18} />
+                      <span>{job.location}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="flex flex-col gap-2">
+                  <h3 className="text-body-xl font-medium text-gray-900">{job.title}</h3>
+                  <div className="flex items-center gap-2">
+                    <span className="text-body-sm text-gray-500">{job.typeLabel}</span>
+                    <span className="text-body-sm text-gray-500">•</span>
+                    <span className="text-body-sm text-gray-500">{job.salary}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Dots Indicator */}
+          <div className="flex justify-center gap-3 mt-8">
+            {Array.from({ length: totalSlides }).map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`transition-all duration-300 rounded-full ${
+                  currentSlide === index
+                    ? "w-8 h-2 bg-primary-500"
+                    : "w-2 h-2 bg-gray-300 hover:bg-primary-300"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Apply Job Modal */}
+      <ApplyJobModal
+        isOpen={isApplyModalOpen}
+        onClose={handleApplyCancel}
+        onApply={handleApplySubmit}
+        jobTitle={jobData.title}
+      />
 
       {/* Footer */}
       <Footer />

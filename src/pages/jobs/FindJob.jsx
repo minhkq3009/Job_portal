@@ -1,4 +1,4 @@
-import CandidateHeader from "../../components/Header/CandidateHeader.jsx";
+import Header from "../../components/Header/Header.jsx";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import KeywordInput from "../../components/InputField/KeywordInput";
 import CategorySelect from "../../components/InputField/CategorySelect";
@@ -134,7 +134,7 @@ export default function FindJob() {
 
   return (
     <>
-      <CandidateHeader />
+      <Header />
       <Breadcrumb title="Find Job" />
       <div className="bg-gray-50 pb-8">
         <div className="container mx-auto">

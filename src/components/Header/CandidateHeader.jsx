@@ -17,7 +17,7 @@ const CandidateHeader = React.memo(function CandidateHeader() {
           <nav className="flex items-center gap-6 text-sm font-medium text-gray-700">
             <NavLinkSimple label="Home" to="/" />
             <NavLinkSimple label="Find Job" to="/find-job" />
-            <NavLinkSimple label="Employers" to="/employers" />
+            <NavLinkSimple label="Find Employers" to="/find-employers" />
             <NavLinkSimple label="Blog" to="/blog" />
             <NavLinkSimple label="Contact Us" to="/contact" />
           </nav>

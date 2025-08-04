@@ -21,12 +21,12 @@ export default function JobCardVertical({
   const navigate = useNavigate();
 
   const handleCardClick = () => {
-    navigate(`/jobs/job-details/${jobId}`);
+    navigate(`/jobs/job-details`);
   };
   return (
     <div
       onClick={handleCardClick}
-      className={`rounded-xl p-8 hover:shadow-lg transition-all duration-200 border border-gray-100 space-y-6 hover:border-primary-500 hover:shadow-primary cursor-pointer ${
+      className={`rounded-xl p-8 hover:shadow-lg transition-all duration-200 border border-gray-100 space-y-6 hover:border-primary-500 cursor-pointer ${
         featured ? "bg-gradient-to-r from-[#FFF6E6] to-[#FFFFFF]" : "bg-white"
       }`}
     >

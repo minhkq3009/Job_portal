@@ -37,7 +37,7 @@ export default function AdvancedFilterModal({ isOpen, onClose, onApply, currentF
 
   return (
     <Dialog open={isOpen} onClose={onClose} className="relative z-50">
-      <div className="fixed inset-0 bg-black/30" />
+      <div className="fixed inset-0 bg-black/70" />
       <div className="fixed inset-0 flex items-start justify-center pt-72">
         <Dialog.Panel className="bg-white w-full p-6 rounded-xl shadow-lg border border-gray-200 container mx-auto">
           <div className="grid grid-cols-5 gap-4">
