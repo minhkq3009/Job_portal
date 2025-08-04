@@ -45,11 +45,8 @@ export default function Dropdown({
     if (selectedValue !== defaultValue) {
       return "text-gray-700"; // selected state
     }
-    if (isOpen) {
-      return "text-gray-900"; // open state (same as hover for consistency)
-    }
-    if (isHovered) {
-      return "text-gray-900"; // hover state
+    if (isOpen || isHovered) {
+      return "text-gray-900"; // open/hover state
     }
     return "text-gray-500"; // default state
   };
@@ -64,16 +61,12 @@ export default function Dropdown({
         onMouseLeave={() => setIsHovered(false)}
         className={clsx(
           "w-full flex items-center justify-between",
-          "border border-gray-300 rounded-md",
+          "border border-gray-100 rounded-md",
           "px-4 py-3.5", // padding 14px (3.5 * 4) vertical, 16px horizontal
           "text-sm font-medium",
           "transition-colors duration-200",
           "focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500",
-          getTextColor(),
-          {
-            "border-gray-400": isHovered || isOpen,
-            "border-gray-300": !isHovered && !isOpen,
-          }
+          getTextColor()
         )}
       >
         <span className="truncate">{selectedValue}</span>

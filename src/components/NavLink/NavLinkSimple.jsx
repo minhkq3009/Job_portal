@@ -4,7 +4,11 @@ import clsx from "clsx";
 
 const NavLinkSimple = React.memo(function NavLinkSimple({ label, to }) {
   const location = useLocation();
-  const isActive = location.pathname === to;
+  
+  // Special logic for Find Job - should be active on job-related pages
+  const isActive = to === '/find-job' 
+    ? (location.pathname === to || location.pathname.startsWith('/jobs/'))
+    : location.pathname === to;
 
   return (
     <Link

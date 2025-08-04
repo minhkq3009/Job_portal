@@ -13,6 +13,7 @@ export default function Breadcrumb({ title }) {
     const pathLabels = {
       'jobs': 'Jobs',
       'find-job': 'Find Job',
+      'job-details': 'Job Details',
       'profile': 'Profile',
       'settings': 'Settings',
       'applications': 'Applications'
@@ -21,6 +22,12 @@ export default function Breadcrumb({ title }) {
     let currentPath = '';
     pathSegments.forEach((segment, index) => {
       currentPath += `/${segment}`;
+      
+      // Skip numeric IDs (like job IDs) in breadcrumb
+      if (/^\d+$/.test(segment)) {
+        return;
+      }
+      
       const label = pathLabels[segment] || segment.charAt(0).toUpperCase() + segment.slice(1);
       
       breadcrumbs.push({
@@ -36,7 +43,7 @@ export default function Breadcrumb({ title }) {
   const breadcrumbs = generateBreadcrumbs();
 
   return (
-    <div className="bg-white border-b border-gray-200">
+    <div className="bg-gray-50">
       <div className="container py-6">
         <div className="flex items-center justify-between">
           {/* Title - Left */}

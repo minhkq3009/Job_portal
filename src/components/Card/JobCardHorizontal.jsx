@@ -1,5 +1,6 @@
 import React from "react";
 import { MapPin, Clock, Bookmark, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import LabelTag from "../Label/LabelTag.jsx";
 import Button from "../Button/Button.jsx";
 import LogoCompany from "../Company/LogoCompany.jsx";
@@ -15,9 +16,25 @@ export default function JobCardHorizontal({
   typeVariant = "primary",
   logo,
   logoText = "D",
+  featured = false, // thêm prop featured
+  jobId = 1, // thêm prop jobId
 }) {
+  const navigate = useNavigate();
+
+  const handleCardClick = (e) => {
+    // Prevent navigation when clicking on buttons
+    if (e.target.closest('button')) {
+      return;
+    }
+    navigate(`/jobs/job-details/${jobId}`);
+  };
   return (
-    <div className="rounded-xl p-8 bg-white border border-gray-100 hover:shadow-lg transition-all duration-200 flex justify-between items-center gap-5 hover:border-primary-500 hover:shadow-primary">
+    <div
+      onClick={handleCardClick}
+      className={`rounded-xl p-8 border border-gray-100 hover:shadow-lg transition-all duration-200 flex justify-between items-center gap-5 hover:border-primary-500 hover:shadow-primary cursor-pointer ${
+        featured ? "bg-gradient-to-r from-[#FFF6E6] to-[#FFFFFF]" : "bg-white"
+      }`}
+    >
       {/* Left */}
       <div className="flex items-center gap-4">
         <LogoCompany logo={logo} logoText={logoText} size="lg" />

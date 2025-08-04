@@ -9,7 +9,7 @@ import SearchInput from "../InputField/SearchInput";
 
 const CandidateHeader = React.memo(function CandidateHeader() {
   return (
-    <header className="w-full border-b border-gray-200">
+    <header className="w-full">
       {/* Top row: bg-gray-50 */}
       <div className="bg-gray-50">
         <div className="container flex items-center justify-between">
