@@ -3,8 +3,8 @@ import clsx from "clsx";
 
 export default function Button({
   children,
-  variant = "primary", // 'primary' | 'secondary' | 'tertiary'
-  size = "medium",     // 'medium' | 'large'
+  variant = "primary", // 'primary' | 'secondary' | 'tertiary' | 'ghost'
+  size = "medium",     // 'small' | 'medium' | 'large'
   leftIcon: LeftIcon,
   rightIcon: RightIcon,
   disabled = false,
@@ -16,11 +16,13 @@ export default function Button({
     "inline-flex items-center justify-center font-medium rounded transition-colors duration-200";
 
   const sizeStyles = clsx({
+    "w-12 h-12 p-3": size === "small", // 48px x 48px with 24px icon
     "px-6 py-3 text-button": size === "medium", // 24px x 12px
     "px-8 py-4 text-button": size === "large", // 32px x 16px
   });
 
   const gapStyles = clsx({
+    "gap-1": size === "small",
     "gap-2": size === "medium",
     "gap-3": size === "large",
   });
@@ -43,9 +45,15 @@ export default function Button({
       variant === "tertiary" && !disabled,
     "border border-primary-100 text-primary-300 cursor-not-allowed":
       variant === "tertiary" && disabled,
+
+    // Ghost
+    "text-gray-500 hover:text-gray-700 hover:bg-gray-100":
+      variant === "ghost" && !disabled,
+    "text-gray-300 cursor-not-allowed":
+      variant === "ghost" && disabled,
   });
 
-  const iconSize = size === "large" ? 20 : 16;
+  const iconSize = size === "large" ? 20 : size === "small" ? 24 : 16;
 
   return (
     <button

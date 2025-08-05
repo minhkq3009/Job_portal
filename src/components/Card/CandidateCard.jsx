@@ -20,6 +20,8 @@ export default function CandidateCard({
   typeLabel = "Full-Time",
   typeVariant = "primary",
   featured = false,
+  onViewProfile,
+  useModal = true, // true for modal, false for page navigation
 }) {
   const navigate = useNavigate();
 
@@ -28,7 +30,11 @@ export default function CandidateCard({
     if (e.target.closest('button')) {
       return;
     }
-    navigate(`/candidates/${id}`);
+    if (useModal && onViewProfile) {
+      onViewProfile(id);
+    } else {
+      navigate(`/candidates/${id}`);
+    }
   };
 
   const availabilityColor = availability === "Available" ? "text-green-600" : "text-orange-600";
@@ -110,12 +116,16 @@ export default function CandidateCard({
             }}
           />
           <Button
-            variant="primary"
+            variant="secondary"
             size="medium"
             rightIcon={ArrowRight}
             onClick={(e) => {
               e.stopPropagation();
-              navigate(`/candidates/${id}`);
+              if (useModal && onViewProfile) {
+                onViewProfile(id);
+              } else {
+                navigate(`/candidates/${id}`);
+              }
             }}
           >
             View Profile

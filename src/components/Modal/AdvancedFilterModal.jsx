@@ -2,13 +2,9 @@ import { Dialog } from "@headlessui/react";
 import { useState, useEffect } from "react";
 import { Search } from "lucide-react";
 import Button from "../Button/Button";
-import { 
-  experienceOptions, 
-  salaryOptions, 
-  jobTypes, 
-  educations, 
-  jobLevels 
-} from "../../data/filterOptions";
+import { filterOptions } from "../../data/index";
+
+const { experienceOptions, salaryOptions, jobTypes, educations, jobLevels } = filterOptions;
 
 export default function AdvancedFilterModal({ isOpen, onClose, onApply, currentFilters = {} }) {
   const [filters, setFilters] = useState({

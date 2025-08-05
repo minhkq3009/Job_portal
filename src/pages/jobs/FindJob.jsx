@@ -13,14 +13,10 @@ import AdvancedFilterModal from "../../components/Modal/AdvancedFilterModal";
 import Footer from "../../components/Footer/Footer";
 import React, { useState } from "react";
 import { MapPin, Search, Layers, SlidersHorizontal, Send, Filter } from "lucide-react";
-import { allJobs } from "../../data/jobsData";
-import { 
-  experienceOptions, 
-  salaryOptions, 
-  jobTypes, 
-  educations, 
-  jobLevels 
-} from "../../data/filterOptions";
+import { allJobs } from "../../data/index";
+import { filterOptions } from "../../data/index";
+
+const { experienceOptions, salaryOptions, jobTypes, educations, jobLevels } = filterOptions;
 
 export default function FindJob() {
   const [showAdvance, setShowAdvance] = useState(false);

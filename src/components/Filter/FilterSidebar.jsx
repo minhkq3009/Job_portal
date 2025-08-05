@@ -7,6 +7,8 @@ export default function FilterSidebar({ type = "jobs" }) {
   const [showOrgType, setShowOrgType] = useState(true);
 
   const [showSkills, setShowSkills] = useState(true);
+  const [showEducation, setShowEducation] = useState(true);
+  const [showGender, setShowGender] = useState(true);
 
   const organizationTypes = [
     "Government",
@@ -36,6 +38,22 @@ export default function FilterSidebar({ type = "jobs" }) {
     "SQL",
     "Git",
     "Figma",
+  ];
+
+  const educationLevels = [
+    "High School",
+    "Associate Degree",
+    "Bachelor's Degree",
+    "Master's Degree",
+    "PhD",
+    "Professional Certificate",
+  ];
+
+  const genderOptions = [
+    "Male",
+    "Female",
+    "Other",
+    "Prefer not to say",
   ];
 
   return (
@@ -106,7 +124,7 @@ export default function FilterSidebar({ type = "jobs" }) {
           {/* Divider Line */}
           <div className="border-t border-gray-100"></div>
           
-          <div className="pt-6 px-8 pb-8">
+          <div className="pt-6 px-8 pb-6">
             <div
               className="flex items-center justify-between cursor-pointer"
               onClick={() => setShowSkills(!showSkills)}
@@ -127,6 +145,67 @@ export default function FilterSidebar({ type = "jobs" }) {
                       className="w-[22px] h-[22px] form-checkbox accent-blue-600"
                     />
                     <span className="text-body-sm text-gray-900">{skill}</span>
+                  </label>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Education */}
+          <div className="border-t border-gray-100"></div>
+          
+          <div className="pt-6 px-8 pb-6">
+            <div
+              className="flex items-center justify-between cursor-pointer"
+              onClick={() => setShowEducation(!showEducation)}
+            >
+              <h3 className="text-body-lg font-medium text-gray-900">Education</h3>
+              {showEducation ? <ChevronUp size={22} /> : <ChevronDown size={22} />}
+            </div>
+
+            {showEducation && (
+              <div className="mt-5 space-y-4">
+                {educationLevels.map((education) => (
+                  <label
+                    key={education}
+                    className="flex items-center gap-2 cursor-pointer"
+                  >
+                    <input
+                      type="checkbox"
+                      className="w-[22px] h-[22px] form-checkbox accent-blue-600"
+                    />
+                    <span className="text-body-sm text-gray-900">{education}</span>
+                  </label>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Gender */}
+          <div className="border-t border-gray-100"></div>
+          
+          <div className="pt-6 px-8 pb-8">
+            <div
+              className="flex items-center justify-between cursor-pointer"
+              onClick={() => setShowGender(!showGender)}
+            >
+              <h3 className="text-body-lg font-medium text-gray-900">Gender</h3>
+              {showGender ? <ChevronUp size={22} /> : <ChevronDown size={22} />}
+            </div>
+
+            {showGender && (
+              <div className="mt-5 space-y-4">
+                {genderOptions.map((gender) => (
+                  <label
+                    key={gender}
+                    className="flex items-center gap-2 cursor-pointer"
+                  >
+                    <input
+                      type="radio"
+                      name="gender"
+                      className="w-[22px] h-[22px] form-radio accent-blue-600"
+                    />
+                    <span className="text-body-sm text-gray-900">{gender}</span>
                   </label>
                 ))}
               </div>

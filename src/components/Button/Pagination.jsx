@@ -50,7 +50,7 @@ export default function Pagination({
   const endItem = Math.min(currentPage * itemsPerPage, totalItems);
 
   return (
-    <div className={clsx("flex flex-col sm:flex-row items-center justify-between gap-4", className)}>
+    <div className={clsx("flex flex-col sm:flex-row items-center justify-between w-full", className)}>
       {/* Info section */}
       {showInfo && totalItems > 0 && (
         <div className="text-sm text-gray-600">

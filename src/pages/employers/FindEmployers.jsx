@@ -12,7 +12,7 @@ import Pagination from "../../components/Button/Pagination";
 import Footer from "../../components/Footer/Footer";
 import React, { useState } from "react";
 import { MapPin, Filter, Briefcase } from "lucide-react";
-import { topCompanies } from "../../data/companiesData";
+import { topCompanies } from "../../data/index";
 
 export default function FindEmployers() {
   const [selectedSort, setSelectedSort] = useState("latest");
@@ -96,7 +96,6 @@ export default function FindEmployers() {
           <div className="flex items-center gap-3">
             {/* Sort dropdown */}
             <div className="flex items-center gap-2">
-              <span className="text-body-sm text-gray-600">Sort by:</span>
               <Dropdown
                 options={sortOptions}
                 defaultValue={selectedSort === "latest" ? "Latest" : "Oldest"}

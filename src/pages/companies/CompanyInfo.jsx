@@ -8,8 +8,7 @@ import Button from "../../components/Button/Button";
 import LogoCompany from "../../components/Company/LogoCompany";
 import JobOverviewItem from "../../components/Job/JobOverviewItem";
 import JobCardVertical from "../../components/Card/JobCardVertical";
-import { topCompanies } from "../../data/companiesData";
-import { featuredJobs } from "../../data/jobsData";
+import { topCompanies, featuredJobs } from "../../data/index";
 import companiesImage from "../../assets/images/companies.png";
 
 export default function CompanyInfo() {

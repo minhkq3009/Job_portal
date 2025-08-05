@@ -12,12 +12,7 @@ import NavigationButton from "../components/Button/NavigationButton";
 import JobCardHorizontal from "../components/Card/JobCardHorizontal";
 import TestimonialCard from "../components/Card/TestimonialCard";
 import Illustration from "../assets/images/Illustration.svg";
-import { featuredJobs } from "../data/jobsData";
-import { popularCategories } from "../data/categoriesData";
-import { popularVacancies } from "../data/vacanciesData";
-import { statsData } from "../data/statsData";
-import { topCompanies } from "../data/companiesData";
-import { testimonialsData } from "../data/testimonialsData";
+import { featuredJobs, topCompanies, categoriesData as popularCategories, statsData, testimonialsData, popularVacancies } from "../data/index";
 import CallToRegisterCard from "../components/Card/CallToRegisterCard";
 import Footer from "../components/Footer/Footer";
 

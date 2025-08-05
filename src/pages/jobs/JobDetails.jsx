@@ -11,7 +11,7 @@ import ApplyJobModal from "../../components/Modal/ApplyJobModal";
 import React, { useState } from "react";
 import { MapPin, Clock, DollarSign, Users, ArrowRight, Bookmark, Share2, Instagram, Phone, Mail, Calendar, Briefcase, Wallet, Facebook, Twitter, Youtube, Linkedin } from "lucide-react";
 import dribbbleLogo from "../../assets/icons/figma.svg"; // Sử dụng figma logo làm ví dụ cho Dribbble
-import { featuredJobs } from "../../data/jobsData";
+import { featuredJobs } from "../../data/index";
 
 export default function JobDetails() {
   // Related jobs carousel state
