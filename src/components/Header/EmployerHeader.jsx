@@ -1,13 +1,14 @@
 import React from "react";
-import { Phone, ChevronDown, Bell } from "lucide-react";
+import { Phone, ChevronDown, Bell, Plus } from "lucide-react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/icons/Logo.svg";
 import FlagUS from "../../assets/images/FlagUS.svg";
 import Avatar from "../../assets/images/Image-1.png";
 import NavLinkSimple from "../NavLink/NavLinkSimple";
 import SearchInput from "../InputField/SearchInput";
+import Button from "../Button/Button";
 
-const CandidateHeader = React.memo(function CandidateHeader() {
+const EmployerHeader = React.memo(function EmployerHeader() {
   return (
     <header className="w-full">
       {/* Top row: bg-gray-50 */}
@@ -53,13 +54,23 @@ const CandidateHeader = React.memo(function CandidateHeader() {
             <SearchInput className="w-full max-w-none" />
           </div>
 
-          {/* Notification + Avatar */}
+          {/* Notification + Post a Job Button + Avatar */}
           <div className="flex items-center gap-3">
             {/* Notification */}
             <button className="relative p-2 rounded-full hover:bg-gray-100 transition-colors duration-200">
               <Bell size={18} />
               <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse" />
             </button>
+
+            {/* Post a Job Button */}
+            <Button 
+              variant="secondary" 
+              size="medium" 
+              leftIcon={Plus}
+              className="whitespace-nowrap"
+            >
+              Post a Job
+            </Button>
 
             {/* Avatar */}
             <button className="w-8 h-8 rounded-full overflow-hidden transition-transform duration-200 hover:scale-105">
@@ -77,4 +88,4 @@ const CandidateHeader = React.memo(function CandidateHeader() {
   );
 });
 
-export default CandidateHeader;
+export default EmployerHeader;

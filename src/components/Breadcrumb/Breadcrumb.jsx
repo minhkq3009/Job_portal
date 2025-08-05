@@ -58,6 +58,7 @@ export default function Breadcrumb({ title, customBreadcrumbs }) {
       'find-job': 'Find Job',
       'job-details': 'Job Details',
       'find-employers': 'Find Employers',
+      'find-candidates': 'Find Candidates',
       'companies': 'Companies',
       'profile': 'Profile',
       'settings': 'Settings',

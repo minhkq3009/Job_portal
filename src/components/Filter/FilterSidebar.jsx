@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
-export default function FilterSidebar() {
+export default function FilterSidebar({ type = "jobs" }) {
   const [radius, setRadius] = useState(32);
   const [showRadius, setShowRadius] = useState(true);
   const [showOrgType, setShowOrgType] = useState(true);
+
+  const [showSkills, setShowSkills] = useState(true);
 
   const organizationTypes = [
     "Government",
@@ -13,6 +15,27 @@ export default function FilterSidebar() {
     "Private Company",
     "International Agencies",
     "Others",
+  ];
+
+  const experienceLevels = [
+    "Entry Level (0-1 years)",
+    "Junior (1-3 years)",
+    "Mid Level (3-5 years)",
+    "Senior (5-8 years)",
+    "Expert (8+ years)",
+  ];
+
+  const popularSkills = [
+    "JavaScript",
+    "React",
+    "Python",
+    "Node.js",
+    "TypeScript",
+    "AWS",
+    "Docker",
+    "SQL",
+    "Git",
+    "Figma",
   ];
 
   return (
@@ -46,34 +69,71 @@ export default function FilterSidebar() {
       {/* Divider Line */}
       <div className="border-t border-gray-100"></div>
 
-      {/* Organization Type */}
-      <div className="pt-6 px-8 pb-8">
+      {/* Organization Type / Experience Level */}
+      <div className="pt-6 px-8 pb-6">
         <div
           className="flex items-center justify-between cursor-pointer"
           onClick={() => setShowOrgType(!showOrgType)}
         >
-          <h3 className="text-body-lg font-medium text-gray-900">Organization Type</h3>
+          <h3 className="text-body-lg font-medium text-gray-900">
+            {type === "candidates" ? "Experience Level" : "Organization Type"}
+          </h3>
           {showOrgType ? <ChevronUp size={22} /> : <ChevronDown size={22} />}
         </div>
 
         {showOrgType && (
           <div className="mt-5 space-y-4">
-            {organizationTypes.map((type) => (
+            {(type === "candidates" ? experienceLevels : organizationTypes).map((item) => (
               <label
-                key={type}
+                key={item}
                 className="flex items-center gap-2 cursor-pointer"
               >
                 <input
                   type="radio"
-                  name="organization"
+                  name={type === "candidates" ? "experience" : "organization"}
                   className="w-[22px] h-[22px] form-radio accent-blue-600"
                 />
-                <span className="text-body-sm text-gray-900">{type}</span>
+                <span className="text-body-sm text-gray-900">{item}</span>
               </label>
             ))}
           </div>
         )}
       </div>
+
+      {/* Skills (only for candidates) */}
+      {type === "candidates" && (
+        <>
+          {/* Divider Line */}
+          <div className="border-t border-gray-100"></div>
+          
+          <div className="pt-6 px-8 pb-8">
+            <div
+              className="flex items-center justify-between cursor-pointer"
+              onClick={() => setShowSkills(!showSkills)}
+            >
+              <h3 className="text-body-lg font-medium text-gray-900">Skills</h3>
+              {showSkills ? <ChevronUp size={22} /> : <ChevronDown size={22} />}
+            </div>
+
+            {showSkills && (
+              <div className="mt-5 space-y-4">
+                {popularSkills.map((skill) => (
+                  <label
+                    key={skill}
+                    className="flex items-center gap-2 cursor-pointer"
+                  >
+                    <input
+                      type="checkbox"
+                      className="w-[22px] h-[22px] form-checkbox accent-blue-600"
+                    />
+                    <span className="text-body-sm text-gray-900">{skill}</span>
+                  </label>
+                ))}
+              </div>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }

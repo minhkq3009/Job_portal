@@ -18,6 +18,7 @@ const Header = React.memo(function Header() {
             <NavLinkSimple label="Home" to="/" />
             <NavLinkSimple label="Find Job" to="/find-job" />
             <NavLinkSimple label="Find Employers" to="/find-employers" />
+            <NavLinkSimple label="Find Candidates" to="/find-candidates" />
             <NavLinkSimple label="Blog" to="/blog" />
             <NavLinkSimple label="Contact Us" to="/contact" />
           </nav>
