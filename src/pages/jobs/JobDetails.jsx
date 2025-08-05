@@ -11,7 +11,7 @@ import ApplyJobModal from "../../components/Modal/ApplyJobModal";
 import React, { useState } from "react";
 import { MapPin, Clock, DollarSign, Users, ArrowRight, Bookmark, Share2, Instagram, Phone, Mail, Calendar, Briefcase, Wallet, Facebook, Twitter, Youtube, Linkedin } from "lucide-react";
 import dribbbleLogo from "../../assets/icons/figma.svg"; // Sử dụng figma logo làm ví dụ cho Dribbble
-import { featuredJobs, popularJobs } from "../../data/jobsData";
+import { featuredJobs } from "../../data/jobsData";
 
 export default function JobDetails() {
   // Related jobs carousel state
@@ -21,7 +21,7 @@ export default function JobDetails() {
   const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
   
   // Use data from jobsData instead of hardcoded array
-  const relatedJobs = [...featuredJobs, ...popularJobs].slice(0, 12);
+  const relatedJobs = [...featuredJobs, ...featuredJobs].slice(0, 12);
 
   const jobsPerSlide = 6; // 2 hàng x 3 cột = 6 jobs mỗi slide
   const totalSlides = Math.ceil(relatedJobs.length / jobsPerSlide);
