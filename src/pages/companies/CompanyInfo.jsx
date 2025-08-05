@@ -45,16 +45,49 @@ export default function CompanyInfo() {
             <div className="flex items-center justify-between p-10 bg-white rounded-xl shadow-sm border border-gray-100">
               {/* Left: Logo + Info */}
               <div className="flex items-center gap-6">
-                {/* Logo */}
-                <LogoCompany 
-                  logoText={company.logoText} 
-                  size="xl" 
-                  companyName={company.company}
-                />
+                {/* Logo 80x80 */}
+                <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 bg-gray-100 flex items-center justify-center">
+                  {(() => {
+                    // Auto-generate logo URL from company name
+                    const domainMap = {
+                      'Dribbble': 'dribbble.com',
+                      'Upwork': 'upwork.com',
+                      'Slack': 'slack.com',
+                      'Freepik': 'freepik.com',
+                      'Google': 'google.com',
+                      'Facebook': 'facebook.com',
+                      'Apple': 'apple.com',
+                      'Microsoft': 'microsoft.com',
+                      'Netflix': 'netflix.com',
+                      'Twitter': 'twitter.com',
+                      'LinkedIn': 'linkedin.com',
+                      'Amazon': 'amazon.com',
+                      'Figma': 'figma.com'
+                    };
+                    
+                    const domain = domainMap[company.company];
+                    const logoUrl = company.logo || (domain ? `https://logo.clearbit.com/${domain}` : null);
+                    
+                    return logoUrl ? (
+                      <img 
+                        src={logoUrl} 
+                        alt={`${company.company} logo`}
+                        className="w-full h-full object-cover rounded-xl"
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                          e.target.nextSibling.style.display = 'flex';
+                        }}
+                      />
+                    ) : (
+                      <span className="text-2xl font-bold text-gray-700">{company.logoText}</span>
+                    );
+                  })()}
+                  <span className="text-2xl font-bold text-gray-700 hidden items-center justify-center w-full h-full">{company.logoText}</span>
+                </div>
                 {/* Info */}
                 <div>
                   <h3 className="text-heading-04 font-semibold text-gray-900 mb-2.5">{company.company}</h3>
-                  <p className="text-body-md text-gray-500">Information Technology (IT)</p>
+                  <p className="text-body-md text-gray-600">Information Technology (IT)</p>
                 </div>
               </div>
 
@@ -72,79 +105,79 @@ export default function CompanyInfo() {
           <div className="pt-32 space-y-12">
             
             {/* Main content layout: Description left, Overview right */}
-            <div className="flex">
-              {/* Left: Description - flexible width */}
-              <div className="flex-1 space-y-9" style={{marginRight: '60px'}}>
+            <div className="flex" style={{gap: '60px'}}>
+              {/* Left: Description - 7/12 columns */}
+              <div className="w-7/12 space-y-9">
             
-            {/* Description Section */}
-            <div>
-              <h2 className="text-body-xl font-semibold text-gray-900 mb-4">Description</h2>
-              <p className="text-body-md text-gray-600 leading-relaxed">
-                Fusce et erat at nibh maximus fermentum. Mauris ac justo nibh. Praesent nec lorem lorem. Donec ullamcorper lacus mollis tortor pretium malesuada. In quis porta nisi, quis fringilla orci. Donec porttitor, odio a efficitur blandit, orci nisl porta elit, eget vulputate quam nibh ut tellus. Sed ut posuere risus, vitae commodo velit. Nullam in lorem dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nulla tincidunt ac quam quis vehicula. Quisque sagittis ullamcorper magna. Vivamus elementum eu leo et gravida. Sed dignissim placerat diam, ac laoreet eros rutrum sit amet. Donec imperdiet in leo et imperdiet. In hac habitasse platea dictumst. Sed quis nisl molestie diam ullamcorper condimentum. Sed aliquet, arcu eget pretium bibendum, odio enim rutrum arcu, quis suscipit mauris turpis in neque. Vestibulum id vestibulum odio. Sed dolor felis, iaculis eget turpis eu, lobortis imperdiet massa.
-              </p>
-            </div>
+                {/* Description Section */}
+                <div>
+                  <h2 className="text-body-xl font-semibold text-gray-900 mb-4">Description</h2>
+                  <p className="text-body-md text-gray-600 leading-relaxed">
+                    Fusce et erat at nibh maximus fermentum. Mauris ac justo nibh. Praesent nec lorem lorem. Donec ullamcorper lacus mollis tortor pretium malesuada. In quis porta nisi, quis fringilla orci. Donec porttitor, odio a efficitur blandit, orci nisl porta elit, eget vulputate quam nibh ut tellus. Sed ut posuere risus, vitae commodo velit. Nullam in lorem dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nulla tincidunt ac quam quis vehicula. Quisque sagittis ullamcorper magna. Vivamus elementum eu leo et gravida. Sed dignissim placerat diam, ac laoreet eros rutrum sit amet. Donec imperdiet in leo et imperdiet. In hac habitasse platea dictumst. Sed quis nisl molestie diam ullamcorper condimentum. Sed aliquet, arcu eget pretium bibendum, odio enim rutrum arcu, quis suscipit mauris turpis in neque. Vestibulum id vestibulum odio. Sed dolor felis, iaculis eget turpis eu, lobortis imperdiet massa.
+                  </p>
+                </div>
 
-            {/* Company Benefits Section */}
-            <div>
-              <h2 className="text-body-xl font-semibold text-gray-900 mb-4">Company Benefits</h2>
-              <div className="space-y-4">
-                <p className="text-body-md text-gray-600">
-                  Donec dignissim nunc eu tellus malesuada fermentum. Sed blandit in magna at accumsan. Etiam imperdiet massa aliquam, consectetur leo in, auctor neque.
-                </p>
-                <ul className="space-y-3 text-body-md text-gray-600">
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-primary-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    In hac habitasse platea dictumst.
-                  </li>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-primary-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    Sed aliquet, arcu eget pretium bibendum, odio enim rutrum arcu.
-                  </li>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-primary-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    Vestibulum id vestibulum odio.
-                  </li>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-primary-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    Etiam libero ante accumsan id tellus venenatis rhoncus vulputate velit.
-                  </li>
-                  <li className="flex items-start">
-                    <span className="w-2 h-2 bg-primary-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    Nam condimentum sit amet ipsum id malesuada.
-                  </li>
-                </ul>
-              </div>
-            </div>
+                {/* Company Benefits Section */}
+                <div>
+                  <h2 className="text-body-xl font-semibold text-gray-900 mb-4">Company Benefits</h2>
+                  <div className="space-y-4">
+                    <p className="text-body-md text-gray-600">
+                      Donec dignissim nunc eu tellus malesuada fermentum. Sed blandit in magna at accumsan. Etiam imperdiet massa aliquam, consectetur leo in, auctor neque.
+                    </p>
+                    <ul className="space-y-3 text-body-md text-gray-600">
+                      <li className="flex items-start">
+                        <span className="w-2 h-2 bg-primary-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        In hac habitasse platea dictumst.
+                      </li>
+                      <li className="flex items-start">
+                        <span className="w-2 h-2 bg-primary-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        Sed aliquet, arcu eget pretium bibendum, odio enim rutrum arcu.
+                      </li>
+                      <li className="flex items-start">
+                        <span className="w-2 h-2 bg-primary-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        Vestibulum id vestibulum odio.
+                      </li>
+                      <li className="flex items-start">
+                        <span className="w-2 h-2 bg-primary-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        Etiam libero ante accumsan id tellus venenatis rhoncus vulputate velit.
+                      </li>
+                      <li className="flex items-start">
+                        <span className="w-2 h-2 bg-primary-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                        Nam condimentum sit amet ipsum id malesuada.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
 
-            {/* Company Vision Section */}
-            <div>
-              <h2 className="text-body-xl font-semibold text-gray-900 mb-4">Company Vision</h2>
-              <p className="text-body-md text-gray-600 leading-relaxed">
-                Praesent ultrices mauris at nisi euismod, ut venenatis augue blandit. Etiam massa risus, accumsan nec tempus nec, venenatis in nisl. Maecenas nulla ex, blandit in magna id, pellentesque facilisis sapien. In feugiat auctor mi, eget commodo lectus convallis ac.
-              </p>
-            </div>
+                {/* Company Vision Section */}
+                <div>
+                  <h2 className="text-body-xl font-semibold text-gray-900 mb-4">Company Vision</h2>
+                  <p className="text-body-md text-gray-600 leading-relaxed">
+                    Praesent ultrices mauris at nisi euismod, ut venenatis augue blandit. Etiam massa risus, accumsan nec tempus nec, venenatis in nisl. Maecenas nulla ex, blandit in magna id, pellentesque facilisis sapien. In feugiat auctor mi, eget commodo lectus convallis ac.
+                  </p>
+                </div>
 
-            {/* Share Profile Section */}
-            <div className="flex items-center gap-4 text-sm">
-              <span className="text-gray-900 font-medium whitespace-nowrap">
-                Share this profile:
-              </span>
+                {/* Share Profile Section */}
+                <div className="flex items-center gap-4 text-sm">
+                  <span className="text-gray-900 font-medium whitespace-nowrap">
+                    Share this profile:
+                  </span>
 
-              <button className="flex items-center gap-2 px-3 py-1.5 rounded-md border text-blue-600 border-blue-100 hover:bg-blue-50 transition">
-                <Facebook size={16} />
-                Facebook
-              </button>
+                  <button className="flex items-center gap-2 px-3 py-1.5 rounded-md border text-blue-600 border-blue-100 hover:bg-blue-50 transition">
+                    <Facebook size={16} />
+                    Facebook
+                  </button>
 
-              <button className="flex items-center gap-2 px-3 py-1.5 rounded-md border text-sky-500 border-blue-100 hover:bg-blue-50 transition">
-                <Twitter size={16} />
-                Twitter
-              </button>
+                  <button className="flex items-center gap-2 px-3 py-1.5 rounded-md border text-sky-500 border-blue-100 hover:bg-blue-50 transition">
+                    <Twitter size={16} />
+                    Twitter
+                  </button>
 
-              <button className="flex items-center gap-2 px-3 py-1.5 rounded-md border text-blue-700 border-blue-100 hover:bg-blue-50 transition">
-                <Linkedin size={16} />
-                LinkedIn
-              </button>
-            </div>
+                  <button className="flex items-center gap-2 px-3 py-1.5 rounded-md border text-blue-700 border-blue-100 hover:bg-blue-50 transition">
+                    <Linkedin size={16} />
+                    LinkedIn
+                  </button>
+                </div>
 
               </div>
 
