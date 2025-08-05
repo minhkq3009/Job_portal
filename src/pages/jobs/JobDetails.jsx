@@ -11,6 +11,7 @@ import ApplyJobModal from "../../components/Modal/ApplyJobModal";
 import React, { useState } from "react";
 import { MapPin, Clock, DollarSign, Users, ArrowRight, Bookmark, Share2, Instagram, Phone, Mail, Calendar, Briefcase, Wallet, Facebook, Twitter, Youtube, Linkedin } from "lucide-react";
 import dribbbleLogo from "../../assets/icons/figma.svg"; // Sử dụng figma logo làm ví dụ cho Dribbble
+import { featuredJobs, popularJobs } from "../../data/jobsData";
 
 export default function JobDetails() {
   // Related jobs carousel state
@@ -19,127 +20,8 @@ export default function JobDetails() {
   // Apply modal state
   const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
   
-  // Mock related jobs data - nhiều jobs hơn để carousel
-  const relatedJobs = [
-    {
-      id: 2,
-      company: "Facebook",
-      location: "United Kingdom",
-      title: "Software Engineer",
-      salary: "$15K-$20K",
-      typeLabel: "Part Time",
-      logoText: "F"
-    },
-    {
-      id: 3,
-      company: "Google",
-      location: "California, USA",
-      title: "Product Designer",
-      salary: "$60K-$80K",
-      typeLabel: "Full Time",
-      topLabel: "Featured",
-      topVariant: "warning",
-      logoText: "G",
-      featured: true
-    },
-    {
-      id: 4,
-      company: "Microsoft",
-      location: "Seattle, USA",
-      title: "Frontend Developer",
-      salary: "$45K-$65K",
-      typeLabel: "Remote",
-      logoText: "M"
-    },
-    {
-      id: 5,
-      company: "Apple",
-      location: "Cupertino, USA",
-      title: "iOS Developer",
-      salary: "$70K-$90K",
-      typeLabel: "Full Time",
-      topLabel: "Urgent",
-      topVariant: "danger",
-      logoText: "A"
-    },
-    {
-      id: 6,
-      company: "Netflix",
-      location: "Los Angeles, USA",
-      title: "Data Scientist",
-      salary: "$80K-$100K",
-      typeLabel: "Full Time",
-      logoText: "N"
-    },
-    {
-      id: 7,
-      company: "Spotify",
-      location: "Stockholm, Sweden",
-      title: "Backend Engineer",
-      salary: "$55K-$75K",
-      typeLabel: "Remote",
-      logoText: "S"
-    },
-    {
-      id: 8,
-      company: "Amazon",
-      location: "Seattle, USA",
-      title: "Cloud Engineer",
-      salary: "$65K-$85K",
-      typeLabel: "Full Time",
-      logoText: "A"
-    },
-    {
-      id: 9,
-      company: "Tesla",
-      location: "Austin, USA",
-      title: "Mechanical Engineer",
-      salary: "$70K-$95K",
-      typeLabel: "Full Time",
-      topLabel: "Hot",
-      topVariant: "danger",
-      logoText: "T"
-    },
-    {
-      id: 10,
-      company: "Uber",
-      location: "San Francisco, USA",
-      title: "Mobile Developer",
-      salary: "$55K-$75K",
-      typeLabel: "Remote",
-      logoText: "U"
-    },
-    {
-      id: 11,
-      company: "Airbnb",
-      location: "San Francisco, USA",
-      title: "UX Designer",
-      salary: "$60K-$80K",
-      typeLabel: "Full Time",
-      topLabel: "Featured",
-      topVariant: "warning",
-      logoText: "A",
-      featured: true
-    },
-    {
-      id: 12,
-      company: "LinkedIn",
-      location: "Mountain View, USA",
-      title: "Data Analyst",
-      salary: "$50K-$70K",
-      typeLabel: "Part Time",
-      logoText: "L"
-    },
-    {
-      id: 13,
-      company: "Twitter",
-      location: "San Francisco, USA",
-      title: "DevOps Engineer",
-      salary: "$65K-$90K",
-      typeLabel: "Remote",
-      logoText: "T"
-    }
-  ];
+  // Use data from jobsData instead of hardcoded array
+  const relatedJobs = [...featuredJobs, ...popularJobs].slice(0, 12);
 
   const jobsPerSlide = 6; // 2 hàng x 3 cột = 6 jobs mỗi slide
   const totalSlides = Math.ceil(relatedJobs.length / jobsPerSlide);
@@ -176,22 +58,17 @@ export default function JobDetails() {
     setIsApplyModalOpen(false);
   };
 
-  // Mock data - trong thực tế sẽ lấy từ props hoặc API
+  // Use data from jobsData and extend with additional fields
+  const baseJob = featuredJobs[0]; // Use first featured job as base
   const jobData = {
+    ...baseJob,
     id: 1,
-    title: "Senior UX Designer",
-    company: "Dribbble",
-    location: "California, USA",
-    salary: "$50k-80k/month",
-    type: "Full-Time",
+    company: "Upwork", // From baseJob logoText/title
     level: "Senior Level",
     experience: "3-5 Years",
     posted: "2 days ago",
-    deadline: "4 Days Remaining",
+    deadline: baseJob.time || "4 Days Remaining",
     applicants: "25 Applications",
-    featured: true,
-    logo: dribbbleLogo,
-    logoText: "D",
     description: `Integer aliquet pretium consequat. Donec et sapien id leo accumsan pellentesque eget maximus tellus. Duis et est ac leo rhoncus tincidunt vitae vehicula augue. Donec in suscipit diam. Pellentesque quis justo sit amet arcu commodo sollicitudin. Integer finibus blandit condimentum. Vivamus sit amet ligula ullamcorper, pulvinar ante id, tristique erat. Quisque sit amet aliquam urna. Maecenas blandit felis id massa sodales finibus. Integer bibendum eu nulla eu sollicitudin. Sed lobortis diam tincidunt accumsan faucibus. Quisque blandit augue quis turpis auctor, dapibus euismod ante ultricies. Ut non felis lacinia turpis feugiat euismod at id magna. Sed ut orci arcu. Suspendisse sollicitudin faucibus aliquet.
 
 Nam dapibus consectetur erat in euismod. Cras urna augue, mollis venenatis augue sed, porttitor aliquet nibh. Sed tristique dictum elementum. Nulla imperdiet sit amet quam eget lobortis. Etiam in neque sit amet orci interdum tincidunt.`,
@@ -206,7 +83,7 @@ Nam dapibus consectetur erat in euismod. Cras urna augue, mollis venenatis augue
 • dui sodales ut. Curabitur tempus augue.`,
     benefits: [
       "Health Insurance",
-      "Dental Insurance",
+      "Dental Insurance", 
       "Vision Insurance",
       "401(k) Retirement Plan",
       "Flexible Working Hours",
@@ -431,7 +308,7 @@ Nam dapibus consectetur erat in euismod. Cras urna augue, mollis venenatis augue
       <div className="bg-gray-50 py-16">
         <div className="container mx-auto">
           <div className="flex items-center justify-between mb-8">
-            <h2 className="text-heading-04 font-semibold text-gray-900">Related Jobs</h2>
+            <h2 className="text-heading-01 font-semibold text-gray-900">Related Jobs</h2>
             <div className="flex items-center gap-2">
               <NavigationButton 
                 direction="left" 

@@ -144,7 +144,7 @@ export default function FindJob() {
                 <div className="flex-1 min-w-0">
                   <KeywordInput placeholder="Job title, keyword..." className="border-0 shadow-none" />
                 </div>
-                <div className="w-px h-12" />
+                <div className="w-px h-12 bg-gray-50" />
                 <div className="flex-1 min-w-0">
                   <KeywordInput 
                     Icon={MapPin}

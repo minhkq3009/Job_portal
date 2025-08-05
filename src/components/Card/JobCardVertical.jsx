@@ -16,7 +16,7 @@ export default function JobCardVertical({
   logo,
   logoText = "D",
   featured = false, // thêm prop featured
-  jobId = 1, // thêm prop jobId
+  hideButton = false, // thêm prop hideButton
 }) {
   const navigate = useNavigate();
 
@@ -56,16 +56,18 @@ export default function JobCardVertical({
       </div>
 
       {/* Apply Button */}
-      <div className="pt-2">
-        <Button
-          variant="secondary"
-          size="medium"
-          rightIcon={ArrowRight}
-          className="w-full"
-        >
-          Apply Now
-        </Button>
-      </div>
+      {!hideButton && (
+        <div className="pt-2">
+          <Button
+            variant="secondary"
+            size="medium"
+            rightIcon={ArrowRight}
+            className="w-full"
+          >
+            Apply Now
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

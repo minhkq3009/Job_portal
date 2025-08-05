@@ -17,7 +17,8 @@ export default function JobCardHorizontal({
   logo,
   logoText = "D",
   featured = false, // thêm prop featured
-  jobId = 1, // thêm prop jobId
+  companyId,
+
 }) {
   const navigate = useNavigate();
 
@@ -26,7 +27,12 @@ export default function JobCardHorizontal({
     if (e.target.closest('button')) {
       return;
     }
-    navigate(`/jobs/job-details`);
+    // Navigate to company info if companyId is provided, otherwise job details
+    if (companyId !== undefined) {
+      navigate(`/companies/${companyId}`);
+    } else {
+      navigate(`/jobs/job-details`);
+    }
   };
   return (
     <div
@@ -37,13 +43,13 @@ export default function JobCardHorizontal({
     >
       {/* Left */}
       <div className="flex items-center gap-4">
-        <LogoCompany logo={logo} logoText={logoText} size="lg" />
+        <LogoCompany logo={logo} logoText={logoText} size="lg" companyName={title} />
 
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-2 flex-wrap">
             <h3 className="text-body-lg font-medium text-gray-900">{title}</h3>
-            {topLabel && <LabelTag label={topLabel} variant={topVariant} />}
-            <LabelTag label={typeLabel} variant={typeVariant} />
+            {topLabel && topLabel.trim() !== "" && <LabelTag label={topLabel} variant={topVariant} />}
+            {typeLabel && typeLabel.trim() !== "" && <LabelTag label={typeLabel} variant={typeVariant} />}
           </div>
 
           <div className="flex flex-wrap items-center gap-4 text-body-sm text-gray-500">
@@ -52,10 +58,12 @@ export default function JobCardHorizontal({
               <span>{location}</span>
             </div>
             <span>{salary}</span>
-            <div className="flex items-center gap-1">
-              <Clock size={18} />
-              <span>{time}</span>
-            </div>
+            {time && time.trim() !== "" && (
+              <div className="flex items-center gap-1">
+                <Clock size={18} />
+                <span>{time}</span>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -68,7 +76,7 @@ export default function JobCardHorizontal({
           size="medium"
           rightIcon={ArrowRight}
         >
-          Apply Now
+          Open Position
         </Button>
       </div>
     </div>

@@ -1,8 +1,51 @@
 import { Link, useLocation } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 
-export default function Breadcrumb({ title }) {
+export default function Breadcrumb({ title, customBreadcrumbs }) {
   const location = useLocation();
+  
+  // Use custom breadcrumbs if provided
+  if (customBreadcrumbs) {
+    return (
+      <div className="bg-gray-50">
+        <div className="container py-6">
+          <div className="flex items-center justify-between">
+            {/* Title - Left */}
+            <h1 className="text-body-lg font-semibold text-gray-900">
+              {title}
+            </h1>
+            
+            {/* Breadcrumb Navigation - Right */}
+            <nav className="flex items-center space-x-1" aria-label="Breadcrumb">
+              {customBreadcrumbs.map((crumb, index) => (
+                <div key={crumb.path || index} className="flex items-center">
+                  {index > 0 && (
+                    <ChevronRight 
+                      size={16} 
+                      className="text-gray-400 mx-2" 
+                    />
+                  )}
+                  
+                  {crumb.isLast ? (
+                    <span className="text-body-sm font-medium text-gray-900">
+                      {crumb.label}
+                    </span>
+                  ) : (
+                    <Link
+                      to={crumb.path}
+                      className="text-body-sm text-gray-500 hover:text-gray-700 transition-colors duration-200"
+                    >
+                      {crumb.label}
+                    </Link>
+                  )}
+                </div>
+              ))}
+            </nav>
+          </div>
+        </div>
+      </div>
+    );
+  }
   
   // Generate breadcrumb items based on current path
   const generateBreadcrumbs = () => {
@@ -14,6 +57,8 @@ export default function Breadcrumb({ title }) {
       'jobs': 'Jobs',
       'find-job': 'Find Job',
       'job-details': 'Job Details',
+      'find-employers': 'Find Employers',
+      'companies': 'Companies',
       'profile': 'Profile',
       'settings': 'Settings',
       'applications': 'Applications'

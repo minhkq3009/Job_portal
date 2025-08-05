@@ -9,6 +9,7 @@ import ResetPassword from './pages/auth/ResetPassword.jsx';
 import FindJob from './pages/jobs/FindJob.jsx';
 import JobDetails from './pages/jobs/JobDetails.jsx';
 import FindEmployers from './pages/employers/FindEmployers.jsx';
+import CompanyInfo from './pages/companies/CompanyInfo.jsx';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Route path="/find-job" element={<FindJob />} />
       <Route path="/find-employers" element={<FindEmployers />} />
       <Route path="/jobs/job-details" element={<JobDetails />} />
+      <Route path="/companies/:id" element={<CompanyInfo />} />
     </Routes>
   );
 }

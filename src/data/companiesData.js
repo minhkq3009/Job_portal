@@ -11,6 +11,15 @@ export const topCompanies = [
     company: "Dribbble",
     location: "United States",
     // logo: dribbbleLogo,
+    description: "Dribbble is the world's leading community for creatives to share, grow, and get hired. We connect millions of designers, developers, and creative professionals through our platform.",
+    benefits: [
+      "Flexible working hours and remote work options",
+      "Comprehensive health and dental insurance",
+      "Professional development budget for courses and conferences", 
+      "Creative workspace with latest design tools",
+      "Annual company retreats and team building events"
+    ],
+    vision: "To empower the creative community by providing the best platform for showcasing work, finding inspiration, and connecting with opportunities worldwide."
   },
   {
     logoText: "Up",
@@ -66,6 +75,16 @@ export const topCompanies = [
     logoText: "Tw",
     company: "Twitter",
     location: "United States",
+    description: "Twitter is a global platform for public self-expression and conversation in real time. We serve the public conversation and help people connect with what's happening in the world and what people are talking about right now.",
+    benefits: [
+      "Unlimited PTO and flexible work arrangements",
+      "Comprehensive health, dental, and vision insurance",
+      "Stock options and equity participation",
+      "Learning and development stipend",
+      "Free meals and snacks at office locations",
+      "Mental health and wellness programs"
+    ],
+    vision: "To give everyone the power to create and share ideas and information instantly, without barriers, and to serve the public conversation."
   },
   {
     logoText: "Li",
