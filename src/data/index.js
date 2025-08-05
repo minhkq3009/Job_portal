@@ -337,6 +337,110 @@ export const topCompanies = [
     jobCount: 18,
     founded: "2004",
     size: "10000+ employees"
+  },
+  {
+    logoText: "Mi",
+    company: "Microsoft",
+    location: "United States",
+    jobCount: 32,
+    founded: "1975",
+    size: "10000+ employees"
+  },
+  {
+    logoText: "Am",
+    company: "Amazon",
+    location: "United States",
+    jobCount: 45,
+    founded: "1994",
+    size: "10000+ employees"
+  },
+  {
+    logoText: "Ne",
+    company: "Netflix",
+    location: "United States",
+    jobCount: 15,
+    founded: "1997",
+    size: "5001-10000 employees"
+  },
+  {
+    logoText: "Sp",
+    company: "Spotify",
+    location: "Sweden",
+    jobCount: 22,
+    founded: "2006",
+    size: "1001-5000 employees"
+  },
+  {
+    logoText: "Ai",
+    company: "Airbnb",
+    location: "United States",
+    jobCount: 28,
+    founded: "2008",
+    size: "1001-5000 employees"
+  },
+  {
+    logoText: "Ub",
+    company: "Uber",
+    location: "United States",
+    jobCount: 35,
+    founded: "2009",
+    size: "10000+ employees"
+  },
+  {
+    logoText: "Tw",
+    company: "Twitter",
+    location: "United States",
+    jobCount: 19,
+    founded: "2006",
+    size: "1001-5000 employees"
+  },
+  {
+    logoText: "Li",
+    company: "LinkedIn",
+    location: "United States",
+    jobCount: 41,
+    founded: "2003",
+    size: "10000+ employees"
+  },
+  {
+    logoText: "Ad",
+    company: "Adobe",
+    location: "United States",
+    jobCount: 26,
+    founded: "1982",
+    size: "10000+ employees"
+  },
+  {
+    logoText: "Sa",
+    company: "Salesforce",
+    location: "United States",
+    jobCount: 38,
+    founded: "1999",
+    size: "10000+ employees"
+  },
+  {
+    logoText: "Sh",
+    company: "Shopify",
+    location: "Canada",
+    jobCount: 24,
+    founded: "2006",
+    size: "5001-10000 employees"
+  },
+  {
+    logoText: "Dr",
+    company: "Dropbox",
+    location: "United States",
+    jobCount: 16,
+    founded: "2007",
+    size: "1001-5000 employees"
+  },
+  {
+    logoText: "Zn",
+    company: "Zendesk",
+    location: "United States",
+    jobCount: 21,
+    founded: "2007",
+    size: "1001-5000 employees"
   }
 ];
 
@@ -707,7 +811,7 @@ export const testimonialsData = [
     title: "UI/UX Designer",
     avatar: avatar1,
     rating: 5,
-    text: "Ut ullamcorper hendrerit tempor. Aliquam in rutrum dui. Maecenas ac placerat metus, in faucibus est."
+    content: "Ut ullamcorper hendrerit tempor. Aliquam in rutrum dui. Maecenas ac placerat metus, in faucibus est."
   },
   {
     id: 2,
@@ -715,7 +819,7 @@ export const testimonialsData = [
     title: "Creative Director",
     avatar: avatar2,
     rating: 5,
-    text: "Mauris eget lorem odio. Mauris convallis justo molestie metus aliquam lacinia. Suspendisse ut dui vulputate augue condimentum ornare. Morbi vitae tristique ante"
+    content: "Mauris eget lorem odio. Mauris convallis justo molestie metus aliquam lacinia. Suspendisse ut dui vulputate augue condimentum ornare. Morbi vitae tristique ante"
   },
   {
     id: 3,
@@ -723,6 +827,6 @@ export const testimonialsData = [
     title: "Photographer",
     avatar: avatar3,
     rating: 5,
-    text: "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse et magna quis nibh accumsan venenatis sit amet id orci. Duis vestibulum bibendum dapibus."
+    content: "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse et magna quis nibh accumsan venenatis sit amet id orci. Duis vestibulum bibendum dapibus."
   }
 ];
