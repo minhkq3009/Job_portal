@@ -21,12 +21,21 @@ export default function Home() {
   const companiesPerSlide = 8;
   const totalSlides = Math.ceil(topCompanies.length / companiesPerSlide);
 
-
-
   // Testimonial carousel state
   const [testimonialSlide, setTestimonialSlide] = useState(0);
   const testimonialsPerSlide = 3; // 3 testimonials per slide
-  const totalTestimonialSlides = Math.ceil(testimonialsData.length / testimonialsPerSlide);
+  
+  // Đảm bảo testimonialsData không undefined
+  const safeTestimonialsData = testimonialsData || [];
+  const totalTestimonialSlides = Math.ceil(safeTestimonialsData.length / testimonialsPerSlide);
+
+
+
+
+
+  // Touch/swipe state for testimonials
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % totalSlides);
@@ -49,15 +58,37 @@ export default function Home() {
     setTestimonialSlide((prev) => (prev - 1 + totalTestimonialSlides) % totalTestimonialSlides);
   };
 
+  // Touch handlers for testimonial swipe
+  const handleTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe && testimonialSlide < totalTestimonialSlides - 1) {
+      nextTestimonialSlide();
+    }
+    if (isRightSwipe && testimonialSlide > 0) {
+      prevTestimonialSlide();
+    }
+  };
+
   const getCurrentCompanies = () => {
     const start = currentSlide * companiesPerSlide;
     return topCompanies.slice(start, start + companiesPerSlide);
   };
 
-  const getCurrentTestimonials = () => {
-    const start = testimonialSlide * testimonialsPerSlide;
-    return testimonialsData.slice(start, start + testimonialsPerSlide);
-  };
+
 
   return (
     <>
@@ -318,9 +349,10 @@ export default function Home() {
               Clients Testimonial
             </h2>
 
-            <div className="relative px-16">
-              {/* Navigation Buttons */}
-              <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10">
+            {/* Container với flexbox để căn giữa buttons và cards */}
+            <div className="flex items-center gap-8">
+              {/* Left Navigation Button */}
+              <div style={{ transform: 'translateY(-40px)' }}>
                 <NavigationButton
                   direction="left"
                   onClick={prevTestimonialSlide}
@@ -328,8 +360,42 @@ export default function Home() {
                   active={testimonialSlide > 0}
                 />
               </div>
-              
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 z-10">
+
+              {/* Testimonials Container with smooth animation */}
+              <div className="overflow-hidden relative mb-8 flex-1" style={{ minHeight: '320px' }}>
+                {Array.from({ length: totalTestimonialSlides }).map((_, slideIndex) => {
+                  const startIndex = slideIndex * testimonialsPerSlide;
+                  const endIndex = startIndex + testimonialsPerSlide;
+                  const slideTestimonials = safeTestimonialsData.slice(startIndex, endIndex);
+                  
+                                        return (
+                      <div 
+                        key={slideIndex}
+                        className="transition-transform duration-500 ease-in-out cursor-grab active:cursor-grabbing"
+                        style={{ 
+                          transform: `translateX(${(slideIndex - testimonialSlide) * 100}%)`,
+                          position: slideIndex === 0 ? 'relative' : 'absolute',
+                          top: slideIndex === 0 ? 'auto' : 0,
+                          left: slideIndex === 0 ? 'auto' : 0,
+                          right: slideIndex === 0 ? 'auto' : 0,
+                          width: '100%'
+                        }}
+                        onTouchStart={handleTouchStart}
+                        onTouchMove={handleTouchMove}
+                        onTouchEnd={handleTouchEnd}
+                      >
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+                        {slideTestimonials.map((item, idx) => (
+                          <TestimonialCard key={`slide-${slideIndex}-${idx}`} {...item} />
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Right Navigation Button */}
+              <div style={{ transform: 'translateY(-40px)' }}>
                 <NavigationButton
                   direction="right"
                   onClick={nextTestimonialSlide}
@@ -337,18 +403,10 @@ export default function Home() {
                   active={testimonialSlide < totalTestimonialSlides - 1}
                 />
               </div>
+            </div>
 
-              {/* Testimonials Container */}
-              <div className="overflow-hidden">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                  {getCurrentTestimonials().map((item, idx) => (
-                    <TestimonialCard key={`${testimonialSlide}-${idx}`} {...item} />
-                  ))}
-                </div>
-              </div>
-
-              {/* Dots Indicator */}
-              <div className="flex justify-center gap-3">
+            {/* Dots Indicator */}
+            <div className="flex justify-center gap-3">
                 {Array.from({ length: totalTestimonialSlides }).map((_, index) => (
                   <button
                     key={index}
@@ -360,7 +418,6 @@ export default function Home() {
                     }`}
                   />
                 ))}
-              </div>
             </div>
           </div>
         </section>

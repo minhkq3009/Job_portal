@@ -828,5 +828,53 @@ export const testimonialsData = [
     avatar: avatar3,
     rating: 5,
     content: "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse et magna quis nibh accumsan venenatis sit amet id orci. Duis vestibulum bibendum dapibus."
+  },
+  {
+    id: 4,
+    name: "Sarah Johnson",
+    title: "Product Manager",
+    avatar: avatar4,
+    rating: 5,
+    content: "Jobpilot helped me find my dream job in just 2 weeks! The platform is intuitive and the job recommendations are spot on."
+  },
+  {
+    id: 5,
+    name: "Michael Chen",
+    title: "Software Engineer",
+    avatar: avatar5,
+    rating: 4,
+    content: "Great platform for tech professionals. I love how easy it is to filter jobs by technology stack and experience level."
+  },
+  {
+    id: 6,
+    name: "Emily Rodriguez",
+    title: "Marketing Specialist",
+    avatar: avatar6,
+    rating: 5,
+    content: "The best job portal I've used! Clean interface, relevant job suggestions, and excellent customer support."
+  },
+  {
+    id: 7,
+    name: "David Kim",
+    title: "Data Scientist",
+    avatar: avatar1,
+    rating: 5,
+    content: "Found multiple interview opportunities within the first week. The application process is streamlined and efficient."
+  },
+  {
+    id: 8,
+    name: "Jessica Wang",
+    title: "UX Researcher",
+    avatar: avatar2,
+    rating: 4,
+    content: "Excellent platform for finding remote work opportunities. The company profiles are detailed and helpful."
+  },
+  {
+    id: 9,
+    name: "Alex Thompson",
+    title: "DevOps Engineer",
+    avatar: avatar3,
+    rating: 5,
+    content: "Jobpilot's advanced search filters saved me hours of browsing. Highly recommend for serious job seekers!"
   }
-];
+]; // Updated testimonials data

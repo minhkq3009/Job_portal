@@ -127,7 +127,7 @@ export default function FindEmployers() {
       </div>
 
       {/* Main Content with Sidebar */}
-      <div className="container mx-auto mt-5">
+      <div className="container mx-auto mt-5 mb-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Filter Sidebar - 4 columns */}
           <div className="lg:col-span-4">
@@ -143,7 +143,7 @@ export default function FindEmployers() {
               </h2>
             </div>
             
-            <div className="space-y-6">
+            <div className="space-y-6 mb-6">
               {companies.map((company, idx) => (
                 <JobCardHorizontal
                   key={idx}
@@ -165,17 +165,19 @@ export default function FindEmployers() {
             </div>
             
             {/* Pagination */}
-            <div className="flex justify-center mt-8 mb-8">
+            <div className="flex justify-center">
               <Pagination 
                 currentPage={currentPage}
                 totalPages={totalPages}
+                totalItems={totalCompanies}
+                itemsPerPage={selectedPerPage}
                 onPageChange={setCurrentPage}
               />
             </div>
           </div>
         </div>
       </div>
-
+      
       <Footer />
     </>
   );
