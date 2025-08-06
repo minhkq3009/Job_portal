@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { MapPin, Search, Filter, ChevronDown, Briefcase, GraduationCap, User, Clock, Calendar, Globe, DollarSign } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
-import EmployerHeader from "../../components/Header/EmployerHeader";
+import CandidateHeader from "../../components/Header/CandidateHeader";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import Footer from "../../components/Footer/Footer";
 import Button from "../../components/Button/Button";
@@ -93,7 +93,7 @@ export default function FindCandidate() {
 
   return (
     <>
-      <EmployerHeader />
+      <CandidateHeader />
       <Breadcrumb title="Find Candidates" />
       
       <div className="bg-gray-50 pb-8">

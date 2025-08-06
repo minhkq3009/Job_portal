@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Header from "../components/Header/Header";
+import CandidateHeader from "../components/Header/CandidateHeader";
 import KeywordInput from "../components/InputField/KeywordInput";
 import { MapPin, ArrowRight } from "lucide-react";
 import CompanyCard from "../components/Card/CompanyCard";
@@ -92,7 +92,7 @@ export default function Home() {
 
   return (
     <>
-      <Header />
+      <CandidateHeader />
 
       <main className="bg-gray-50">
         {/* Hero + Categories Section */}
