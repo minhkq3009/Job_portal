@@ -6,7 +6,7 @@ export default function ProfileAlert({ profileCompleted, user }) {
   if (profileCompleted) return null;
 
   return (
-    <div className="flex items-center justify-between bg-red-500 text-white p-8 rounded-md">
+    <div className="flex items-center justify-between bg-red-500 text-white p-8 rounded-lg">
       <div className="flex items-center gap-4">
         <img
           src={user.avatar}

@@ -4,7 +4,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SimpleHeader from "../../components/Header/SimpleHeader.jsx";
 import SocialButton from "../../components/Button/SocialButton.jsx";
 import InputField from "../../components/InputField/InputField";
@@ -16,6 +16,14 @@ import CompaniesIcon from "../../assets/icons/Companies.svg";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // Fake login - set logged in status and redirect to Dashboard
+    localStorage.setItem('isLoggedIn', 'true');
+    navigate('/dashboard-authenticated');
+  };
 
   return (
     <>
@@ -37,7 +45,7 @@ export default function Login() {
             </p>
                 </div>
                 
-                <div className="space-y-5">
+                <form onSubmit={handleLogin} className="space-y-5">
                   <InputField placeholder="Email address" type="email" />
                   <InputField 
                     placeholder="Password" 
@@ -55,24 +63,25 @@ export default function Login() {
                     </Link>
                   </div>
 
-                  <button className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700">
+                  <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700">
                     Sign in
                   </button>
+                </form>
 
-                  <div className="flex items-center gap-4">
-                    <hr className="flex-1 border-gray-300" />
-                    <span className="text-sm text-gray-400">or</span>
-                    <hr className="flex-1 border-gray-300" />
-                  </div>
+                <div className="flex items-center gap-4 mt-5">
+                  <hr className="flex-1 border-gray-300" />
+                  <span className="text-sm text-gray-400">or</span>
+                  <hr className="flex-1 border-gray-300" />
+                </div>
 
-                  <div className="flex gap-3">
-                    <SocialButton icon={FacebookIcon}>
-                      Sign in with Facebook
-                    </SocialButton>
-                    <SocialButton icon={GoogleIcon}>
-                      Sign in with Google
-                    </SocialButton>
-                  </div>
+                <div className="flex gap-3 mt-5">
+                  <SocialButton icon={FacebookIcon} onClick={handleLogin}>
+                    Sign in with Facebook
+                  </SocialButton>
+                  <SocialButton icon={GoogleIcon} onClick={handleLogin}>
+                    Sign in with Google
+                  </SocialButton>
+                </div>
                 </div>
               </div>
             </div>
@@ -102,7 +111,6 @@ export default function Login() {
             <Stat icon={<img src={LiveJobIcon} alt="" className="w-16 h-16" />} label="New Jobs" value="7,532" />
           </div>
         </div>
-      </div>
       </div>
     </>
   );

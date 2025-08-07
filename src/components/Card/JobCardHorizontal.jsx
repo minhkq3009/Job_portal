@@ -16,8 +16,13 @@ export default function JobCardHorizontal({
   typeVariant = "primary",
   logo,
   logoText = "D",
-  featured = false, // thêm prop featured
+  featured = false,
   companyId,
+  isBookmarked = false,
+  isExpired = false,
+  onApply,
+  onBookmark,
+  onClick,
 
 }) {
   const navigate = useNavigate();
@@ -27,6 +32,13 @@ export default function JobCardHorizontal({
     if (e.target.closest('button')) {
       return;
     }
+    
+    // If custom onClick is provided, use it
+    if (onClick) {
+      onClick();
+      return;
+    }
+    
     // Navigate to company info if companyId is provided, otherwise job details
     if (companyId !== undefined) {
       navigate(`/companies/${companyId}`);
@@ -70,13 +82,30 @@ export default function JobCardHorizontal({
 
       {/* Right */}
       <div className="flex items-center gap-4">
-        <Bookmark className="w-5 h-5 text-gray-400 hover:text-primary-500 cursor-pointer transition-colors" />
+        <Bookmark 
+          className={`w-5 h-5 cursor-pointer transition-colors ${
+            isBookmarked 
+              ? 'text-primary-500 fill-primary-500' 
+              : 'text-gray-400 hover:text-primary-500'
+          }`}
+          onClick={(e) => {
+            e.stopPropagation();
+            onBookmark && onBookmark();
+          }}
+        />
         <Button
           variant="secondary"
           size="medium"
-          rightIcon={ArrowRight}
+          rightIcon={isExpired ? null : ArrowRight}
+          disabled={isExpired}
+          onClick={(e) => {
+            e.stopPropagation();
+            if (!isExpired && onApply) {
+              onApply();
+            }
+          }}
         >
-          Open Position
+          {isExpired ? "Deadline Expired" : "Apply Job"}
         </Button>
       </div>
     </div>

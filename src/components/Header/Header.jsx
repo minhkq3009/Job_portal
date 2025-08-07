@@ -9,7 +9,7 @@ import Button from "../Button/Button";
 
 const Header = React.memo(function Header() {
   return (
-    <header className="w-full">
+    <header className="w-full border-b border-gray-100">
       {/* Top row: bg-gray-50 */}
       <div className="bg-gray-50">
         <div className="container flex items-center justify-between">
@@ -19,6 +19,7 @@ const Header = React.memo(function Header() {
             <NavLinkSimple label="Find Job" to="/find-job" />
             <NavLinkSimple label="Find Employers" to="/find-employers" />
             <NavLinkSimple label="Find Candidates" to="/find-candidates" />
+            <NavLinkSimple label="Dashboard" to="/dashboard" />
             <NavLinkSimple label="Blog" to="/blog" />
             <NavLinkSimple label="Contact Us" to="/contact" />
           </nav>

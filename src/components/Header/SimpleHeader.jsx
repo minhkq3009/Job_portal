@@ -3,7 +3,7 @@ import Logo from "../../assets/icons/Logo.svg";
 
 export default function SimpleHeader() {
   return (
-    <header className="w-full">
+    <header className="w-full border-b border-gray-100">
       <div className="bg-white">
         <div className="container py-4">
           {/* Only Logo */}

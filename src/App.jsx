@@ -12,12 +12,19 @@ import FindEmployers from './pages/employers/FindEmployers.jsx';
 import CompanyInfo from './pages/companies/CompanyInfo.jsx';
 import FindCandidate from './pages/candidates/FindCandidate.jsx';
 import DashboardOverview from './pages/dashboard/DashboardOverview.jsx';
+import AppliedJobs from './pages/dashboard/AppliedJobs.jsx';
+import FavoriteJobs from './pages/dashboard/FavoriteJobs.jsx';
+import JobAlert from './pages/dashboard/JobAlert.jsx';
+import Setting from './pages/dashboard/Setting.jsx';
+import LoginRequired from './pages/auth/LoginRequired.jsx';
+import ProtectedRoute from './components/Auth/ProtectedRoute.jsx';
 
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/home" element={<Home />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -27,7 +34,32 @@ function App() {
       <Route path="/find-employers" element={<FindEmployers />} />
       <Route path="/find-candidates" element={<FindCandidate />} />
       <Route path="/find-candidates/:candidateId" element={<FindCandidate />} />
-      <Route path="/dashboard" element={<DashboardOverview />} />
+      <Route path="/dashboard" element={<LoginRequired />} />
+      <Route path="/dashboard-authenticated" element={
+        <ProtectedRoute>
+          <DashboardOverview />
+        </ProtectedRoute>
+      } />
+      <Route path="/dashboard/applied-jobs" element={
+        <ProtectedRoute>
+          <AppliedJobs />
+        </ProtectedRoute>
+      } />
+      <Route path="/dashboard/favorite-jobs" element={
+        <ProtectedRoute>
+          <FavoriteJobs />
+        </ProtectedRoute>
+      } />
+      <Route path="/dashboard/job-alert" element={
+        <ProtectedRoute>
+          <JobAlert />
+        </ProtectedRoute>
+      } />
+      <Route path="/dashboard/settings" element={
+        <ProtectedRoute>
+          <Setting />
+        </ProtectedRoute>
+      } />
       <Route path="/jobs/job-details" element={<JobDetails />} />
       <Route path="/companies/:id" element={<CompanyInfo />} />
     </Routes>

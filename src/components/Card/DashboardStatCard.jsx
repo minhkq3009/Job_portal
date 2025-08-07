@@ -20,7 +20,7 @@ export default function DashboardStatCard({
   color = "blue", // 'blue' | 'orange' | 'green'
 }) {
   return (
-    <div className={clsx("flex items-center justify-between p-6 rounded-xl", bgMap[color])}>
+    <div className={clsx("flex items-center justify-between p-6 rounded-lg", bgMap[color])}>
       <div>
         <div className="text-heading-04 font-semibold text-black">{count}</div>
         <div className="text-body-sm text-gray-600">{label}</div>

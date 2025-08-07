@@ -10,7 +10,7 @@ import Button from "../Button/Button";
 
 const EmployerHeader = React.memo(function EmployerHeader() {
   return (
-    <header className="w-full">
+    <header className="w-full border-b border-gray-100">
       {/* Top row: bg-gray-50 */}
       <div className="bg-gray-50">
         <div className="container flex items-center justify-between">

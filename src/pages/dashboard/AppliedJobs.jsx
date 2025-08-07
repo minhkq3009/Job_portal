@@ -2,13 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CandidateHeader from "../../components/Header/CandidateHeader";
 import Footer from "../../components/Footer/Footer";
-import DashboardStatCard from "../../components/Card/DashboardStatCard";
 import JobCardHorizontalSmall from "../../components/Card/JobCardHorizontalSmall";
-import ProfileAlert from "../../components/Alert/ProfileAlert";
 import Button from "../../components/Button/Button";
+import Pagination from "../../components/Button/Pagination";
 import DashboardMenuItem from "../../components/Dashboard/DashboardMenuItem";
-import Avatar from "../../assets/images/Image-1.png";
-import { allJobs } from "../../data/index";
 import { 
   LayoutDashboard, 
   FileText, 
@@ -17,9 +14,11 @@ import {
   Settings, 
   LogOut
 } from "lucide-react";
+import { allJobs } from "../../data/index";
 
-export default function DashboardOverview() {
-  const [activeMenu, setActiveMenu] = useState('overview');
+export default function AppliedJobs() {
+  const [activeMenu, setActiveMenu] = useState('applied');
+  const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -35,8 +34,8 @@ export default function DashboardOverview() {
     { id: 'settings', label: 'Setting', icon: Settings },
   ];
 
-  // Use data from data/index.js and create applied jobs
-  const recentlyAppliedJobs = allJobs.slice(0, 3).map((job, index) => ({
+  // Create applied jobs data from existing jobs data with application details
+  const appliedJobsData = allJobs.map((job, index) => ({
     id: index + 1,
     logoText: job.logoText,
     companyName: job.company,
@@ -44,11 +43,11 @@ export default function DashboardOverview() {
     type: job.typeLabel,
     location: job.location,
     salary: job.salary,
-    dateApplied: `Dec ${7 - index}, 2023`,
-    status: index === 0 ? "In Review" : index === 1 ? "Applied" : "Interview"
+    dateApplied: `Dec ${15 - index}, 2023`,
+    status: index % 4 === 0 ? "In Review" : 
+            index % 4 === 1 ? "Applied" : 
+            index % 4 === 2 ? "Interview" : "Rejected"
   }));
-
-
 
   return (
     <>
@@ -71,8 +70,8 @@ export default function DashboardOverview() {
                       isActive={activeMenu === item.id}
                       onClick={() => {
                         setActiveMenu(item.id);
-                        if (item.id === 'applied') {
-                          navigate('/dashboard/applied-jobs');
+                        if (item.id === 'overview') {
+                          navigate('/dashboard-authenticated');
                         } else if (item.id === 'favorite') {
                           navigate('/dashboard/favorite-jobs');
                         } else if (item.id === 'alerts') {
@@ -100,62 +99,18 @@ export default function DashboardOverview() {
 
             {/* Right Content - 9/12 cols */}
             <div className="col-span-9 border-l border-gray-100 pl-8">
-              {/* Welcome Section */}
+              {/* Page Title */}
               <div className="mb-6">
-                <h1 className="text-body-lg font-semibold text-gray-900 mb-2">
-                  Hello, John Doe
+                <h1 className="text-body-lg font-semibold text-gray-900">
+                  Applied Jobs ({appliedJobsData.length})
                 </h1>
-                <p className="text-body-sm text-gray-500">
-                  Here is your daily activities and job alerts
-                </p>
               </div>
 
-              {/* Stats Cards */}
-              <div className="grid grid-cols-3 gap-6 mb-6">
-                <DashboardStatCard
-                  count="12"
-                  label="Applied Jobs"
-                  icon={<FileText className="w-8 h-8" />}
-                  color="blue"
-                />
-                <DashboardStatCard
-                  count="8"
-                  label="Favorite Jobs"
-                  icon={<Heart className="w-8 h-8" />}
-                  color="orange"
-                />
-                <DashboardStatCard
-                  count="5"
-                  label="Job Alerts"
-                  icon={<Bell className="w-8 h-8" />}
-                  color="green"
-                />
-              </div>
-          
-          {/* Profile Alert */}
-              <div className="mb-6">
-            <ProfileAlert 
-              profileCompleted={false}
-              user={{
-                avatar: Avatar,
-                name: "John Doe"
-              }}
-            />
-          </div>
-          
-              {/* Recently Applied */}
-              <div className="bg-white rounded-lg border border-gray-100">
-                <div className="flex items-center justify-between px-6 py-3 border-b border-gray-100">
-                  <h2 className="text-heading-05 font-semibold text-gray-900">
-                    Recently Applied
-                  </h2>
-                  <Button variant="tertiary" size="medium" className="whitespace-nowrap">
-                    View All
-                  </Button>
-          </div>
+              {/* Applied Jobs Table */}
+              <div className="bg-white rounded-lg">
 
                 {/* Table Header */}
-                <div className="px-6 py-4 bg-gray-50 text-body-sm font-medium text-gray-500">
+                <div className="px-6 py-4 rounded-md bg-gray-50 text-body-sm font-medium text-gray-500">
                   <div className="flex items-center justify-between">
                     <div className="flex-1">Job</div>
                     <div className="flex items-center gap-12">
@@ -163,12 +118,12 @@ export default function DashboardOverview() {
                       <div className="min-w-[100px]">Status</div>
                       <div className="min-w-[120px]">Action</div>
                     </div>
-            </div>
-          </div>
+                  </div>
+                </div>
 
                 {/* Job Cards */}
-                <div className="space-y-4 p-6">
-                  {recentlyAppliedJobs.map((job) => (
+                <div className="space-y-4 pt-6">
+                  {appliedJobsData.map((job) => (
                     <div key={job.id}>
                       <JobCardHorizontalSmall
                         logoText={job.logoText}
@@ -184,8 +139,19 @@ export default function DashboardOverview() {
                     </div>
                   ))}
                 </div>
+
+                {/* Pagination */}
+                <div className="px-6 py-4 border-t border-gray-100">
+                  <Pagination
+                    currentPage={currentPage}
+                    totalPages={Math.ceil(appliedJobsData.length / 8)}
+                    totalItems={appliedJobsData.length}
+                    itemsPerPage={8}
+                    onPageChange={setCurrentPage}
+                  />
+                </div>
               </div>
-          </div>
+            </div>
           </div>
         </div>
       </div>
