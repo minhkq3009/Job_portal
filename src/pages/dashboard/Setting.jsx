@@ -6,8 +6,8 @@ import DashboardMenuItem from "../../components/Dashboard/DashboardMenuItem";
 
 import InputField from "../../components/InputField/InputField";
 import Button from "../../components/Button/Button";
-import PhotoUpload from "../../components/Upload/PhotoUpload";
-import ResumeUploader from "../../components/Upload/ResumeUploader";
+import SquarePhotoUpload from "../../components/Upload/SquarePhotoUpload";
+import MultiResumeUploader from "../../components/Upload/MultiResumeUploader";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import { 
   LayoutDashboard, 
@@ -32,7 +32,7 @@ export default function Setting() {
     education: '',
     website: '',
     profilePhoto: null,
-    resume: null
+    resumes: []
   });
   const navigate = useNavigate();
 
@@ -96,10 +96,10 @@ export default function Setting() {
     }));
   };
 
-  const handleResumeChange = (file) => {
+  const handleResumeChange = (files) => {
     setFormData(prev => ({
       ...prev,
-      resume: file
+      resumes: files
     }));
   };
 
@@ -197,20 +197,19 @@ export default function Setting() {
                     </h2>
 
                     {/* 2 Column Layout */}
-                    <div className="grid grid-cols-12 gap-8">
+                    <div className="grid grid-cols-12 gap-4">
                       {/* Left Column - Upload Photo */}
-                      <div className="col-span-5">
-                        <PhotoUpload
+                      <div className="col-span-4">
+                        <SquarePhotoUpload
                           currentPhoto={formData.profilePhoto?.imageUrl}
                           onPhotoChange={handlePhotoChange}
                           maxSize={5 * 1024 * 1024} // 5MB
                           acceptedTypes={['image/jpeg', 'image/jpg', 'image/png', 'image/webp']}
-                          className="[&_img]:aspect-square [&_img]:object-cover [&_.border-dashed]:aspect-square [&_.border-dashed]:h-auto"
                         />
                       </div>
 
                       {/* Right Column - Form Fields */}
-                      <div className="col-span-7">
+                      <div className="col-span-8">
                         {/* Form Fields - 2 columns */}
                         <div className="grid grid-cols-2 gap-6">
                           {/* Full Name */}
@@ -285,16 +284,10 @@ export default function Setting() {
                     <h2 className="text-heading-05 font-semibold text-gray-900 mb-6">
                       Resume/CV
                     </h2>
-                    <ResumeUploader onChange={handleResumeChange} />
+                    <MultiResumeUploader onChange={handleResumeChange} />
                   </div>
 
-                  {/* Test Resume Upload Section */}
-                  <div className="mt-8">
-                    <h2 className="text-heading-05 font-semibold text-gray-900 mb-6">
-                      Test Resume Upload (for checking)
-                    </h2>
-                    <ResumeUploader onChange={(file) => console.log('Test upload:', file)} />
-                  </div>
+
                 </div>
               )}
 

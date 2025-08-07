@@ -1,8 +1,8 @@
 import { Plus, FileText, MoreHorizontal, Edit, Trash2 } from "lucide-react";
 import { useCallback, useState } from "react";
 
-export default function ResumeUploader({ onChange }) {
-  const [uploadedFile, setUploadedFile] = useState(null);
+export default function ResumeUploader({ onChange, initialFile = null }) {
+  const [uploadedFile, setUploadedFile] = useState(initialFile);
   const [showMenu, setShowMenu] = useState(false);
   const handleDrop = useCallback((e) => {
     e.preventDefault();
@@ -40,6 +40,14 @@ export default function ResumeUploader({ onChange }) {
     return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
   };
 
+  const truncateFileName = (fileName, maxLength = 25) => {
+    if (fileName.length <= maxLength) return fileName;
+    const extension = fileName.split('.').pop();
+    const nameWithoutExt = fileName.substring(0, fileName.lastIndexOf('.'));
+    const truncatedName = nameWithoutExt.substring(0, maxLength - extension.length - 4);
+    return `${truncatedName}...${extension}`;
+  };
+
   if (uploadedFile) {
     // Uploaded state
     return (
@@ -49,7 +57,9 @@ export default function ResumeUploader({ onChange }) {
             <FileText className="w-8 h-8 text-blue-500" />
           </div>
           <div className="flex flex-col">
-            <span className="text-body-sm font-medium text-gray-900">{uploadedFile.name}</span>
+            <span className="text-body-sm font-medium text-gray-900" title={uploadedFile.name}>
+              {truncateFileName(uploadedFile.name)}
+            </span>
             <span className="text-body-sm text-gray-600">{formatFileSize(uploadedFile.size)}</span>
           </div>
         </div>
