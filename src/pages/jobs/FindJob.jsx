@@ -219,8 +219,8 @@ export default function FindJob() {
 
             {/* View mode toggle */}
             <ViewModeToggle
-              view={viewMode}
-              onChange={(mode) => setViewMode(mode)}
+              viewMode={viewMode}
+              onViewModeChange={(mode) => setViewMode(mode)}
             />
           </div>
         </div>

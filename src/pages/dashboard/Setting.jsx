@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import CandidateHeader from "../../components/Header/CandidateHeader";
 import Footer from "../../components/Footer/Footer";
 import DashboardMenuItem from "../../components/Dashboard/DashboardMenuItem";
@@ -19,12 +19,29 @@ import {
   User,
   UserCircle,
   Share2,
-  Shield
+  Shield,
+  Calendar
 } from "lucide-react";
 
 export default function Setting() {
   const [activeMenu, setActiveMenu] = useState('settings');
-  const [activeTab, setActiveTab] = useState('personal');
+  const navigate = useNavigate();
+  const { tab } = useParams();
+  const dateInputRef = useRef(null);
+  
+  // Get active tab from URL params or default to 'personal'
+  const getActiveTab = () => {
+    return ['personal', 'profile', 'social', 'account'].includes(tab) ? tab : 'personal';
+  };
+  
+  const [activeTab, setActiveTab] = useState(getActiveTab());
+  
+  // Sync activeTab with URL params changes
+  useEffect(() => {
+    const validTab = ['personal', 'profile', 'social', 'account'].includes(tab) ? tab : 'personal';
+    setActiveTab(validTab);
+  }, [tab]);
+  
   const [formData, setFormData] = useState({
     fullname: '',
     title: '',
@@ -32,13 +49,28 @@ export default function Setting() {
     education: '',
     website: '',
     profilePhoto: null,
-    resumes: []
+    resumes: [],
+    // Profile tab fields
+    nationality: '',
+    dateOfBirth: '',
+    gender: '',
+    maritalStatus: '',
+    profileEducation: '',
+    profileExperience: '',
+    biography: ''
   });
-  const navigate = useNavigate();
-
   const handleLogout = () => {
     localStorage.removeItem('isLoggedIn');
     navigate('/');
+  };
+
+  const handleTabChange = (tabId) => {
+    if (tabId === 'personal') {
+      // For personal tab, use base URL without params to avoid double loading
+      navigate('/dashboard/settings');
+    } else {
+      navigate(`/dashboard/settings/${tabId}`);
+    }
   };
 
   const menuItems = [
@@ -70,6 +102,28 @@ export default function Setting() {
     }));
   };
 
+  const handleDateInputChange = (value) => {
+    // Remove all non-digits first
+    const digitsOnly = value.replace(/\D/g, '');
+    
+    // Limit to 8 digits (ddmmyyyy)
+    const limitedDigits = digitsOnly.substring(0, 8);
+    
+    // Format as dd/mm/yyyy
+    let formattedValue = limitedDigits;
+    if (limitedDigits.length >= 3) {
+      formattedValue = limitedDigits.substring(0, 2) + '/' + limitedDigits.substring(2);
+    }
+    if (limitedDigits.length >= 5) {
+      formattedValue = limitedDigits.substring(0, 2) + '/' + limitedDigits.substring(2, 4) + '/' + limitedDigits.substring(4);
+    }
+    
+    setFormData(prev => ({
+      ...prev,
+      dateOfBirth: formattedValue
+    }));
+  };
+
   // Experience options
   const experienceOptions = [
     { label: "Fresh Graduate", value: "fresh" },
@@ -88,6 +142,38 @@ export default function Setting() {
     { label: "PhD", value: "phd" },
     { label: "Other", value: "other" },
   ];
+
+  // Profile tab options
+  const nationalityOptions = [
+    { label: "United States", value: "us" },
+    { label: "Vietnam", value: "vn" },
+    { label: "United Kingdom", value: "uk" },
+    { label: "Canada", value: "ca" },
+    { label: "Australia", value: "au" },
+    { label: "Germany", value: "de" },
+    { label: "France", value: "fr" },
+    { label: "Japan", value: "jp" },
+    { label: "South Korea", value: "kr" },
+    { label: "Singapore", value: "sg" },
+    { label: "Other", value: "other" },
+  ];
+
+  const genderOptions = [
+    { label: "Male", value: "male" },
+    { label: "Female", value: "female" },
+    { label: "Other", value: "other" },
+    { label: "Prefer not to say", value: "prefer-not-to-say" },
+  ];
+
+  const maritalStatusOptions = [
+    { label: "Single", value: "single" },
+    { label: "Married", value: "married" },
+    { label: "Divorced", value: "divorced" },
+    { label: "Widowed", value: "widowed" },
+    { label: "Prefer not to say", value: "prefer-not-to-say" },
+  ];
+
+
 
   const handlePhotoChange = (file, imageUrl) => {
     setFormData(prev => ({
@@ -136,6 +222,8 @@ export default function Setting() {
                           navigate('/dashboard/favorite-jobs');
                         } else if (item.id === 'alerts') {
                           navigate('/dashboard/job-alert');
+                        } else if (item.id === 'settings') {
+                          navigate('/dashboard/settings');
                         }
                       }}
                     />
@@ -172,7 +260,7 @@ export default function Setting() {
                     return (
                       <button
                         key={tab.id}
-                        onClick={() => setActiveTab(tab.id)}
+                        onClick={() => handleTabChange(tab.id)}
                         className={`flex items-center gap-2 pb-4 px-1 border-b-2 transition-colors ${
                           activeTab === tab.id
                             ? 'border-primary-500 text-primary-500'
@@ -291,8 +379,137 @@ export default function Setting() {
                 </div>
               )}
 
+              {/* Profile Tab */}
+              {activeTab === 'profile' && (
+                <div className="bg-white rounded-lg border border-gray-100 p-6">
+                  <h2 className="text-heading-05 font-semibold text-gray-900 mb-6">
+                    Profile Information
+                  </h2>
+                  
+                  {/* Form Fields - 2 columns */}
+                  <div className="grid grid-cols-2 gap-6">
+                    {/* Nationality */}
+                    <div>
+                      <h3 className="text-body-sm font-medium text-gray-900 mb-3">Nationality</h3>
+                      <Dropdown
+                        options={nationalityOptions}
+                        defaultValue="Select nationality"
+                        onSelect={(option) => handleDropdownChange('nationality', option)}
+                        className="[&>button]:h-12 [&>button]:text-body-md [&>button]:px-4"
+                      />
+                    </div>
+
+                    {/* Date of Birth */}
+                    <div>
+                      <h3 className="text-body-sm font-medium text-gray-900 mb-3">Date of Birth</h3>
+                      <div className="relative">
+                        <input
+                          type="text"
+                          placeholder="dd/mm/yyyy"
+                          value={formData.dateOfBirth}
+                          onChange={(e) => handleDateInputChange(e.target.value)}
+                          className="w-full h-12 px-4 pr-12 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-body-md"
+                          maxLength="10"
+                        />
+                        <input
+                          ref={dateInputRef}
+                          type="date"
+                          value={formData.dateOfBirth ? formData.dateOfBirth.split('/').reverse().join('-') : ''}
+                          onChange={(e) => {
+                            if (e.target.value) {
+                              const [year, month, day] = e.target.value.split('-');
+                              handleDateInputChange(`${day}${month}${year}`);
+                            }
+                          }}
+                          className="absolute opacity-0 pointer-events-none"
+                          style={{ left: '-9999px' }}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (dateInputRef.current) {
+                              dateInputRef.current.showPicker?.() || dateInputRef.current.focus();
+                            }
+                          }}
+                          className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                        >
+                          <Calendar size={20} />
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Gender */}
+                    <div>
+                      <h3 className="text-body-sm font-medium text-gray-900 mb-3">Gender</h3>
+                      <Dropdown
+                        options={genderOptions}
+                        defaultValue="Select gender"
+                        onSelect={(option) => handleDropdownChange('gender', option)}
+                        className="[&>button]:h-12 [&>button]:text-body-md [&>button]:px-4"
+                      />
+                    </div>
+
+                    {/* Marital Status */}
+                    <div>
+                      <h3 className="text-body-sm font-medium text-gray-900 mb-3">Marital Status</h3>
+                      <Dropdown
+                        options={maritalStatusOptions}
+                        defaultValue="Select marital status"
+                        onSelect={(option) => handleDropdownChange('maritalStatus', option)}
+                        className="[&>button]:h-12 [&>button]:text-body-md [&>button]:px-4"
+                      />
+                    </div>
+
+                    {/* Education */}
+                    <div>
+                      <h3 className="text-body-sm font-medium text-gray-900 mb-3">Education</h3>
+                      <Dropdown
+                        options={educationOptions}
+                        defaultValue="Select education level"
+                        onSelect={(option) => handleDropdownChange('profileEducation', option)}
+                        className="[&>button]:h-12 [&>button]:text-body-md [&>button]:px-4"
+                      />
+                    </div>
+
+                    {/* Experience */}
+                    <div>
+                      <h3 className="text-body-sm font-medium text-gray-900 mb-3">Experience</h3>
+                      <Dropdown
+                        options={experienceOptions}
+                        defaultValue="Select experience level"
+                        onSelect={(option) => handleDropdownChange('profileExperience', option)}
+                        className="[&>button]:h-12 [&>button]:text-body-md [&>button]:px-4"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Biography - Full Width */}
+                  <div className="mt-6">
+                    <h3 className="text-body-sm font-medium text-gray-900 mb-3">Biography</h3>
+                    <textarea
+                      placeholder="Write a brief description about yourself, your skills, and experience..."
+                      value={formData.biography}
+                      onChange={(e) => handleInputChange('biography', e.target.value)}
+                      rows={6}
+                      className="w-full px-4 py-3 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-none text-body-md"
+                    />
+                  </div>
+
+                  {/* Save Button */}
+                  <div className="mt-8">
+                    <Button
+                      variant="primary"
+                      size="medium"
+                      onClick={handleSave}
+                    >
+                      Save Changes
+                    </Button>
+                  </div>
+                </div>
+              )}
+
               {/* Other Tab Contents - Placeholder */}
-              {activeTab !== 'personal' && (
+              {activeTab !== 'personal' && activeTab !== 'profile' && (
                 <div className="bg-white rounded-lg border border-gray-100 p-6">
                   <div className="text-center py-12">
                     <div className="text-gray-400 mb-4">

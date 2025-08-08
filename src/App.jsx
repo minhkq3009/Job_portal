@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home.jsx';
 import Register from './pages/auth/Register.jsx';
 import Login from './pages/auth/Login.jsx';
@@ -55,7 +55,13 @@ function App() {
           <JobAlert />
         </ProtectedRoute>
       } />
+      {/* Settings routes with tabs */}
       <Route path="/dashboard/settings" element={
+        <ProtectedRoute>
+          <Setting />
+        </ProtectedRoute>
+      } />
+      <Route path="/dashboard/settings/:tab" element={
         <ProtectedRoute>
           <Setting />
         </ProtectedRoute>
