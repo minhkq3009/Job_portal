@@ -878,3 +878,217 @@ export const testimonialsData = [
     content: "Jobpilot's advanced search filters saved me hours of browsing. Highly recommend for serious job seekers!"
   }
 ]; // Updated testimonials data
+
+// =============================================================================
+// BLOG DATA
+// =============================================================================
+export const blogCategories = [
+  { id: 1, name: "Career Tips", slug: "career-tips", count: 24 },
+  { id: 2, name: "Interview Guide", slug: "interview-guide", count: 18 },
+  { id: 3, name: "Resume Writing", slug: "resume-writing", count: 15 },
+  { id: 4, name: "Industry Insights", slug: "industry-insights", count: 21 },
+  { id: 5, name: "Remote Work", slug: "remote-work", count: 12 },
+  { id: 6, name: "Salary Negotiation", slug: "salary-negotiation", count: 9 },
+  { id: 7, name: "Professional Development", slug: "professional-development", count: 16 }
+];
+
+export const blogPosts = [
+  {
+    id: 1,
+    title: "10 Essential Tips for Landing Your Dream Job in 2024",
+    slug: "10-essential-tips-landing-dream-job-2024",
+    excerpt: "Discover the most effective strategies to stand out in today's competitive job market and secure the position you've always wanted.",
+    content: `
+      <p>The job market in 2024 is more competitive than ever, but with the right strategies, you can position yourself as the ideal candidate for your dream job. Here are 10 essential tips that will give you a significant advantage.</p>
+      
+      <h2>1. Optimize Your LinkedIn Profile</h2>
+      <p>Your LinkedIn profile is often the first impression recruiters have of you. Make sure your headline is compelling, your summary tells your professional story, and your experience section highlights your achievements with quantifiable results.</p>
+      
+      <h2>2. Tailor Your Resume for Each Application</h2>
+      <p>Generic resumes don't work anymore. Customize your resume for each position by incorporating keywords from the job description and highlighting relevant experiences that match the role requirements.</p>
+      
+      <h2>3. Build a Strong Personal Brand</h2>
+      <p>Develop a consistent professional image across all platforms. Share industry insights, engage with thought leaders, and showcase your expertise through content creation.</p>
+      
+      <h2>4. Network Strategically</h2>
+      <p>Networking isn't just about collecting contacts—it's about building meaningful relationships. Attend industry events, join professional associations, and engage with peers in your field.</p>
+      
+      <h2>5. Prepare for Modern Interview Formats</h2>
+      <p>Be ready for video interviews, panel discussions, and practical assessments. Practice your responses to common questions and prepare examples that demonstrate your problem-solving abilities.</p>
+    `,
+    author: {
+      name: "Sarah Mitchell",
+      title: "Career Coach & HR Expert",
+      avatar: avatar1
+    },
+    category: "Career Tips",
+    categorySlug: "career-tips",
+    publishedAt: "2024-01-15",
+    readTime: "8 min read",
+    tags: ["job search", "career advice", "professional development"],
+    featured: true,
+    views: 2847,
+    likes: 156
+  },
+  {
+    id: 2,
+    title: "The Ultimate Guide to Remote Work Success",
+    slug: "ultimate-guide-remote-work-success",
+    excerpt: "Master the art of working from home with proven strategies for productivity, communication, and work-life balance.",
+    content: `
+      <p>Remote work has become the new normal for millions of professionals worldwide. While it offers flexibility and freedom, it also presents unique challenges that require specific skills and strategies to overcome.</p>
+      
+      <h2>Setting Up Your Home Office</h2>
+      <p>Creating a dedicated workspace is crucial for remote work success. Choose a quiet area with good lighting, invest in ergonomic furniture, and ensure you have reliable internet connectivity.</p>
+      
+      <h2>Establishing Boundaries</h2>
+      <p>One of the biggest challenges of remote work is maintaining work-life balance. Set clear boundaries by establishing specific work hours, creating morning routines, and communicating your availability to family members.</p>
+      
+      <h2>Communication Best Practices</h2>
+      <p>Effective communication becomes even more important when working remotely. Use video calls for important discussions, be proactive in sharing updates, and choose the right communication tools for different types of interactions.</p>
+    `,
+    author: {
+      name: "David Chen",
+      title: "Remote Work Consultant",
+      avatar: avatar2
+    },
+    category: "Remote Work",
+    categorySlug: "remote-work",
+    publishedAt: "2024-01-12",
+    readTime: "12 min read",
+    tags: ["remote work", "productivity", "work-life balance"],
+    featured: true,
+    views: 1923,
+    likes: 89
+  },
+  {
+    id: 3,
+    title: "How to Negotiate Your Salary Like a Pro",
+    slug: "how-to-negotiate-salary-like-pro",
+    excerpt: "Learn the art of salary negotiation with expert tips and real-world examples that will help you maximize your earning potential.",
+    content: `
+      <p>Salary negotiation is a critical skill that can significantly impact your lifetime earnings. Yet many professionals avoid these conversations or approach them unprepared. Here's how to negotiate like a pro.</p>
+      
+      <h2>Research Market Rates</h2>
+      <p>Before entering any negotiation, arm yourself with data. Research salary ranges for your position in your geographic area using resources like Glassdoor, PayScale, and industry reports.</p>
+      
+      <h2>Timing is Everything</h2>
+      <p>The best time to negotiate is when you have leverage—typically during the job offer process or after a successful performance review. Avoid salary discussions during company-wide budget cuts or layoffs.</p>
+      
+      <h2>Present Your Value Proposition</h2>
+      <p>Focus on the value you bring to the organization. Prepare specific examples of your achievements, quantify your contributions, and demonstrate how you've exceeded expectations.</p>
+    `,
+    author: {
+      name: "Emily Rodriguez",
+      title: "Compensation Specialist",
+      avatar: avatar3
+    },
+    category: "Salary Negotiation",
+    categorySlug: "salary-negotiation",
+    publishedAt: "2024-01-10",
+    readTime: "10 min read",
+    tags: ["salary negotiation", "career advancement", "compensation"],
+    featured: false,
+    views: 1654,
+    likes: 73
+  },
+  {
+    id: 4,
+    title: "Common Interview Mistakes and How to Avoid Them",
+    slug: "common-interview-mistakes-how-to-avoid",
+    excerpt: "Don't let these common interview pitfalls derail your job search. Learn what to avoid and how to make a lasting positive impression.",
+    content: `
+      <p>Even the most qualified candidates can sabotage their chances with common interview mistakes. Here are the most frequent errors and how to avoid them.</p>
+      
+      <h2>Arriving Unprepared</h2>
+      <p>Failing to research the company and role is one of the biggest red flags for interviewers. Spend time understanding the company's mission, recent news, and the specific requirements of the position.</p>
+      
+      <h2>Speaking Negatively About Previous Employers</h2>
+      <p>No matter how difficult your previous work situation was, avoid speaking negatively about former employers. Instead, focus on what you learned and how you're looking forward to new challenges.</p>
+      
+      <h2>Not Asking Questions</h2>
+      <p>Interviews are two-way conversations. Prepare thoughtful questions about the role, team dynamics, and company culture to show your genuine interest and engagement.</p>
+    `,
+    author: {
+      name: "Michael Johnson",
+      title: "Recruitment Director",
+      avatar: avatar4
+    },
+    category: "Interview Guide",
+    categorySlug: "interview-guide",
+    publishedAt: "2024-01-08",
+    readTime: "7 min read",
+    tags: ["interviews", "job search", "career tips"],
+    featured: false,
+    views: 2156,
+    likes: 94
+  },
+  {
+    id: 5,
+    title: "Building a Resume That Gets Results",
+    slug: "building-resume-that-gets-results",
+    excerpt: "Transform your resume from ordinary to extraordinary with these proven strategies that capture recruiters' attention.",
+    content: `
+      <p>Your resume is your personal marketing document—it needs to quickly communicate your value and convince employers to invite you for an interview. Here's how to create a resume that gets results.</p>
+      
+      <h2>Start with a Compelling Summary</h2>
+      <p>Your professional summary should be a powerful elevator pitch that highlights your key qualifications and career objectives. Keep it concise but impactful, focusing on what makes you unique.</p>
+      
+      <h2>Use Action Verbs and Quantify Achievements</h2>
+      <p>Replace passive language with strong action verbs like "achieved," "implemented," and "optimized." Whenever possible, include numbers to quantify your accomplishments and demonstrate impact.</p>
+      
+      <h2>Optimize for Applicant Tracking Systems</h2>
+      <p>Many companies use ATS software to screen resumes. Include relevant keywords from the job description, use standard section headings, and avoid complex formatting that might confuse the system.</p>
+    `,
+    author: {
+      name: "Lisa Thompson",
+      title: "Resume Writing Expert",
+      avatar: avatar5
+    },
+    category: "Resume Writing",
+    categorySlug: "resume-writing",
+    publishedAt: "2024-01-05",
+    readTime: "9 min read",
+    tags: ["resume writing", "job applications", "career tools"],
+    featured: false,
+    views: 1789,
+    likes: 67
+  },
+  {
+    id: 6,
+    title: "The Future of Work: Trends Shaping 2024 and Beyond",
+    slug: "future-of-work-trends-2024-beyond",
+    excerpt: "Explore the emerging trends that are reshaping the workplace and learn how to prepare for the future of work.",
+    content: `
+      <p>The workplace is evolving rapidly, driven by technological advances, changing employee expectations, and global events. Understanding these trends is crucial for career planning and professional development.</p>
+      
+      <h2>Artificial Intelligence and Automation</h2>
+      <p>AI is transforming how we work, automating routine tasks and creating new opportunities for human-AI collaboration. Focus on developing skills that complement AI capabilities rather than compete with them.</p>
+      
+      <h2>Hybrid Work Models</h2>
+      <p>The future of work is hybrid, combining remote and in-office experiences. Organizations are reimagining office spaces and developing new policies to support flexible work arrangements.</p>
+      
+      <h2>Skills-Based Hiring</h2>
+      <p>Employers are increasingly focusing on skills rather than traditional qualifications. Continuous learning and skill development are becoming essential for career advancement.</p>
+    `,
+    author: {
+      name: "Robert Kim",
+      title: "Future of Work Analyst",
+      avatar: avatar6
+    },
+    category: "Industry Insights",
+    categorySlug: "industry-insights",
+    publishedAt: "2024-01-03",
+    readTime: "11 min read",
+    tags: ["future of work", "workplace trends", "career planning"],
+    featured: true,
+    views: 3241,
+    likes: 187
+  }
+];
+
+export const relatedPosts = (currentPostId, category, limit = 3) => {
+  return blogPosts
+    .filter(post => post.id !== currentPostId && post.category === category)
+    .slice(0, limit);
+};

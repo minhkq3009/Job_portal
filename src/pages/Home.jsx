@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import CandidateHeader from "../components/Header/CandidateHeader";
+import Header from "../components/Header/Header";
 import KeywordInput from "../components/InputField/KeywordInput";
 import { MapPin, ArrowRight } from "lucide-react";
 import CompanyCard from "../components/Card/CompanyCard";
@@ -92,27 +92,28 @@ export default function Home() {
 
   return (
     <>
-      <CandidateHeader />
+      <Header />
 
       <main className="bg-gray-50">
         {/* Hero + Categories Section */}
         <section className="py-12 md:py-16 lg:py-[100px]">
           {/* Hero */}
-          <div className="container grid grid-cols-12 items-center gap-10 mb-12 md:mb-16 lg:mb-[100px]">
+          <div className="container grid grid-cols-12 items-center gap-6 lg:gap-10 mb-12 md:mb-16 lg:mb-[100px]">
           {/* Left Content */}
           <div className="col-span-12 lg:col-span-5">
-            <div className="mb-8">
-              <h1 className="text-display-01 text-gray-900 font-medium mb-6">
-                Find a job that suits <br /> your interest & skills.
+            <div className="mb-6 lg:mb-8">
+              <h1 className="text-3xl md:text-4xl lg:text-display-01 text-gray-900 font-medium mb-4 lg:mb-6">
+                Find a job that suits <br className="hidden sm:block" /> your interest & skills.
               </h1>
-              <p className="text-gray-600 text-body-lg max-w-lg">
+              <p className="text-gray-600 text-base lg:text-body-lg max-w-lg">
                 Aliquam vitae turpis in diam convallis finibus in at risus.
                 Nullam in scelerisque leo, eget sollicitudin velit vestibulum.
               </p>
             </div>
 
-            <div className="flex flex-col gap-6 max-w-4xl">
-              <div className="flex items-center bg-white rounded-md p-3 gap-2 w-full shadow-sm border border-gray-100">
+            <div className="flex flex-col gap-4 lg:gap-6 max-w-4xl">
+              {/* Desktop Search Form */}
+              <div className="hidden md:flex items-center bg-white rounded-md p-3 gap-2 w-full shadow-sm border border-gray-100">
                 <div className="flex-1 min-w-0">
                   <KeywordInput placeholder="Job title, keyword..." className="border-0 shadow-none" />
                 </div>
@@ -127,6 +128,26 @@ export default function Home() {
                                 <Link 
                   to="/find-job"
                   className="px-4 py-3 h-12 rounded-md bg-primary-500 text-white font-medium hover:bg-primary-600 transition-all shrink-0 whitespace-nowrap min-w-fit flex items-center justify-center"
+                >
+                  Find Job
+                </Link>
+              </div>
+
+              {/* Mobile Search Form */}
+              <div className="md:hidden space-y-3">
+                <div className="bg-white rounded-md p-3 shadow-sm border border-gray-100">
+                  <KeywordInput placeholder="Job title, keyword..." className="border-0 shadow-none" />
+                </div>
+                <div className="bg-white rounded-md p-3 shadow-sm border border-gray-100">
+                  <KeywordInput 
+                    Icon={MapPin}
+                    placeholder="Your Location" 
+                    className="border-0 shadow-none"
+                  />
+                </div>
+                <Link 
+                  to="/find-job"
+                  className="w-full px-4 py-3 h-12 rounded-md bg-primary-500 text-white font-medium hover:bg-primary-600 transition-all flex items-center justify-center"
                 >
                   Find Job
                 </Link>
@@ -153,9 +174,9 @@ export default function Home() {
 
           {/* Categories */}
           <div className="container">
-            <div className="grid grid-cols-12 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
               {statsData.map((stat, index) => (
-                <div key={index} className="col-span-3">
+                <div key={index}>
                   <CategoryCard 
                     icon={stat.icon}
                     title={stat.title}
@@ -221,12 +242,13 @@ export default function Home() {
         <section className="py-12 md:py-16 lg:py-[100px] bg-white border-b border-gray-200">
           <div className="container">
             {/* Header */}
-            <div className="flex items-center justify-between mb-8 md:mb-10 lg:mb-[50px]">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 md:mb-10 lg:mb-[50px]">
               <h2 className="text-heading-01 font-semibold text-gray-900">Popular category</h2>
               <Button 
                 variant="tertiary" 
                 size="medium"
                 rightIcon={ArrowRight}
+                className="self-start sm:self-auto"
               >
                 View All
               </Button>
@@ -252,12 +274,13 @@ export default function Home() {
         <section className="py-12 md:py-16 lg:py-[100px] bg-white">
           <div className="container">
             {/* Header */}
-            <div className="flex items-center justify-between mb-8 md:mb-10 lg:mb-[50px]">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 md:mb-10 lg:mb-[50px]">
               <h2 className="text-heading-01 font-semibold text-gray-900">Featured job</h2>
               <Button 
                 variant="tertiary" 
                 size="medium"
                 rightIcon={ArrowRight}
+                className="self-start sm:self-auto"
               >
                 View All
               </Button>

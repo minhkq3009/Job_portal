@@ -5,6 +5,7 @@ import Footer from "../../components/Footer/Footer";
 import DashboardMenuItem from "../../components/Dashboard/DashboardMenuItem";
 
 import InputField from "../../components/InputField/InputField";
+import SearchInput from "../../components/InputField/SearchInput";
 import Button from "../../components/Button/Button";
 import SquarePhotoUpload from "../../components/Upload/SquarePhotoUpload";
 import MultiResumeUploader from "../../components/Upload/MultiResumeUploader";
@@ -20,7 +21,9 @@ import {
   UserCircle,
   Share2,
   Shield,
-  Calendar
+  Calendar,
+  Plus,
+  X
 } from "lucide-react";
 
 export default function Setting() {
@@ -57,7 +60,9 @@ export default function Setting() {
     maritalStatus: '',
     profileEducation: '',
     profileExperience: '',
-    biography: ''
+    biography: '',
+    // Social links
+    socialLinks: []
   });
   const handleLogout = () => {
     localStorage.removeItem('isLoggedIn');
@@ -124,6 +129,35 @@ export default function Setting() {
     }));
   };
 
+  // Social links handlers
+  const handleAddSocialLink = () => {
+    const newSocialLink = {
+      id: Date.now(), // Simple ID generation
+      platform: '',
+      url: ''
+    };
+    setFormData(prev => ({
+      ...prev,
+      socialLinks: [...prev.socialLinks, newSocialLink]
+    }));
+  };
+
+  const handleRemoveSocialLink = (id) => {
+    setFormData(prev => ({
+      ...prev,
+      socialLinks: prev.socialLinks.filter(link => link.id !== id)
+    }));
+  };
+
+  const handleSocialLinkChange = (id, field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      socialLinks: prev.socialLinks.map(link =>
+        link.id === id ? { ...link, [field]: value } : link
+      )
+    }));
+  };
+
   // Experience options
   const experienceOptions = [
     { label: "Fresh Graduate", value: "fresh" },
@@ -171,6 +205,20 @@ export default function Setting() {
     { label: "Divorced", value: "divorced" },
     { label: "Widowed", value: "widowed" },
     { label: "Prefer not to say", value: "prefer-not-to-say" },
+  ];
+
+  // Social platform options
+  const socialPlatformOptions = [
+    { label: "Facebook", value: "facebook" },
+    { label: "Twitter", value: "twitter" },
+    { label: "LinkedIn", value: "linkedin" },
+    { label: "Instagram", value: "instagram" },
+    { label: "YouTube", value: "youtube" },
+    { label: "GitHub", value: "github" },
+    { label: "Behance", value: "behance" },
+    { label: "Dribbble", value: "dribbble" },
+    { label: "Website", value: "website" },
+    { label: "Other", value: "other" },
   ];
 
 
@@ -508,8 +556,85 @@ export default function Setting() {
                 </div>
               )}
 
+              {/* Social Tab */}
+              {activeTab === 'social' && (
+                <div className="bg-white rounded-lg border border-gray-100 p-6">
+                  <div className="flex items-center justify-between mb-6">
+                    <h2 className="text-heading-05 font-semibold text-gray-900">
+                      Social Links
+                    </h2>
+                    <Button
+                      variant="secondary"
+                      size="medium"
+                      leftIcon={Plus}
+                      onClick={handleAddSocialLink}
+                      className="w-full md:w-auto"
+                    >
+                      Add New Social Link
+                    </Button>
+                  </div>
+
+                  {/* Social Links List */}
+                  <div className="space-y-4">
+                    {formData.socialLinks.length === 0 ? (
+                      <div className="text-center py-8 text-gray-500">
+                        <Share2 size={48} className="mx-auto mb-4 text-gray-300" />
+                        <p className="text-body-md">No social links added yet.</p>
+                        <p className="text-body-sm">Click "Add New Social Link" to get started.</p>
+                      </div>
+                    ) : (
+                      formData.socialLinks.map((link) => (
+                        <div key={link.id} className="flex items-center gap-4 p-4 border border-gray-200 rounded-lg">
+                          {/* Platform Dropdown */}
+                          <div className="w-48">
+                            <Dropdown
+                              options={socialPlatformOptions}
+                              defaultValue={link.platform || "Select platform"}
+                              onSelect={(option) => handleSocialLinkChange(link.id, 'platform', option.value)}
+                              className="[&>button]:h-12 [&>button]:text-body-md [&>button]:px-4"
+                            />
+                          </div>
+
+                          {/* URL Input */}
+                          <div className="flex-1">
+                            <InputField
+                              placeholder="Enter your profile URL"
+                              value={link.url}
+                              onChange={(value) => handleSocialLinkChange(link.id, 'url', value)}
+                              className="h-12"
+                            />
+                          </div>
+
+                          {/* Remove Button */}
+                          <button
+                            onClick={() => handleRemoveSocialLink(link.id)}
+                            className="p-2 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-md transition-colors"
+                            title="Remove social link"
+                          >
+                            <X size={20} />
+                          </button>
+                        </div>
+                      ))
+                    )}
+                  </div>
+
+                  {/* Save Button */}
+                  {formData.socialLinks.length > 0 && (
+                    <div className="mt-8">
+                      <Button
+                        variant="primary"
+                        size="medium"
+                        onClick={handleSave}
+                      >
+                        Save Changes
+                      </Button>
+                    </div>
+                  )}
+                </div>
+              )}
+
               {/* Other Tab Contents - Placeholder */}
-              {activeTab !== 'personal' && activeTab !== 'profile' && (
+              {activeTab !== 'personal' && activeTab !== 'profile' && activeTab !== 'social' && (
                 <div className="bg-white rounded-lg border border-gray-100 p-6">
                   <div className="text-center py-12">
                     <div className="text-gray-400 mb-4">

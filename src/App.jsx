@@ -16,6 +16,8 @@ import AppliedJobs from './pages/dashboard/AppliedJobs.jsx';
 import FavoriteJobs from './pages/dashboard/FavoriteJobs.jsx';
 import JobAlert from './pages/dashboard/JobAlert.jsx';
 import Setting from './pages/dashboard/Setting.jsx';
+import Blog from './pages/Blog.jsx';
+import BlogDetail from './pages/BlogDetail.jsx';
 import LoginRequired from './pages/auth/LoginRequired.jsx';
 import ProtectedRoute from './components/Auth/ProtectedRoute.jsx';
 
@@ -34,6 +36,9 @@ function App() {
       <Route path="/find-employers" element={<FindEmployers />} />
       <Route path="/find-candidates" element={<FindCandidate />} />
       <Route path="/find-candidates/:candidateId" element={<FindCandidate />} />
+      <Route path="/blog" element={<Blog />} />
+      <Route path="/blog/:slug" element={<BlogDetail />} />
+      <Route path="/blog/category/:categorySlug" element={<Blog />} />
       <Route path="/dashboard" element={<LoginRequired />} />
       <Route path="/dashboard-authenticated" element={
         <ProtectedRoute>
