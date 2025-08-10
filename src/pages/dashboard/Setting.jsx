@@ -10,6 +10,10 @@ import Button from "../../components/Button/Button";
 import SquarePhotoUpload from "../../components/Upload/SquarePhotoUpload";
 import MultiResumeUploader from "../../components/Upload/MultiResumeUploader";
 import Dropdown from "../../components/Dropdown/Dropdown";
+import PhoneInput from "../../components/InputField/PhoneInput";
+import KeywordInput from "../../components/InputField/KeywordInput";
+import Checkbox from "../../components/Form/Checkbox";
+import ToggleField from "../../components/InputField/ToggleField";
 import { 
   LayoutDashboard, 
   FileText, 
@@ -23,7 +27,10 @@ import {
   Shield,
   Calendar,
   Plus,
-  X
+  X,
+  MapPin,
+  Mail,
+  Briefcase
 } from "lucide-react";
 
 export default function Setting() {
@@ -62,7 +69,33 @@ export default function Setting() {
     profileExperience: '',
     biography: '',
     // Social links
-    socialLinks: []
+    socialLinks: [],
+    // Account Settings fields
+    contactInfo: {
+      mapLocation: '',
+      phone: '',
+      email: '',
+    },
+    notifications: {
+      shortlisted: false,
+      jobExpire: false,
+      jobAlerts: false,
+      profileSaved: false,
+      rejected: false,
+    },
+    jobAlertsSettings: {
+      jobRole: '',
+      location: '',
+    },
+    privacy: {
+      profilePrivacy: false,
+      resumePrivacy: false,
+    },
+    passwords: {
+      current: '',
+      new: '',
+      confirm: '',
+    }
   });
   const handleLogout = () => {
     localStorage.removeItem('isLoggedIn');
@@ -146,6 +179,42 @@ export default function Setting() {
     setFormData(prev => ({
       ...prev,
       socialLinks: prev.socialLinks.filter(link => link.id !== id)
+    }));
+  };
+
+  // Account Settings handlers
+  const handleContactInfoChange = (field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      contactInfo: { ...prev.contactInfo, [field]: value }
+    }));
+  };
+
+  const handleNotificationChange = (field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      notifications: { ...prev.notifications, [field]: value }
+    }));
+  };
+
+  const handleJobAlertsChange = (field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      jobAlertsSettings: { ...prev.jobAlertsSettings, [field]: value }
+    }));
+  };
+
+  const handlePrivacyChange = (field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      privacy: { ...prev.privacy, [field]: value }
+    }));
+  };
+
+  const handlePasswordChange = (field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      passwords: { ...prev.passwords, [field]: value }
     }));
   };
 
@@ -633,19 +702,216 @@ export default function Setting() {
                 </div>
               )}
 
-              {/* Other Tab Contents - Placeholder */}
-              {activeTab !== 'personal' && activeTab !== 'profile' && activeTab !== 'social' && (
-                <div className="bg-white rounded-lg border border-gray-100 p-6">
-                  <div className="text-center py-12">
-                    <div className="text-gray-400 mb-4">
-                      <Settings size={48} className="mx-auto" />
+              {/* Account Settings Tab */}
+              {activeTab === 'account' && (
+                <div className="space-y-8">
+                  {/* Section 1: Contact Info */}
+                  <div className="bg-white rounded-lg border border-gray-100 p-6">
+                    <h2 className="text-body-lg font-semibold text-gray-900 mb-6">
+                      Contact Info
+                    </h2>
+                    
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-body-md text-gray-700 mb-2">
+                          Map Location
+                        </label>
+                        <KeywordInput
+                          Icon={MapPin}
+                          value={formData.contactInfo.mapLocation}
+                          onChange={(e) => handleContactInfoChange('mapLocation', e.target.value)}
+                          placeholder="Enter your location"
+                          className="[&_svg]:text-gray-400"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-body-md text-gray-700 mb-2">
+                          Phone
+                        </label>
+                        <PhoneInput
+                          value={formData.contactInfo.phone}
+                          onChange={(value) => handleContactInfoChange('phone', value)}
+                          placeholder="Phone number"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-body-md text-gray-700 mb-2">
+                          Email
+                        </label>
+                        <KeywordInput
+                          Icon={Mail}
+                          value={formData.contactInfo.email}
+                          onChange={(e) => handleContactInfoChange('email', e.target.value)}
+                          placeholder="Email address"
+                          className="[&_svg]:text-gray-400"
+                        />
+                      </div>
                     </div>
-                    <h3 className="text-heading-05 font-semibold text-gray-900 mb-2">
-                      {settingTabs.find(tab => tab.id === activeTab)?.label}
-                    </h3>
-                    <p className="text-body-sm text-gray-500">
-                      This section is coming soon...
+
+                    <div className="mt-6">
+                      <Button variant="primary">
+                        Save Changes
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Section 2: Notification */}
+                  <div className="bg-white rounded-lg border border-gray-100 p-6">
+                    <h2 className="text-body-lg font-semibold text-gray-900 mb-6">
+                      Notification
+                    </h2>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <Checkbox
+                        label="Notify me when employers shortlisted me"
+                        defaultChecked={formData.notifications.shortlisted}
+                        onChange={(value) => handleNotificationChange('shortlisted', value)}
+                      />
+                      
+                      <Checkbox
+                        label="Notify me when my applied jobs are expire"
+                        defaultChecked={formData.notifications.jobExpire}
+                        onChange={(value) => handleNotificationChange('jobExpire', value)}
+                      />
+                      
+                      <Checkbox
+                        label="Notify me when i have up to 5 job alerts"
+                        defaultChecked={formData.notifications.jobAlerts}
+                        onChange={(value) => handleNotificationChange('jobAlerts', value)}
+                      />
+                      
+                      <Checkbox
+                        label="Notify me when employers saved my profile"
+                        defaultChecked={formData.notifications.profileSaved}
+                        onChange={(value) => handleNotificationChange('profileSaved', value)}
+                      />
+                      
+                      <Checkbox
+                        label="Notify me when employers rejected me"
+                        defaultChecked={formData.notifications.rejected}
+                        onChange={(value) => handleNotificationChange('rejected', value)}
+                        className="md:col-span-2"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Section 3: Job Alerts */}
+                  <div className="bg-white rounded-lg border border-gray-100 p-6">
+                    <h2 className="text-body-lg font-semibold text-gray-900 mb-6">
+                      Job Alerts
+                    </h2>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <KeywordInput
+                          Icon={Briefcase}
+                          value={formData.jobAlertsSettings.jobRole}
+                          onChange={(e) => handleJobAlertsChange('jobRole', e.target.value)}
+                          placeholder="Your job roles"
+                          className="[&_svg]:text-gray-400"
+                        />
+                      </div>
+                      
+                      <div>
+                        <KeywordInput
+                          Icon={MapPin}
+                          value={formData.jobAlertsSettings.location}
+                          onChange={(e) => handleJobAlertsChange('location', e.target.value)}
+                          placeholder="City, state, country name"
+                          className="[&_svg]:text-gray-400"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="mt-6">
+                      <Button variant="primary">
+                        Save Changes
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Section 4: Profile Privacy & Resume Privacy */}
+                  <div className="bg-white rounded-lg border border-gray-100 p-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <ToggleField
+                        label="Profile Privacy"
+                        description="Your profile is public now"
+                        defaultValue={formData.privacy.profilePrivacy}
+                        onChange={(value) => handlePrivacyChange('profilePrivacy', value)}
+                      />
+                      
+                      <ToggleField
+                        label="Resume Privacy"
+                        description="Your resume is public now"
+                        defaultValue={formData.privacy.resumePrivacy}
+                        onChange={(value) => handlePrivacyChange('resumePrivacy', value)}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Section 5: Change Password */}
+                  <div className="bg-white rounded-lg border border-gray-100 p-6">
+                    <h2 className="text-body-lg font-semibold text-gray-900 mb-6">
+                      Change Password
+                    </h2>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div>
+                        <label className="block text-body-md text-gray-700 mb-2">
+                          Current Password
+                        </label>
+                        <InputField
+                          type="password"
+                          placeholder="Current password"
+                          showToggle={true}
+                        />
+                      </div>
+                      
+                      <div>
+                        <label className="block text-body-md text-gray-700 mb-2">
+                          New Password
+                        </label>
+                        <InputField
+                          type="password"
+                          placeholder="New password"
+                          showToggle={true}
+                        />
+                      </div>
+                      
+                      <div>
+                        <label className="block text-body-md text-gray-700 mb-2">
+                          Confirm Password
+                        </label>
+                        <InputField
+                          type="password"
+                          placeholder="Confirm password"
+                          showToggle={true}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="mt-6">
+                      <Button variant="primary">
+                        Save Changes
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Section 6: Delete Account */}
+                  <div className="bg-white rounded-lg border border-red-200 p-6">
+                    <h2 className="text-body-lg font-semibold text-gray-900 mb-4">
+                      Delete Your Account
+                    </h2>
+                    
+                    <p className="text-body-sm text-gray-400 mb-6 leading-relaxed">
+                      If you delete your Jobpilot account, you will no longer be able to get information about the matched jobs, following employers, and job alert, shortlisted jobs and more. You will be abandoned from all the services of Jobpilot.com.
                     </p>
+
+                    <Button variant="tertiary" className="border-red-500 text-red-500 hover:bg-red-50">
+                      Close Account
+                    </Button>
                   </div>
                 </div>
               )}

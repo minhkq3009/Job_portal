@@ -2,7 +2,7 @@ import { ChevronDown, Search } from "lucide-react";
 import React from "react";
 import IndiaFlag from "../../assets/images/India.svg";
 
-export default function SearchInput({ className = "" }) {
+export default function SearchInput({ className = "", value, onChange, placeholder }) {
   return (
     <div className={`flex items-center justify-start px-6 py-2 w-full bg-white rounded-md shadow-sm border border-gray-100 gap-5 ${className}`}>
       {/* Country Selector */}
@@ -24,7 +24,9 @@ export default function SearchInput({ className = "" }) {
         <Search size={20} className="text-primary-500 shrink-0" />
         <input
           type="text"
-          placeholder="Job title, keyword, company"
+          value={value !== undefined ? value : undefined}
+          onChange={onChange ? (e) => onChange(e.target.value) : undefined}
+          placeholder={placeholder || "Job title, keyword, company"}
           className="flex-1 text-body-md focus:outline-none text-gray-800 placeholder:text-gray-400 bg-transparent"
         />
       </div>

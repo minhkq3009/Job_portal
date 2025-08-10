@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 import SimpleHeader from "../../components/Header/SimpleHeader.jsx";
 import SocialButton from "../../components/Button/SocialButton.jsx";
 import InputField from "../../components/InputField/InputField";
+import Checkbox from "../../components/Form/Checkbox";
 import FacebookIcon from "../../assets/icons/facebook-1.svg";
 import GoogleIcon from "../../assets/icons/google-1.svg";
 import ImageRegister from "../../assets/images/Image-register.png";
@@ -54,10 +55,11 @@ export default function Login() {
                   />
 
                   <div className="flex justify-between items-center text-sm">
-                    <label className="flex items-center gap-2">
-                      <input type="checkbox" />
-                      <span>Remember me</span>
-                    </label>
+                    <Checkbox 
+                      label="Remember me" 
+                      size="small"
+                      className="[&_label]:text-body-sm"
+                    />
                     <Link to="/forgot-password" className="text-blue-600 font-medium">
                       Forgot password
                     </Link>

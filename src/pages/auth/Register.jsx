@@ -11,6 +11,7 @@ import Button from "../../components/Button/Button";
 import SocialButton from "../../components/Button/SocialButton.jsx";
 import InputField from "../../components/InputField/InputField";
 import Dropdown from "../../components/Dropdown/Dropdown.jsx";
+import Checkbox from "../../components/Form/Checkbox";
 import SimpleHeader from "../../components/Header/SimpleHeader.jsx";
 import FacebookIcon from "../../assets/icons/facebook-1.svg";
 import GoogleIcon from "../../assets/icons/google-1.svg";
@@ -93,15 +94,17 @@ export default function Register() {
                 {/* Checkbox + Button Section */}
                 <div className="space-y-5">
                   {/* Checkbox */}
-                  <div className="flex items-center gap-2 text-body-sm">
-                    <input type="checkbox" className="w-5 h-5" />
-                    <span>
-                      I've read and agree with your{" "}
-                      <a href="#" className="text-blue-600 font-medium">
-                        Terms of Services
-                      </a>
-                    </span>
-                  </div>
+                  <Checkbox 
+                    label={
+                      <span>
+                        I've read and agree with your{" "}
+                        <a href="#" className="text-blue-600 font-medium">
+                          Terms of Services
+                        </a>
+                      </span>
+                    }
+                    className="[&_label]:text-body-sm"
+                  />
 
                   {/* Create Account Button */}
                   <Button 
