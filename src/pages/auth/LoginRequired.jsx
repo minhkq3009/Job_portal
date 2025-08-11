@@ -20,12 +20,12 @@ export default function LoginRequired() {
             
             {/* Title */}
             <h1 className="text-heading-04 font-semibold text-gray-900 mb-4">
-              Bạn cần đăng nhập
+              You need to log in
             </h1>
             
             {/* Description */}
             <p className="text-body-md text-gray-600 mb-8">
-              Để truy cập Dashboard và các tính năng cá nhân, vui lòng đăng nhập vào tài khoản của bạn.
+              To access the Dashboard and personal features, please log in to your account.
             </p>
             
             {/* Buttons */}
@@ -33,19 +33,19 @@ export default function LoginRequired() {
               <Link to="/login" className="block">
                 <Button variant="primary" size="large" className="w-full">
                   <User className="w-4 h-4 mr-2" />
-                  Đăng nhập ngay
+                  Log in now
                 </Button>
               </Link>
               
               <Link to="/register" className="block">
                 <Button variant="secondary" size="large" className="w-full">
-                  Tạo tài khoản mới
+                  Create a new account
                 </Button>
               </Link>
               
               <Link to="/home" className="block">
                 <Button variant="tertiary" size="medium" className="w-full">
-                  Quay về trang chủ
+                  Back to homepage
                 </Button>
               </Link>
             </div>

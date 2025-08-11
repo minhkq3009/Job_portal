@@ -63,8 +63,8 @@ const BlogDetail = () => {
       <>
         <CandidateHeader />
         <main className="bg-gray-50 min-h-screen">
-          <div className="container py-20 text-center">
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">Article Not Found</h1>
+          <div className="container mx-auto py-12 md:py-20 px-4 md:px-6 lg:px-0 text-center">
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Article Not Found</h1>
             <p className="text-gray-600 mb-8">The article you're looking for doesn't exist.</p>
             <Link 
               to="/blog"
@@ -91,180 +91,200 @@ const BlogDetail = () => {
         <Breadcrumb title={post.title} />
 
         {/* Main Content */}
-        <div className="container mx-auto py-8">
-          <div className="grid grid-cols-12 gap-8">
-            {/* Main Content - 8 columns */}
-            <div className="col-span-12 lg:col-span-8">
+        <div className="container mx-auto py-6 md:py-8 px-4 md:px-6 lg:px-0">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+            {/* Main Content - Full width on mobile, 8 columns on desktop */}
+            <div className="lg:col-span-8 order-1">
               {/* Blog Article */}
-              <div className="bg-white rounded-xl border border-gray-100 p-8 mb-8">
+              <div className="bg-white rounded-xl border border-gray-100 p-4 md:p-6 lg:p-8 mb-6 md:mb-8">
                 {/* Article Header */}
-                <div className="flex items-center gap-4 text-body-sm text-gray-500 mb-6">
-                  <div className="flex items-center gap-1">
-                    <Calendar className="w-4 h-4" />
-                    <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
+                <div className="mb-6 md:mb-8">
+                  <div className="flex flex-wrap items-center gap-2 md:gap-4 text-sm md:text-base text-gray-500 mb-4">
+                    <span className="flex items-center gap-2">
+                      <Calendar size={16} />
+                      {post.date}
+                    </span>
+                    <span className="flex items-center gap-2">
+                      <MessageSquare size={16} />
+                      {post.commentsCount || 0} comments
+                    </span>
+                    <span className="flex items-center gap-2">
+                      <User size={16} />
+                      {post.author?.name || "Admin"}
+                    </span>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <MessageSquare className="w-4 h-4" />
-                    <span>{comments.length} Comments</span>
-                  </div>
-                </div>
-                
-                <h1 className="text-heading-01 font-semibold text-gray-900 mb-6 leading-tight">
-                  {post.title}
-                </h1>
-                
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
-                    <User className="w-6 h-6 text-gray-600" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-gray-900">{post.author.name}</p>
-                    <p className="text-body-sm text-gray-500">{post.author.title}</p>
-                  </div>
-                </div>
+                  
+                  <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
+                    {post.title}
+                  </h1>
+                  
+                                     {post.excerpt && (
+                     <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
+                       {post.excerpt}
+                     </p>
+                   )}
+                   
+                   {/* Tags */}
+                   {post.tags && post.tags.length > 0 && (
+                     <div className="flex flex-wrap gap-2 mt-4">
+                       {post.tags.map((tag, index) => (
+                         <span
+                           key={index}
+                           className="px-3 py-1 bg-primary-100 text-primary-700 text-sm font-medium rounded-full hover:bg-primary-200 transition-colors cursor-pointer"
+                         >
+                           #{tag}
+                         </span>
+                       ))}
+                     </div>
+                   )}
+                 </div>
 
-                {/* Featured Image */}
-                <img 
-                  src={post.image} 
-                  alt={post.title}
-                  className="w-full h-80 object-cover rounded-lg mb-8"
-                />
+                {/* Article Image */}
+                {post.image && (
+                  <div className="mb-6 md:mb-8">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-48 md:h-64 lg:h-80 object-cover rounded-lg"
+                    />
+                  </div>
+                )}
 
                 {/* Article Content */}
-                <div 
-                  className="prose prose-lg max-w-none prose-headings:font-medium prose-headings:text-gray-900 prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6"
-                  dangerouslySetInnerHTML={{ __html: post.content }}
-                />
+                <div className="prose prose-lg max-w-none">
+                  <div dangerouslySetInnerHTML={{ __html: post.content }} />
+                </div>
 
-                {/* Share This Post */}
-                <div className="mt-8 pt-8 border-t border-gray-200">
-                  <h3 className="text-heading-05 font-semibold text-gray-900 mb-4">
-                    Share This Post
-                  </h3>
-                  <div className="flex items-center gap-3">
-                    <button className="flex items-center gap-2 px-4 py-2 rounded-lg border border-blue-100 text-blue-600 hover:bg-blue-50 transition-colors">
-                      <Facebook className="w-4 h-4" />
+                {/* Share Section */}
+                <div className="mt-8 pt-6 border-t border-gray-200">
+                  <div className="flex items-center gap-4 text-sm">
+                    <span className="text-gray-900 font-medium whitespace-nowrap">
+                      Share this post:
+                    </span>
+
+                    <button className="flex items-center gap-2 px-3 py-1.5 rounded-md border text-blue-600 border-blue-100 hover:bg-blue-50 transition">
+                      <Facebook size={16} />
                       Facebook
                     </button>
-                    <button className="flex items-center gap-2 px-4 py-2 rounded-lg border border-sky-100 text-sky-500 hover:bg-sky-50 transition-colors">
-                      <Twitter className="w-4 h-4" />
+
+                    <button className="flex items-center gap-2 px-3 py-1.5 rounded-md border text-sky-500 border-blue-100 hover:bg-blue-50 transition">
+                      <Twitter size={16} />
                       Twitter
                     </button>
-                    <button className="flex items-center gap-2 px-4 py-2 rounded-lg border border-blue-100 text-blue-700 hover:bg-blue-50 transition-colors">
-                      <Linkedin className="w-4 h-4" />
+
+                    <button className="flex items-center gap-2 px-3 py-1.5 rounded-md border text-blue-700 border-blue-100 hover:bg-blue-50 transition">
+                      <Linkedin size={16} />
                       LinkedIn
                     </button>
                   </div>
                 </div>
               </div>
 
-              {/* Write a Comment */}
-              <div className="bg-white rounded-xl border border-gray-100 p-6 mb-8">
-                <h3 className="text-heading-05 font-semibold text-gray-900 mb-4">
-                  Write a Comment
+              {/* Comments Section */}
+              <div className="bg-white rounded-xl border border-gray-100 p-4 md:p-6 lg:p-8 mb-6 md:mb-8">
+                <h3 className="text-xl md:text-2xl font-semibold text-gray-900 mb-6">
+                  Comments ({comments.length})
                 </h3>
-                <div className="space-y-4">
+                
+                {/* Comment Form */}
+                <div className="mb-6">
                   <textarea
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
-                    placeholder="Write your comment here..."
-                    className="w-full h-32 p-4 border border-gray-200 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                    placeholder="Write a comment..."
+                    rows={4}
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   />
-                  <Button
-                    variant="primary"
-                    size="medium"
-                    rightIcon={Send}
-                    onClick={handlePostComment}
-                    disabled={!comment.trim()}
-                  >
-                    Post a Comment
-                  </Button>
+                  <div className="mt-3 flex justify-end">
+                    <Button
+                      onClick={handlePostComment}
+                      variant="primary"
+                      size="medium"
+                      rightIcon={Send}
+                    >
+                      Post Comment
+                    </Button>
+                  </div>
                 </div>
-              </div>
 
-              {/* Comments */}
-              <div className="bg-white rounded-xl border border-gray-100 p-6 mb-8">
-                <h3 className="text-heading-05 font-semibold text-gray-900 mb-6">
-                  Comments ({comments.length})
-                </h3>
+                {/* Comments List */}
                 <div className="space-y-6">
                   {comments.map((comment) => (
-                    <div key={comment.id} className="border-b border-gray-100 pb-6 last:border-b-0 last:pb-0">
-                      <div className="flex items-start gap-4">
-                        <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
-                          <User className="w-5 h-5 text-gray-600" />
+                    <div key={comment.id} className="border-l-4 border-primary-500 pl-4">
+                      <div className="flex items-start gap-3 mb-2">
+                        <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
+                          <User size={16} className="text-primary-600" />
                         </div>
                         <div className="flex-1">
-                          <div className="flex items-center gap-2 mb-2">
-                            <h4 className="font-medium text-gray-900">{comment.author}</h4>
-                            <span className="text-body-sm text-gray-500">{comment.date}</span>
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="font-medium text-gray-900">{comment.author}</span>
+                            <span className="text-sm text-gray-500">{comment.date}</span>
                           </div>
-                          <p className="text-gray-700 mb-3">{comment.content}</p>
-                          <button className="text-body-sm text-primary-600 hover:text-primary-700 font-medium">
-                            Reply
-                          </button>
-                          
-                          {/* Replies */}
-                          {comment.replies.length > 0 && (
-                            <div className="mt-4 ml-6 space-y-4">
-                              {comment.replies.map((reply) => (
-                                <div key={reply.id} className="flex items-start gap-3">
-                                  <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <User className="w-4 h-4 text-gray-600" />
-                                  </div>
-                                  <div className="flex-1">
-                                    <div className="flex items-center gap-2 mb-1">
-                                      <h5 className="font-medium text-gray-900 text-body-sm">{reply.author}</h5>
-                                      <span className="text-body-xs text-gray-500">{reply.date}</span>
-                                    </div>
-                                    <p className="text-gray-700 text-body-sm">{reply.content}</p>
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          )}
+                          <p className="text-gray-700">{comment.content}</p>
                         </div>
                       </div>
+                      
+                      {/* Replies */}
+                      {comment.replies && comment.replies.length > 0 && (
+                        <div className="ml-8 mt-4 space-y-4">
+                          {comment.replies.map((reply) => (
+                            <div key={reply.id} className="border-l-2 border-gray-200 pl-4">
+                              <div className="flex items-start gap-3">
+                                <div className="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center">
+                                  <User size={14} className="text-gray-600" />
+                                </div>
+                                <div className="flex-1">
+                                  <div className="flex items-center gap-2 mb-1">
+                                    <span className="font-medium text-gray-900">{reply.author}</span>
+                                    <span className="text-sm text-gray-500">{reply.date}</span>
+                                  </div>
+                                  <p className="text-gray-700">{reply.content}</p>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
               </div>
             </div>
 
-            {/* Sidebar - 4 columns */}
-            <div className="col-span-12 lg:col-span-4">
-              {/* Recent Posts Block */}
-              <div className="bg-white border border-gray-100 rounded-xl p-6 mb-8">
-                <h3 className="text-heading-05 font-semibold text-gray-900 mb-4">
+            {/* Sidebar - Full width on mobile, 4 columns on desktop */}
+            <div className="lg:col-span-4 order-2">
+              {/* Recent Posts */}
+              <div className="bg-white rounded-xl border border-gray-100 p-4 md:p-6 mb-6">
+                <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-4">
                   Recent Posts
                 </h3>
                 <div className="space-y-4">
-                  {recentPosts.map((post) => (
+                  {recentPosts.slice(0, 3).map((recentPost) => (
                     <BlogCardHorizontal
-                      key={post.id}
+                      key={recentPost.id}
                       variant="compact"
-                      image={post.image}
-                      date={post.date}
-                      commentsCount={post.commentsCount}
-                      title={post.title}
-                      onButtonClick={() => handleReadMore(post.id)}
+                      image={recentPost.image}
+                      date={recentPost.date}
+                      commentsCount={recentPost.commentsCount}
+                      title={recentPost.title}
+                      onButtonClick={() => handleReadMore(recentPost.id)}
                     />
                   ))}
                 </div>
               </div>
 
-              {/* Gallery Block */}
-              <div className="bg-white border border-gray-100 rounded-xl p-6 mb-8">
-                <h3 className="text-heading-05 font-semibold text-gray-900 mb-4">
+              {/* Gallery */}
+              <div className="bg-white rounded-xl border border-gray-100 p-4 md:p-6">
+                <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-4">
                   Gallery
                 </h3>
-                <div className="grid grid-cols-3 gap-2">
-                  {galleryImages.map((image, index) => (
+                <div className="grid grid-cols-2 gap-2">
+                  {galleryImages.slice(0, 4).map((image, index) => (
                     <img
                       key={index}
                       src={image}
                       alt={`Gallery ${index + 1}`}
-                      className="w-full h-20 object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
+                      className="w-full h-20 md:h-24 object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
                     />
                   ))}
                 </div>
@@ -273,29 +293,27 @@ const BlogDetail = () => {
           </div>
         </div>
 
-                 {/* Related Blogs */}
-         <div className="bg-white py-16">
-           <div className="container mx-auto">
-             <h2 className="text-heading-01 font-semibold text-gray-900 mb-12 text-center">
-               Related Blogs
-             </h2>
-             
-             <div className="grid grid-cols-12 gap-6">
-               {related.slice(0, 4).map((relatedPost) => (
-                 <div key={relatedPost.id} className="col-span-12 md:col-span-6 lg:col-span-3">
-                   <BlogCardVertical
-                     image={relatedPost.image}
-                     title={relatedPost.title}
-                     description={relatedPost.excerpt}
-                     onButtonClick={() => handleReadMore(relatedPost.id)}
-                   />
-                 </div>
-               ))}
-             </div>
-           </div>
-         </div>
+        {/* Related Posts Section - Below main content, above footer */}
+        <div className="bg-gray-50 py-8 md:py-12">
+          <div className="container mx-auto px-4 md:px-6 lg:px-0">
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-6 md:mb-8">
+              Related Posts
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {related.map((relatedPost) => (
+                <BlogCardVertical
+                  key={relatedPost.id}
+                  image={relatedPost.image}
+                  title={relatedPost.title}
+                  description={relatedPost.excerpt}
+                  onButtonClick={() => handleReadMore(relatedPost.id)}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
       </main>
-      
+
       <Footer />
     </>
   );

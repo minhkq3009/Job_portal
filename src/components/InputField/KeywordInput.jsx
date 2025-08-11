@@ -17,7 +17,7 @@ const KeywordInput = ({
   const onChange = controlledOnChange || ((e) => setInternalValue(e.target.value));
 
   return (
-    <div className={`flex items-center rounded-md px-4 py-3 gap-3 w-full bg-white border border-gray-100 focus-within:border-primary-500 transition-colors ${className}`}>
+    <div className={`flex items-center rounded-md px-3 py-3 gap-3 w-full bg-white border border-gray-100 focus-within:border-primary-500 transition-colors ${className}`}>
       {showIcon && Icon && <Icon size={20} className="text-primary-500 shrink-0" />}
               <input
         type="text"

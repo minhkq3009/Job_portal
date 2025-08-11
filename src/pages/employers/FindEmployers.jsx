@@ -20,7 +20,7 @@ export default function FindEmployers() {
   const [viewMode, setViewMode] = useState("list");
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Lấy tất cả companies và thêm jobCount random
+  // Get all companies and add a random jobCount
   const allCompanies = topCompanies.map((company) => ({
     ...company,
     jobCount: Math.floor(Math.random() * 8) + 1, // Random 1-8 jobs
@@ -155,9 +155,9 @@ export default function FindEmployers() {
                       <span>{company.jobCount} open Job{company.jobCount > 1 ? 's' : ''}</span>
                     </div>
                   }
-                  time="" // Truyền rỗng để khỏi hiện
-                  topLabel="" // Ẩn tag trên
-                  typeLabel="" // Ẩn tag bên cạnh (tag xanh)
+                  time="" // Pass empty to hide
+                  topLabel="" // Hide top tag
+                  typeLabel="" // Hide side tag (blue tag)
                   logoText={company.logoText}
                   companyId={startIndex + idx} // Pass company ID for navigation
                 />

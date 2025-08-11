@@ -10,7 +10,7 @@ import NavigationButton from "../../components/Button/NavigationButton";
 import ApplyJobModal from "../../components/Modal/ApplyJobModal";
 import React, { useState } from "react";
 import { MapPin, Clock, DollarSign, Users, ArrowRight, Bookmark, Share2, Instagram, Phone, Mail, Calendar, Briefcase, Wallet, Facebook, Twitter, Youtube, Linkedin } from "lucide-react";
-import dribbbleLogo from "../../assets/icons/figma.svg"; // Sử dụng figma logo làm ví dụ cho Dribbble
+import dribbbleLogo from "../../assets/icons/figma.svg"; // Use figma logo as example for Dribbble
 import { featuredJobs } from "../../data/index";
 
 export default function JobDetails() {
@@ -23,7 +23,7 @@ export default function JobDetails() {
   // Use data from jobsData instead of hardcoded array
   const relatedJobs = [...featuredJobs, ...featuredJobs].slice(0, 12);
 
-  const jobsPerSlide = 6; // 2 hàng x 3 cột = 6 jobs mỗi slide
+  const jobsPerSlide = 6; // 2 rows x 3 columns = 6 jobs per slide
   const totalSlides = Math.ceil(relatedJobs.length / jobsPerSlide);
 
   const nextSlide = () => {
@@ -114,16 +114,16 @@ Nam dapibus consectetur erat in euismod. Cras urna augue, mollis venenatis augue
                   />
                 </div>
                 
-                {/* Job Info Column - cách avatar 24px */}
+            {/* Job Info Column - 24px from avatar */}
                 <div className="flex flex-col gap-2">
-                  {/* Title + Tags - cách nhau 8px */}
+                  {/* Title + Tags - 8px gap */}
                   <div className="flex items-center gap-2 flex-wrap">
                     <h1 className="text-heading-04 font-medium text-gray-900">{jobData.title}</h1>
                     <LabelTag label="Featured" variant="warning" />
                     <LabelTag label="Urgent" variant="danger" />
                   </div>
                   
-                  {/* Company Info - icon cách text 6px, các khối cách nhau 20px */}
+                  {/* Company Info - 6px icon-text gap, 20px block gap */}
                   <div className="flex items-center gap-5">
                     <div className="flex items-center gap-1.5">
                       <Instagram size={16} className="text-gray-500" />

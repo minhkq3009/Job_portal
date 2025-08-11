@@ -25,7 +25,7 @@ export default function Home() {
   const [testimonialSlide, setTestimonialSlide] = useState(0);
   const testimonialsPerSlide = 3; // 3 testimonials per slide
   
-  // Đảm bảo testimonialsData không undefined
+  // Ensure testimonialsData is defined
   const safeTestimonialsData = testimonialsData || [];
   const totalTestimonialSlides = Math.ceil(safeTestimonialsData.length / testimonialsPerSlide);
 
@@ -372,7 +372,7 @@ export default function Home() {
               Clients Testimonial
             </h2>
 
-            {/* Container với flexbox để căn giữa buttons và cards */}
+            {/* Container with flexbox to center buttons and cards */}
             <div className="flex items-center gap-8">
               {/* Left Navigation Button */}
               <div style={{ transform: 'translateY(-40px)' }}>

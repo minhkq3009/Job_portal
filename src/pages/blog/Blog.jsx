@@ -89,16 +89,16 @@ export default function Blog() {
         {/* Breadcrumb */}
         <Breadcrumb title="Blog" />
 
-                 {/* Main Content */}
-         <div className="container py-8">
-          <div className="grid grid-cols-12 gap-6">
-            {/* Left Sidebar - 4 columns */}
-            <div className="col-span-12 lg:col-span-4">
+        {/* Main Content */}
+        <div className="container mx-auto py-6 md:py-8 px-4 md:px-6 lg:px-0">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+            {/* Left Sidebar - Full width on mobile, 4 columns on desktop */}
+            <div className="lg:col-span-4 order-2 lg:order-1">
               {/* Search & Categories Block */}
-              <div className="bg-white border border-gray-100 rounded-xl p-6 mb-6">
+              <div className="bg-white border border-gray-100 rounded-xl p-4 md:p-6 mb-6">
                 {/* Search Section */}
                 <div className="mb-6">
-                  <h3 className="text-heading-05 font-semibold text-gray-900 mb-4">
+                  <h3 className="text-lg md:text-heading-05 font-semibold text-gray-900 mb-4">
                     Search Articles
                   </h3>
                   <div className="relative">
@@ -113,7 +113,7 @@ export default function Blog() {
 
                 {/* Categories Section */}
                 <div>
-                  <h3 className="text-heading-05 font-semibold text-gray-900 mb-4">
+                  <h3 className="text-lg md:text-heading-05 font-semibold text-gray-900 mb-4">
                     Categories
                   </h3>
                   <div className="space-y-2">
@@ -127,8 +127,8 @@ export default function Blog() {
                             : 'hover:bg-gray-50 text-gray-700'
                         }`}
                       >
-                        <span className="font-medium">{category.name}</span>
-                        <span className="text-body-sm text-gray-500">({category.count})</span>
+                        <span className="font-medium text-sm md:text-base">{category.name}</span>
+                        <span className="text-xs md:text-body-sm text-gray-500">({category.count})</span>
                       </button>
                     ))}
                   </div>
@@ -136,8 +136,8 @@ export default function Blog() {
               </div>
 
               {/* Recent Posts Block */}
-              <div className="bg-white border border-gray-100 rounded-xl p-6 mb-6">
-                <h3 className="text-heading-05 font-semibold text-gray-900 mb-4">
+              <div className="bg-white border border-gray-100 rounded-xl p-4 md:p-6 mb-6">
+                <h3 className="text-lg md:text-heading-05 font-semibold text-gray-900 mb-4">
                   Recent Posts
                 </h3>
                 <div className="space-y-4">
@@ -156,8 +156,8 @@ export default function Blog() {
               </div>
 
               {/* Gallery Block - Limited to 6 images */}
-              <div className="bg-white border border-gray-100 rounded-xl p-6 mb-6">
-                <h3 className="text-heading-05 font-semibold text-gray-900 mb-4">
+              <div className="bg-white border border-gray-100 rounded-xl p-4 md:p-6 mb-6">
+                <h3 className="text-lg md:text-heading-05 font-semibold text-gray-900 mb-4">
                   Gallery
                 </h3>
                 <div className="grid grid-cols-3 gap-2">
@@ -166,65 +166,64 @@ export default function Blog() {
                       key={index}
                       src={image}
                       alt={`Gallery ${index + 1}`}
-                      className="w-full h-20 object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
+                      className="w-full h-16 md:h-20 object-cover rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
                     />
                   ))}
                 </div>
               </div>
 
               {/* Popular Tags Block */}
-              <div className="bg-white border border-gray-100 rounded-xl p-6">
-                <h3 className="text-heading-05 font-semibold text-gray-900 mb-4">
+              <div className="bg-white border border-gray-100 rounded-xl p-4 md:p-6">
+                <h3 className="text-lg md:text-heading-05 font-semibold text-gray-900 mb-4">
                   Popular Tags
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {popularTags.map((tag, index) => (
-                    <LabelTag
-                      key={index}
-                      label={tag}
+                  {popularTags.map((tag) => (
+                    <button
+                      key={tag}
                       onClick={() => handleTagClick(tag)}
-                      className="cursor-pointer hover:bg-primary-100 hover:text-primary-700 transition-colors"
-                    />
+                      className="px-3 py-1.5 bg-gray-100 text-gray-700 text-xs md:text-sm rounded-lg hover:bg-primary-100 hover:text-primary-700 transition-colors"
+                    >
+                      {tag}
+                    </button>
                   ))}
                 </div>
               </div>
             </div>
 
-                         {/* Main Content - 8 columns */}
-             <div className="col-span-12 lg:col-span-8">
-              {/* Blog Posts */}
-              <div className="space-y-6">
-                {blogPosts.slice(0, 8).map((blog) => (
+            {/* Right Content - Full width on mobile, 8 columns on desktop */}
+            <div className="lg:col-span-8 order-1 lg:order-2">
+              {/* Blog Posts Grid */}
+              <div className="space-y-6 md:space-y-8">
+                {blogPosts.map((post) => (
                   <BlogCardHorizontal
-                    key={blog.id}
-                    image={blog.image || `https://picsum.photos/400/250?random=${blog.id}`}
-                    date={new Date(blog.publishedAt).toLocaleDateString()}
-                    commentsCount={blog.comments || 0}
-                    title={blog.title}
-                    description={blog.excerpt}
-                    buttonLabel="Read More"
-                    onButtonClick={() => handleReadMore(blog.id)}
+                    key={post.id}
+                    variant="default"
+                    image={post.image}
+                    date={post.date}
+                    commentsCount={post.commentsCount}
+                    title={post.title}
+                    description={post.excerpt}
+                    onButtonClick={() => handleReadMore(post.id)}
                   />
                 ))}
               </div>
-              
+
               {/* Pagination */}
-              <div className="mt-12 flex justify-end w-full">
-                <div className="flex justify-end" style={{ justifyContent: 'flex-end !important' }}>
-                  <Pagination
-                    currentPage={currentPage}
-                    totalPages={3}
-                    onPageChange={handlePageChange}
-                    showInfo={false}
-                    className="!justify-end"
-                  />
-                </div>
+              <div className="mt-8 md:mt-12 flex justify-end">
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={5}
+                  onPageChange={handlePageChange}
+                  showInfo={false}
+                  className="justify-end"
+                />
               </div>
             </div>
           </div>
         </div>
       </main>
-      
+
       <Footer />
     </>
   );

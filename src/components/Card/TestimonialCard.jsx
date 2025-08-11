@@ -23,7 +23,7 @@ export default function TestimonialCard({ rating = 5, content, name, title, avat
         <p className="text-gray-600 text-body-md leading-relaxed">{content}</p>
       </div>
 
-      {/* Author and Quote - Cách 32px từ khối trên */}
+      {/* Author and Quote - 32px from the block above */}
       <div className="flex items-center justify-between w-full mt-8">
         <div className="flex items-center gap-3 flex-1">
           <img

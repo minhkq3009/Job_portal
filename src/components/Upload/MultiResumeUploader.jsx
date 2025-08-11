@@ -2,25 +2,25 @@ import React, { useState } from "react";
 import ResumeUploader from "./ResumeUploader";
 
 export default function MultiResumeUploader({ onChange }) {
-  const [resumes, setResumes] = useState([null]); // Bắt đầu với 1 slot trống
+  const [resumes, setResumes] = useState([null]); // Start with 1 empty slot
 
   const handleResumeChange = (index, file) => {
     const newResumes = [...resumes];
     newResumes[index] = file;
     
-    // Nếu file được thêm vào slot cuối và không phải null, thêm slot mới
+    // If a file is added to the last slot and it's not null, append a new slot
     if (file && index === resumes.length - 1) {
       newResumes.push(null);
     }
     
-    // Nếu file bị xóa, loại bỏ slot trống (trừ slot cuối)
+    // If a file is removed, remove the empty slot (except the last one)
     if (!file && index < resumes.length - 1) {
       newResumes.splice(index, 1);
     }
     
     setResumes(newResumes);
     
-    // Gửi danh sách file (loại bỏ null) về parent
+    // Send the file list (filtered nulls) to parent
     const validFiles = newResumes.filter(resume => resume !== null);
     onChange(validFiles);
   };

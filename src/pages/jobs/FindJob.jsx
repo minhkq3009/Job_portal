@@ -113,8 +113,11 @@ export default function FindJob() {
     const newFilters = { ...advancedFilters };
     
     if (tag.isArray) {
-      // Remove specific item from array
-      newFilters[tag.filterType] = newFilters[tag.filterType].filter(item => item !== tag.value);
+      // Remove from array
+      const currentValues = newFilters[tag.filterType] || [];
+      newFilters[tag.filterType] = currentValues.filter(v => v !== tag.value);
+      
+      // If array is empty, remove the key entirely
       if (newFilters[tag.filterType].length === 0) {
         delete newFilters[tag.filterType];
       }
@@ -132,20 +135,54 @@ export default function FindJob() {
     <>
       <CandidateHeader />
       <Breadcrumb title="Find Job" />
-      <div className="bg-gray-50 pb-8">
-        <div className="container mx-auto">
-          <div className="bg-white p-3 rounded-md">
-                        <div className="flex flex-col md:flex-row gap-4 items-center">
-              <div className="flex flex-col md:flex-row gap-4 items-center flex-1">
+      
+      {/* Search Section */}
+      <div className="bg-gray-50 pb-4 md:pb-6 lg:pb-8">
+        <div className="container mx-auto px-4 md:px-6 lg:px-0">
+          <div className="bg-white p-3 md:p-3 rounded-md shadow-sm">
+            {/* Mobile: Stack vertically */}
+            <div className="block md:hidden space-y-3">
+              <div className="flex-1 min-w-0">
+                <KeywordInput placeholder="Job title, keyword..." className="border-0 shadow-none px-4" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <KeywordInput 
+                  Icon={MapPin}
+                  placeholder="Your Location" 
+                  className="border-0 shadow-none px-4"
+                />
+              </div>
+              <div className="flex-1 min-w-0">
+                <CategorySelect />
+              </div>
+              <div className="flex gap-2">
+                <Button 
+                  variant="tertiary" 
+                  size="medium" 
+                  className="flex-1 border-0" 
+                  onClick={() => setShowAdvance(true)} 
+                  leftIcon={Filter}
+                >
+                  Advanced Filter
+                </Button>
+                <Button variant="primary" size="medium" className="flex-1">
+                  Find Job
+                </Button>
+              </div>
+            </div>
+
+            {/* Desktop: Horizontal layout */}
+            <div className="hidden md:flex flex-col lg:flex-row gap-4 items-center">
+              <div className="flex flex-col lg:flex-row gap-4 items-center flex-1">
                 <div className="flex-1 min-w-0">
-                  <KeywordInput placeholder="Job title, keyword..." className="border-0 shadow-none" />
+                  <KeywordInput placeholder="Job title, keyword..." className="border-0 shadow-none px-4" />
                 </div>
                 <div className="w-px h-12 bg-gray-50" />
                 <div className="flex-1 min-w-0">
                   <KeywordInput 
                     Icon={MapPin}
                     placeholder="Your Location" 
-                    className="border-0 shadow-none"
+                    className="border-0 shadow-none px-4"
                   />
                 </div>
                 <div className="w-px h-12 bg-gray-50" />
@@ -153,12 +190,12 @@ export default function FindJob() {
                   <CategorySelect />
                 </div>
                 <div className="w-px h-12 bg-gray-50" />
-                <Button variant="tertiary" size="medium" className="w-full md:w-auto border-0" onClick={() => setShowAdvance(true)} leftIcon={Filter}>
-                  Advance Filter
+                <Button variant="tertiary" size="medium" className="w-full lg:w-auto border-0" onClick={() => setShowAdvance(true)} leftIcon={Filter}>
+                  Advanced Filter
                 </Button>
               </div>
-              <div className="md:ml-3">
-                <Button variant="primary" size="medium" className="w-full md:w-auto">
+              <div className="lg:ml-3">
+                <Button variant="primary" size="medium" className="w-full lg:w-auto">
                   Find Job
                 </Button>
               </div>
@@ -168,8 +205,8 @@ export default function FindJob() {
       </div>
 
       {/* Filter Section */}
-      <div className="container mx-auto">
-        <div className="flex flex-wrap items-start gap-4 py-[18px] bg-white rounded-lg">
+      <div className="container mx-auto px-4 md:px-6 lg:px-0">
+        <div className="flex flex-col lg:flex-row lg:items-start gap-4 py-4 md:py-6 bg-white rounded-lg">
           {/* Filter tags */}
           <div className="flex flex-wrap items-center gap-2 flex-1">
             {filters.length > 0 ? (
@@ -194,7 +231,7 @@ export default function FindJob() {
           </div>
 
           {/* Controls */}
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
             {/* Sort dropdown */}
             <Dropdown
               options={[
@@ -203,7 +240,7 @@ export default function FindJob() {
               ]}
               defaultValue={selectedSort === "latest" ? "Latest" : "Popular"}
               onSelect={(option) => setSelectedSort(option.value)}
-              className="w-32"
+              className="w-full sm:w-32"
             />
 
             {/* Per page dropdown */}
@@ -214,33 +251,27 @@ export default function FindJob() {
               ]}
               defaultValue={selectedPerPage === 12 ? "12 per page" : "24 per page"}
               onSelect={(option) => setSelectedPerPage(option.value)}
-              className="w-32"
+              className="w-full sm:w-32"
             />
 
             {/* View mode toggle */}
             <ViewModeToggle
               viewMode={viewMode}
-              onViewModeChange={(mode) => setViewMode(mode)}
+              onViewModeChange={setViewMode}
+              className="w-full sm:w-auto"
             />
           </div>
         </div>
       </div>
 
-      {/* Job List */}
-      <div className="container mx-auto mt-5 pb-8">
+      {/* Jobs Grid */}
+      <div className="container mx-auto px-4 md:px-6 lg:px-0 py-6 md:py-8">
         {viewMode === "grid" ? (
-          // Grid View
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {currentJobs.map((job, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+            {currentJobs.map((job) => (
               <JobCardVertical
-                key={index}
-                jobId={job.id || index + 1}
-                company={job.logoText === "Up" ? "Upwork" : 
-                        job.logoText === "Ap" ? "Apple" :
-                        job.logoText === "Fg" ? "Figma" :
-                        job.logoText === "Ud" ? "Udemy" :
-                        job.logoText === "Fb" ? "Facebook" :
-                        job.logoText === "G" ? "Google" : "Company"}
+                key={job.id}
+                company={job.company}
                 location={job.location}
                 title={job.title}
                 salary={job.salary}
@@ -248,17 +279,17 @@ export default function FindJob() {
                 topVariant={job.topVariant}
                 typeLabel={job.typeLabel}
                 logo={job.logo}
+                logoText={job.logoText}
                 featured={job.featured}
+                className="h-full"
               />
             ))}
           </div>
         ) : (
-          // List View
-          <div className="space-y-4">
-            {currentJobs.map((job, index) => (
+          <div className="space-y-4 md:space-y-6">
+            {currentJobs.map((job) => (
               <JobCardHorizontal
-                key={index}
-                jobId={job.id || index + 1}
+                key={job.id}
                 location={job.location}
                 title={job.title}
                 salary={job.salary}
@@ -266,24 +297,29 @@ export default function FindJob() {
                 topLabel={job.topLabel}
                 topVariant={job.topVariant}
                 typeLabel={job.typeLabel}
-                typeVariant={job.typeVariant || "primary"}
+                typeVariant={job.typeVariant}
                 logo={job.logo}
+                logoText={job.logoText}
                 featured={job.featured}
+                companyId={job.companyId}
+                isBookmarked={job.isBookmarked}
+                isExpired={job.isExpired}
               />
             ))}
           </div>
         )}
 
         {/* Pagination */}
-        <div className="mt-12 mb-16">
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={setCurrentPage}
-            totalItems={totalJobs}
-            itemsPerPage={selectedPerPage}
-            showInfo={true}
-          />
+        <div className="mt-8 md:mt-12 flex justify-center">
+          <div className="w-full flex justify-center">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+              showInfo={false}
+              className="justify-center sm:justify-center"
+            />
+          </div>
         </div>
       </div>
 
@@ -295,7 +331,6 @@ export default function FindJob() {
         currentFilters={advancedFilters}
       />
 
-      {/* Footer */}
       <Footer />
     </>
   );

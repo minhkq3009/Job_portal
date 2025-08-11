@@ -899,6 +899,15 @@ export const blogPosts = [
     slug: "10-essential-tips-landing-dream-job-2024",
     excerpt: "Discover the most effective strategies to stand out in today's competitive job market and secure the position you've always wanted.",
     image: "https://picsum.photos/400/250?random=1",
+    date: "Dec 15, 2024",
+    commentsCount: 12,
+    category: "career",
+    tags: ["career tips", "job search", "interview", "resume", "networking"],
+    author: {
+      name: "Sarah Mitchell",
+      title: "Career Coach & HR Expert",
+      avatar: avatar1
+    },
     content: `
       <p class="mb-8">The job market in 2024 is more competitive than ever, but with the right strategies, you can position yourself as the ideal candidate for your dream job. Here are 10 essential tips that will give you a significant advantage.</p>
       
@@ -1082,423 +1091,228 @@ export const blogPosts = [
         <p>Landing your dream job requires a combination of preparation, persistence, and strategic thinking. By implementing these 10 essential tips, you'll be well-positioned to stand out in today's competitive job market and achieve your career goals.</p>
         <p class="mt-4 text-sm text-gray-600">Remember, every successful professional started somewhere. Stay focused on your goals, continue learning and growing, and don't be afraid to step outside your comfort zone.</p>
       </div>
-    `,
-    author: {
-      name: "Sarah Mitchell",
-      title: "Career Coach & HR Expert",
-      avatar: avatar1
-    },
-    category: "Career Tips",
-    categorySlug: "career-tips",
-    publishedAt: "2024-01-15",
-    readTime: "8 min read",
-    tags: ["job search", "career advice", "professional development"],
-    featured: true,
-    views: 2847,
-    likes: 156
+    `
   },
   {
     id: 2,
-    title: "The Ultimate Guide to Remote Work Success",
-    slug: "ultimate-guide-remote-work-success",
-    excerpt: "Master the art of working from home with proven strategies for productivity, communication, and work-life balance.",
+    title: "The Future of Remote Work: Trends and Best Practices",
+    slug: "future-remote-work-trends-best-practices",
+    excerpt: "Explore the evolving landscape of remote work and discover strategies to thrive in a distributed work environment.",
     image: "https://picsum.photos/400/250?random=2",
-    content: `
-      <p>Remote work has become the new normal for millions of professionals worldwide. While it offers flexibility and freedom, it also presents unique challenges that require specific skills and strategies to overcome.</p>
-      
-      <h2>Setting Up Your Home Office</h2>
-      <p>Creating a dedicated workspace is crucial for remote work success. Choose a quiet area with good lighting, invest in ergonomic furniture, and ensure you have reliable internet connectivity.</p>
-      
-      <h2>Establishing Boundaries</h2>
-      <p>One of the biggest challenges of remote work is maintaining work-life balance. Set clear boundaries by establishing specific work hours, creating morning routines, and communicating your availability to family members.</p>
-      
-      <h2>Communication Best Practices</h2>
-      <p>Effective communication becomes even more important when working remotely. Use video calls for important discussions, be proactive in sharing updates, and choose the right communication tools for different types of interactions.</p>
-    `,
+    date: "Dec 12, 2024",
+    commentsCount: 8,
+    category: "remote",
+    tags: ["remote work", "workplace", "productivity", "technology", "flexibility"],
     author: {
-      name: "David Chen",
-      title: "Remote Work Consultant",
+      name: "Michael Chen",
+      title: "Remote Work Specialist",
       avatar: avatar2
     },
-    category: "Remote Work",
-    categorySlug: "remote-work",
-    publishedAt: "2024-01-12",
-    readTime: "12 min read",
-    tags: ["remote work", "productivity", "work-life balance"],
-    featured: true,
-    views: 1923,
-    likes: 89
+    content: `
+      <p class="mb-8">Remote work has transformed from a temporary solution to a permanent fixture in the modern workplace. As we move forward, understanding the trends and best practices is crucial for both employers and employees.</p>
+      
+      <h2 class="mb-6">Key Trends in Remote Work</h2>
+      <p class="mb-6">The landscape of remote work continues to evolve with new technologies and changing workplace dynamics.</p>
+      
+      <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-8">
+        <p class="text-blue-800"><strong>Trend:</strong> Hybrid work models are becoming the new standard, offering flexibility while maintaining team collaboration.</p>
+      </div>
+      
+      <h2 class="mb-6">Best Practices for Remote Teams</h2>
+      <p class="mb-6">Success in remote work requires intentional strategies and tools to maintain productivity and team cohesion.</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h4 class="font-semibold mb-2">Communication</h4>
+          <p>Establish clear communication channels and regular check-ins to keep everyone aligned.</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h4 class="font-semibold mb-2">Technology</h4>
+          <p>Invest in reliable tools for collaboration, project management, and team building.</p>
+        </div>
+      </div>
+    `
   },
   {
     id: 3,
-    title: "How to Negotiate Your Salary Like a Pro",
-    slug: "how-to-negotiate-salary-like-pro",
-    excerpt: "Learn the art of salary negotiation with expert tips and real-world examples that will help you maximize your earning potential.",
+    title: "Interview Preparation: Common Questions and Expert Answers",
+    slug: "interview-preparation-common-questions-expert-answers",
+    excerpt: "Master the most common interview questions with expert strategies and sample answers that will help you stand out.",
     image: "https://picsum.photos/400/250?random=3",
-    content: `
-      <p>Salary negotiation is a critical skill that can significantly impact your lifetime earnings. Yet many professionals avoid these conversations or approach them unprepared. Here's how to negotiate like a pro.</p>
-      
-      <h2>Research Market Rates</h2>
-      <p>Before entering any negotiation, arm yourself with data. Research salary ranges for your position in your geographic area using resources like Glassdoor, PayScale, and industry reports.</p>
-      
-      <h2>Timing is Everything</h2>
-      <p>The best time to negotiate is when you have leverage—typically during the job offer process or after a successful performance review. Avoid salary discussions during company-wide budget cuts or layoffs.</p>
-      
-      <h2>Present Your Value Proposition</h2>
-      <p>Focus on the value you bring to the organization. Prepare specific examples of your achievements, quantify your contributions, and demonstrate how you've exceeded expectations.</p>
-    `,
+    date: "Dec 10, 2024",
+    commentsCount: 15,
+    category: "interview",
+    tags: ["interview", "preparation", "questions", "answers", "career"],
     author: {
       name: "Emily Rodriguez",
-      title: "Compensation Specialist",
+      title: "HR Manager",
       avatar: avatar3
     },
-    category: "Salary Negotiation",
-    categorySlug: "salary-negotiation",
-    publishedAt: "2024-01-10",
-    readTime: "10 min read",
-    tags: ["salary negotiation", "career advancement", "compensation"],
-    featured: false,
-    views: 1654,
-    likes: 73
+    content: `
+      <p class="mb-8">Preparing for interviews can be overwhelming, but with the right approach, you can confidently tackle any question that comes your way.</p>
+      
+      <h2 class="mb-6">Most Common Interview Questions</h2>
+      <p class="mb-6">Understanding what employers are looking for helps you craft compelling responses.</p>
+      
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
+        <h4 class="font-semibold text-green-800 mb-3">Question: "Tell me about yourself"</h4>
+        <p class="text-green-800">Focus on your professional journey, key achievements, and what makes you unique. Keep it concise and relevant to the role.</p>
+      </div>
+      
+      <h2 class="mb-6">Behavioral Questions</h2>
+      <p class="mb-6">Use the STAR method to structure your responses effectively.</p>
+    `
   },
   {
     id: 4,
-    title: "Common Interview Mistakes and How to Avoid Them",
-    slug: "common-interview-mistakes-how-to-avoid",
-    excerpt: "Don't let these common interview pitfalls derail your job search. Learn what to avoid and how to make a lasting positive impression.",
+    title: "Resume Writing Guide: How to Create a Standout Resume",
+    slug: "resume-writing-guide-standout-resume",
+    excerpt: "Learn the essential elements of a compelling resume and how to showcase your skills and experience effectively.",
     image: "https://picsum.photos/400/250?random=4",
-    content: `
-      <p>Even the most qualified candidates can sabotage their chances with common interview mistakes. Here are the most frequent errors and how to avoid them.</p>
-      
-      <h2>Arriving Unprepared</h2>
-      <p>Failing to research the company and role is one of the biggest red flags for interviewers. Spend time understanding the company's mission, recent news, and the specific requirements of the position.</p>
-      
-      <h2>Speaking Negatively About Previous Employers</h2>
-      <p>No matter how difficult your previous work situation was, avoid speaking negatively about former employers. Instead, focus on what you learned and how you're looking forward to new challenges.</p>
-      
-      <h2>Not Asking Questions</h2>
-      <p>Interviews are two-way conversations. Prepare thoughtful questions about the role, team dynamics, and company culture to show your genuine interest and engagement.</p>
-    `,
+    date: "Dec 8, 2024",
+    commentsCount: 22,
+    category: "resume",
+    tags: ["resume", "writing", "career", "job search", "skills"],
     author: {
-      name: "Michael Johnson",
-      title: "Recruitment Director",
+      name: "David Kim",
+      title: "Resume Expert",
       avatar: avatar4
     },
-    category: "Interview Guide",
-    categorySlug: "interview-guide",
-    publishedAt: "2024-01-08",
-    readTime: "7 min read",
-    tags: ["interviews", "job search", "career tips"],
-    featured: false,
-    views: 2156,
-    likes: 94
+    content: `
+      <p class="mb-8">Your resume is your first opportunity to make a strong impression on potential employers. A well-crafted resume can open doors to exciting career opportunities.</p>
+      
+      <h2 class="mb-6">Essential Resume Sections</h2>
+      <p class="mb-6">Every effective resume should include these key sections to present your qualifications clearly.</p>
+      
+      <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-8">
+        <p class="text-yellow-800"><strong>Tip:</strong> Tailor your resume for each job application by highlighting relevant skills and experiences.</p>
+      </div>
+    `
   },
   {
     id: 5,
-    title: "Building a Resume That Gets Results",
-    slug: "building-resume-that-gets-results",
-    excerpt: "Transform your resume from ordinary to extraordinary with these proven strategies that capture recruiters' attention.",
+    title: "Salary Negotiation Strategies for 2024",
+    slug: "salary-negotiation-strategies-2024",
+    excerpt: "Master the art of salary negotiation with proven strategies and techniques to maximize your earning potential.",
     image: "https://picsum.photos/400/250?random=5",
-    content: `
-      <p>Your resume is your personal marketing document—it needs to quickly communicate your value and convince employers to invite you for an interview. Here's how to create a resume that gets results.</p>
-      
-      <h2>Start with a Compelling Summary</h2>
-      <p>Your professional summary should be a powerful elevator pitch that highlights your key qualifications and career objectives. Keep it concise but impactful, focusing on what makes you unique.</p>
-      
-      <h2>Use Action Verbs and Quantify Achievements</h2>
-      <p>Replace passive language with strong action verbs like "achieved," "implemented," and "optimized." Whenever possible, include numbers to quantify your accomplishments and demonstrate impact.</p>
-      
-      <h2>Optimize for Applicant Tracking Systems</h2>
-      <p>Many companies use ATS software to screen resumes. Include relevant keywords from the job description, use standard section headings, and avoid complex formatting that might confuse the system.</p>
-    `,
+    date: "Dec 6, 2024",
+    commentsCount: 18,
+    category: "salary",
+    tags: ["salary", "negotiation", "compensation", "career", "money"],
     author: {
-      name: "Lisa Thompson",
-      title: "Resume Writing Expert",
+      name: "Lisa Wang",
+      title: "Compensation Specialist",
       avatar: avatar5
     },
-    category: "Resume Writing",
-    categorySlug: "resume-writing",
-    publishedAt: "2024-01-05",
-    readTime: "9 min read",
-    tags: ["resume writing", "job applications", "career tools"],
-    featured: false,
-    views: 1789,
-    likes: 67
+    content: `
+      <p class="mb-8">Salary negotiation is a critical skill that can significantly impact your long-term earning potential. With the right approach, you can confidently advocate for fair compensation.</p>
+      
+      <h2 class="mb-6">Research and Preparation</h2>
+      <p class="mb-6">Thorough research is the foundation of successful salary negotiation.</p>
+      
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+        <h4 class="font-semibold text-blue-800 mb-3">Research Checklist:</h4>
+        <ul class="list-disc pl-4 space-y-1">
+          <li>Industry salary benchmarks</li>
+          <li>Company-specific compensation data</li>
+          <li>Your market value assessment</li>
+          <li>Benefits and perks evaluation</li>
+        </ul>
+      </div>
+    `
   },
   {
     id: 6,
-    title: "The Future of Work: Trends Shaping 2024 and Beyond",
-    slug: "future-of-work-trends-2024-beyond",
-    excerpt: "Explore the emerging trends that are reshaping the workplace and learn how to prepare for the future of work.",
+    title: "Building Your Professional Network: A Complete Guide",
+    slug: "building-professional-network-complete-guide",
+    excerpt: "Discover effective strategies for building and maintaining a strong professional network that can advance your career.",
     image: "https://picsum.photos/400/250?random=6",
-    content: `
-      <p>The workplace is evolving rapidly, driven by technological advances, changing employee expectations, and global events. Understanding these trends is crucial for career planning and professional development.</p>
-      
-      <h2>Artificial Intelligence and Automation</h2>
-      <p>AI is transforming how we work, automating routine tasks and creating new opportunities for human-AI collaboration. Focus on developing skills that complement AI capabilities rather than compete with them.</p>
-      
-      <h2>Hybrid Work Models</h2>
-      <p>The future of work is hybrid, combining remote and in-office experiences. Organizations are reimagining office spaces and developing new policies to support flexible work arrangements.</p>
-      
-      <h2>Skills-Based Hiring</h2>
-      <p>Employers are increasingly focusing on skills rather than traditional qualifications. Continuous learning and skill development are becoming essential for career advancement.</p>
-    `,
+    date: "Dec 4, 2024",
+    commentsCount: 14,
+    category: "networking",
+    tags: ["networking", "professional", "career", "relationships", "opportunities"],
     author: {
-      name: "Robert Kim",
-      title: "Future of Work Analyst",
+      name: "Alex Thompson",
+      title: "Networking Coach",
       avatar: avatar6
     },
-    category: "Industry Insights",
-    categorySlug: "industry-insights",
-    publishedAt: "2024-01-03",
-    readTime: "11 min read",
-    tags: ["future of work", "workplace trends", "career planning"],
-    featured: true,
-    views: 3241,
-    likes: 187
-  },
+    content: `
+      <p class="mb-8">Your professional network is one of your most valuable career assets. Building meaningful connections can open doors to opportunities you never knew existed.</p>
+      
+      <h2 class="mb-6">Networking Fundamentals</h2>
+      <p class="mb-6">Effective networking is about building genuine relationships, not just collecting business cards.</p>
+      
+      <div class="bg-purple-50 border border-purple-200 rounded-lg p-6 mb-8">
+        <h4 class="font-semibold text-purple-800 mb-3">Networking Principles:</h4>
+        <div class="space-y-3">
+          <div class="flex items-center">
+            <span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+            <span>Give before you ask</span>
+          </div>
+          <div class="flex items-center">
+            <span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+            <span>Focus on quality over quantity</span>
+          </div>
+          <div class="flex items-center">
+            <span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+            <span>Maintain regular contact</span>
+          </div>
+        </div>
+      </div>
+    `
+  }
+  ,
   {
     id: 7,
-    title: "Mastering the Art of Professional Networking in the Digital Age",
-    slug: "mastering-professional-networking-digital-age",
-    excerpt: "Build meaningful professional relationships and expand your network using modern digital tools and time-tested networking principles.",
+    title: "Top Portfolio Tips: Showcase Work That Gets You Hired",
+    slug: "top-portfolio-tips-showcase-work",
+    excerpt: "Craft a portfolio that highlights impact, context, and outcomes to impress hiring managers.",
     image: "https://picsum.photos/400/250?random=7",
-    content: `
-      <p>Professional networking has evolved dramatically in the digital age. While the fundamentals of building relationships remain the same, the tools and strategies have transformed. Here's your comprehensive guide to mastering modern networking.</p>
-      
-      <h2>The Foundation of Effective Networking</h2>
-      <p>Successful networking isn't about collecting business cards or LinkedIn connections—it's about building genuine, mutually beneficial relationships. Start with a clear understanding of your networking goals and what value you can offer to others.</p>
-      
-      <h2>Digital Networking Strategies</h2>
-      <p>LinkedIn remains the premier platform for professional networking, but don't overlook Twitter, industry-specific forums, and virtual events. Engage authentically by sharing insights, commenting thoughtfully on posts, and offering help when appropriate.</p>
-      
-      <h2>Virtual Networking Events</h2>
-      <p>The pandemic accelerated the adoption of virtual networking events. These offer unique advantages: lower barriers to entry, access to global professionals, and often more structured interaction formats. Prepare an elevator pitch, test your technology beforehand, and follow up promptly with new connections.</p>
-      
-      <h2>Building Your Personal Brand</h2>
-      <p>Your personal brand is your networking foundation. Consistently share valuable content, showcase your expertise, and maintain a professional online presence across all platforms. Remember, people network with people they know, like, and trust.</p>
-      
-      <h2>The Follow-Up Formula</h2>
-      <p>The magic happens in the follow-up. Send personalized messages within 24-48 hours of meeting someone new. Reference specific conversation points, offer value, and suggest concrete next steps for maintaining the relationship.</p>
-    `,
+    date: "Dec 3, 2024",
+    commentsCount: 9,
+    category: "career",
+    tags: ["portfolio", "career", "design", "case studies", "hiring"],
     author: {
-      name: "Jennifer Walsh",
-      title: "Networking Coach & Business Development Expert",
+      name: "Robert Fox",
+      title: "Design Lead",
       avatar: avatar1
     },
-    category: "Professional Development",
-    categorySlug: "professional-development",
-    publishedAt: "2024-01-20",
-    readTime: "14 min read",
-    tags: ["networking", "professional development", "personal branding", "digital marketing"],
-    featured: false,
-    views: 1876,
-    likes: 92
+    content: `
+      <p class="mb-8">A strong portfolio tells a story: problem, process, and impact. Go beyond visuals and explain decisions and results.</p>
+      <h2 class="mb-6">What Recruiters Want to See</h2>
+      <ul class="list-disc pl-6 mb-8 space-y-2">
+        <li>Clear problem statements</li>
+        <li>Role and responsibilities</li>
+        <li>Process and alternatives considered</li>
+        <li>Measurable outcomes</li>
+      </ul>
+    `
   },
   {
     id: 8,
-    title: "The Complete Guide to Career Transitions: Changing Industries Successfully",
-    slug: "complete-guide-career-transitions-changing-industries",
-    excerpt: "Navigate career changes with confidence using proven strategies for transitioning between industries and roles.",
+    title: "Career Switch in 6 Months: A Practical Roadmap",
+    slug: "career-switch-6-months-roadmap",
+    excerpt: "Planning a career change? Here’s a realistic step-by-step plan to transition without burning out.",
     image: "https://picsum.photos/400/250?random=8",
-    content: `
-      <p>Career transitions can be both exciting and daunting. Whether you're seeking new challenges, better work-life balance, or higher compensation, changing industries requires careful planning and strategic execution.</p>
-      
-      <h2>Assessing Your Transferable Skills</h2>
-      <p>Start by conducting a thorough skills inventory. Identify competencies that translate across industries: leadership, project management, communication, analytical thinking, and problem-solving. These form the foundation of your transition strategy.</p>
-      
-      <h2>Research and Market Analysis</h2>
-      <p>Thoroughly research your target industry. Understand market trends, key players, required qualifications, and salary expectations. Use resources like industry reports, professional associations, and informational interviews to gather insights.</p>
-      
-      <h2>Bridging the Knowledge Gap</h2>
-      <p>Identify skill gaps and create a learning plan. Consider online courses, certifications, workshops, or even volunteer work in your target field. Platforms like Coursera, LinkedIn Learning, and industry-specific training programs can accelerate your transition.</p>
-      
-      <h2>Strategic Networking for Career Change</h2>
-      <p>Networking becomes even more critical during career transitions. Attend industry events, join professional associations, and seek mentorship from professionals in your target field. Their insights can provide valuable guidance and potential opportunities.</p>
-      
-      <h2>Crafting Your Transition Narrative</h2>
-      <p>Develop a compelling story that explains your career change motivation and demonstrates how your background adds unique value. Practice articulating this narrative in interviews, networking conversations, and your resume summary.</p>
-      
-      <h2>Managing the Financial Transition</h2>
-      <p>Career changes often involve temporary income reduction. Build a financial cushion, consider part-time or consulting work in your new field, and be realistic about timeline expectations. The investment in your long-term career satisfaction is often worth short-term sacrifices.</p>
-    `,
+    date: "Dec 2, 2024",
+    commentsCount: 11,
+    category: "career",
+    tags: ["career switch", "learning", "portfolio", "networking", "resume"],
     author: {
-      name: "Marcus Thompson",
-      title: "Career Transition Specialist",
+      name: "Bessie Cooper",
+      title: "Career Strategist",
       avatar: avatar2
     },
-    category: "Career Tips",
-    categorySlug: "career-tips",
-    publishedAt: "2024-01-18",
-    readTime: "16 min read",
-    tags: ["career change", "industry transition", "professional development", "career planning"],
-    featured: false,
-    views: 2134,
-    likes: 118
-  },
-  {
-    id: 9,
-    title: "Behavioral Interview Questions: The STAR Method Mastery Guide",
-    slug: "behavioral-interview-questions-star-method-guide",
-    excerpt: "Master behavioral interviews using the STAR method with detailed examples and practice scenarios for common questions.",
-    image: "https://picsum.photos/400/250?random=9",
     content: `
-      <p>Behavioral interviews have become the gold standard for assessing candidates' past performance and predicting future success. The STAR method (Situation, Task, Action, Result) provides a structured approach to answering these questions effectively.</p>
-      
-      <h2>Understanding the STAR Method</h2>
-      <p><strong>Situation:</strong> Set the context by describing the background and circumstances. <strong>Task:</strong> Explain your responsibility or the challenge you faced. <strong>Action:</strong> Detail the specific steps you took to address the situation. <strong>Result:</strong> Share the outcomes and what you learned.</p>
-      
-      <h2>Common Behavioral Interview Categories</h2>
-      <p>Prepare stories for key competency areas: leadership, teamwork, problem-solving, conflict resolution, adaptability, and time management. Having 6-8 well-prepared STAR stories allows you to adapt to various question formats.</p>
-      
-      <h2>Leadership and Initiative Examples</h2>
-      <p>Questions like "Tell me about a time you led a team through a difficult project" require stories that demonstrate your ability to motivate others, make tough decisions, and drive results. Focus on specific actions you took and quantifiable outcomes.</p>
-      
-      <h2>Problem-Solving and Innovation</h2>
-      <p>Employers want to see how you approach challenges creatively. Prepare examples that show your analytical thinking, resourcefulness, and ability to implement solutions. Include metrics whenever possible to demonstrate impact.</p>
-      
-      <h2>Handling Failure and Learning</h2>
-      <p>Questions about failures or mistakes test your self-awareness and growth mindset. Choose examples where you took responsibility, learned valuable lessons, and applied those learnings to future situations. Show vulnerability while maintaining professionalism.</p>
-      
-      <h2>Practice and Preparation Strategies</h2>
-      <p>Record yourself answering questions, practice with friends or mentors, and time your responses (aim for 2-3 minutes). Create a story bank with detailed notes, but avoid memorizing scripts—authenticity is key to connecting with interviewers.</p>
-    `,
-    author: {
-      name: "Dr. Amanda Foster",
-      title: "Interview Coach & Organizational Psychologist",
-      avatar: avatar3
-    },
-    category: "Interview Guide",
-    categorySlug: "interview-guide",
-    publishedAt: "2024-01-16",
-    readTime: "13 min read",
-    tags: ["behavioral interviews", "STAR method", "interview preparation", "job interviews"],
-    featured: false,
-    views: 2567,
-    likes: 145
-  },
-  {
-    id: 10,
-    title: "Building a Portfolio Career: Thriving in the Gig Economy",
-    slug: "building-portfolio-career-thriving-gig-economy",
-    excerpt: "Learn how to create a successful portfolio career by combining multiple income streams and leveraging your diverse skills.",
-    image: "https://picsum.photos/400/250?random=10",
-    content: `
-      <p>The traditional career path is evolving. More professionals are embracing portfolio careers—combining multiple roles, projects, and income streams to create a more flexible and fulfilling work life. Here's how to build and thrive in a portfolio career.</p>
-      
-      <h2>Defining Your Portfolio Career Vision</h2>
-      <p>Start by identifying your core skills, passions, and financial goals. A successful portfolio career aligns your various activities with your values and long-term objectives. Consider what combination of work would energize rather than exhaust you.</p>
-      
-      <h2>Diversifying Your Income Streams</h2>
-      <p>Aim for 3-5 different income sources to reduce risk and increase opportunities. These might include consulting, freelancing, part-time employment, passive income from investments or digital products, and project-based work. Diversification provides financial stability and creative fulfillment.</p>
-      
-      <h2>Time Management and Organization</h2>
-      <p>Portfolio careers require exceptional organizational skills. Use project management tools, maintain separate calendars for different roles, and establish clear boundaries between activities. Time-blocking and batch processing similar tasks can significantly improve efficiency.</p>
-      
-      <h2>Building Your Professional Brand</h2>
-      <p>Your personal brand becomes even more critical in a portfolio career. Develop a cohesive narrative that connects your various activities and demonstrates your unique value proposition. Maintain consistent messaging across all platforms and client interactions.</p>
-      
-      <h2>Financial Planning and Management</h2>
-      <p>Irregular income requires careful financial planning. Build an emergency fund covering 6-12 months of expenses, separate business and personal finances, track income and expenses meticulously, and consider working with a financial advisor familiar with freelance income patterns.</p>
-      
-      <h2>Networking and Relationship Building</h2>
-      <p>Your network becomes your net worth in a portfolio career. Maintain relationships across all your professional areas, seek referrals and recommendations, and always deliver exceptional work to build a strong reputation that generates repeat business and new opportunities.</p>
-    `,
-    author: {
-      name: "Rachel Green",
-      title: "Portfolio Career Coach & Entrepreneur",
-      avatar: avatar4
-    },
-    category: "Career Tips",
-    categorySlug: "career-tips",
-    publishedAt: "2024-01-14",
-    readTime: "15 min read",
-    tags: ["portfolio career", "gig economy", "freelancing", "career planning", "entrepreneurship"],
-    featured: false,
-    views: 1789,
-    likes: 87
-  },
-  {
-    id: 11,
-    title: "The Psychology of Workplace Productivity: Science-Based Strategies",
-    slug: "psychology-workplace-productivity-science-based-strategies",
-    excerpt: "Discover evidence-based techniques to boost your productivity and create sustainable work habits that enhance performance.",
-    image: "https://picsum.photos/400/250?random=11",
-    content: `
-      <p>Productivity isn't just about working harder—it's about understanding how your brain works and creating systems that support peak performance. Recent research in cognitive psychology and neuroscience offers valuable insights for optimizing workplace productivity.</p>
-      
-      <h2>The Science of Focus and Attention</h2>
-      <p>Our brains aren't designed for constant multitasking. Research shows that task-switching can reduce productivity by up to 40%. Implement focused work blocks, eliminate distractions, and use techniques like the Pomodoro Technique to maintain sustained attention.</p>
-      
-      <h2>Energy Management Over Time Management</h2>
-      <p>Managing your energy is more important than managing your time. Identify your natural energy rhythms and schedule demanding tasks during peak hours. Take regular breaks, maintain proper nutrition, and ensure adequate sleep to sustain high performance throughout the day.</p>
-      
-      <h2>The Power of Habit Formation</h2>
-      <p>Habits reduce cognitive load and create automatic behaviors that support productivity. Use the habit loop (cue, routine, reward) to establish positive work patterns. Start small, be consistent, and gradually build complexity as new habits become ingrained.</p>
-      
-      <h2>Cognitive Load Theory in Practice</h2>
-      <p>Your working memory has limited capacity. Reduce cognitive load by organizing information clearly, using external memory aids (notes, calendars, task lists), and breaking complex projects into smaller, manageable components.</p>
-      
-      <h2>The Role of Environment in Performance</h2>
-      <p>Your physical and digital environments significantly impact productivity. Optimize lighting, reduce clutter, organize digital files systematically, and create dedicated spaces for different types of work. Small environmental changes can yield significant productivity gains.</p>
-      
-      <h2>Motivation and Goal Setting</h2>
-      <p>Set SMART goals that align with your values and provide clear direction. Use implementation intentions ("if-then" planning) to bridge the gap between goals and actions. Celebrate small wins to maintain motivation and momentum.</p>
-    `,
-    author: {
-      name: "Dr. Kevin Park",
-      title: "Cognitive Psychologist & Productivity Researcher",
-      avatar: avatar5
-    },
-    category: "Professional Development",
-    categorySlug: "professional-development",
-    publishedAt: "2024-01-12",
-    readTime: "12 min read",
-    tags: ["productivity", "psychology", "workplace efficiency", "cognitive science", "performance"],
-    featured: false,
-    views: 2245,
-    likes: 134
-  },
-  {
-    id: 12,
-    title: "Crafting the Perfect Cover Letter: Templates and Examples for 2024",
-    slug: "crafting-perfect-cover-letter-templates-examples-2024",
-    excerpt: "Write compelling cover letters that complement your resume and showcase your personality with modern templates and proven strategies.",
-    image: "https://picsum.photos/400/250?random=12",
-    content: `
-      <p>Despite predictions of its demise, the cover letter remains a crucial component of job applications. When done well, it provides context for your resume, demonstrates your communication skills, and shows genuine interest in the position.</p>
-      
-      <h2>The Modern Cover Letter Structure</h2>
-      <p>Keep it concise (3-4 paragraphs, under 400 words) and focused. Start with a compelling opening that mentions the specific role and how you learned about it. Use the body to highlight relevant achievements and demonstrate knowledge of the company. Close with a strong call to action.</p>
-      
-      <h2>Personalization is Key</h2>
-      <p>Generic cover letters are easily spotted and quickly discarded. Research the company culture, recent news, and the hiring manager's background when possible. Reference specific aspects of the role or company that excite you and explain why you're a perfect fit.</p>
-      
-      <h2>Storytelling Techniques</h2>
-      <p>Use your cover letter to tell a story that your resume can't. Explain career transitions, highlight passion projects, or describe how your unique background brings fresh perspective to the role. Make it personal while maintaining professionalism.</p>
-      
-      <h2>Common Mistakes to Avoid</h2>
-      <p>Don't simply repeat your resume, use generic templates without customization, focus solely on what you want from the job, or include irrelevant personal information. Avoid clichés like "I'm a people person" and instead provide specific examples.</p>
-      
-      <h2>Industry-Specific Considerations</h2>
-      <p>Different industries have varying expectations for cover letters. Creative fields may appreciate more personality and visual elements, while conservative industries prefer traditional formats. Research industry norms and adjust your approach accordingly.</p>
-      
-      <h2>Digital Age Adaptations</h2>
-      <p>Many applications are now submitted online through ATS systems. Use standard formatting, include keywords from the job description, and save as a PDF to preserve formatting. For email applications, your email body becomes your cover letter.</p>
-    `,
-    author: {
-      name: "Sarah Williams",
-      title: "Career Services Director & Resume Writer",
-      avatar: avatar6
-    },
-    category: "Resume Writing",
-    categorySlug: "resume-writing",
-    publishedAt: "2024-01-10",
-    readTime: "10 min read",
-    tags: ["cover letter", "job applications", "resume writing", "career tools"],
-    featured: false,
-    views: 1923,
-    likes: 98
+      <p class="mb-8">Switching careers is achievable with a focused plan. Allocate weekly time for learning, building, and networking.</p>
+      <h2 class="mb-6">6-Month Milestones</h2>
+      <ol class="list-decimal pl-6 mb-6 space-y-2">
+        <li>Month 1-2: Foundation learning and industry research</li>
+        <li>Month 3-4: Build 2-3 small projects, start sharing online</li>
+        <li>Month 5: Create portfolio and tailored resume</li>
+        <li>Month 6: Apply, interview prep, and targeted networking</li>
+      </ol>
+    `
   }
 ];
 

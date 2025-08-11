@@ -7,11 +7,14 @@ const NavLinkSimple = React.memo(function NavLinkSimple({ label, to }) {
   
   // Special logic for Find Job - should be active on job-related pages
   // Special logic for Find Employers - should be active on company-related pages
+  // Special logic for Blog - should be active on blog-related pages
   // Special logic for Dashboard - should be active on dashboard-related pages
   const isActive = to === '/find-job' 
     ? (location.pathname === to || location.pathname.startsWith('/jobs/'))
     : to === '/find-employers'
     ? (location.pathname === to || location.pathname.startsWith('/companies/'))
+    : to === '/blog'
+    ? (location.pathname === to || location.pathname.startsWith('/blog/'))
     : to === '/dashboard-authenticated'
     ? (location.pathname === to || location.pathname.startsWith('/dashboard'))
     : location.pathname === to;

@@ -15,8 +15,8 @@ export default function JobCardVertical({
   typeLabel = "Full-Time",
   logo,
   logoText = "D",
-  featured = false, // thêm prop featured
-  hideButton = false, // thêm prop hideButton
+  featured = false, // enable gradient background for featured job
+  hideButton = false, // hide Apply button
 }) {
   const navigate = useNavigate();
 
