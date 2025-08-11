@@ -30,16 +30,10 @@ export default function BlogCardHorizontal({
           className="w-16 h-16 object-cover rounded-lg flex-shrink-0"
         />
         <div className="flex-1">
-          <div className="flex items-center gap-2 text-body-sm text-gray-500 mb-1">
-            <div className="flex items-center gap-1">
-              <Calendar className="w-3 h-3" />
-              <span>{date}</span>
-            </div>
+          <div className="flex items-center gap-2 text-body-sm text-gray-500 mb-1 flex-wrap">
+            <span>{date}</span>
             <span>•</span>
-            <div className="flex items-center gap-1">
-              <MessageSquare className="w-3 h-3" />
-              <span>{commentsCount} comments</span>
-            </div>
+            <span>{commentsCount || 0} comments</span>
           </div>
           <h4 className="text-body-md font-medium text-gray-900 leading-tight">
             {title}
@@ -63,7 +57,7 @@ export default function BlogCardHorizontal({
           </div>
           <div className="flex items-center gap-1">
             <MessageSquare className="w-4 h-4" />
-            <span>{commentsCount} Comments</span>
+            <span>{commentsCount || 0} Comments</span>
           </div>
         </div>
         <h3 className="mt-2 text-body-xl font-semibold text-gray-900 leading-snug">

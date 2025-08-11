@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CandidateHeader from "../../components/Header/CandidateHeader";
 import Footer from "../../components/Footer/Footer";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
@@ -10,26 +10,15 @@ import Pagination from "../../components/Button/Pagination";
 import { Search } from "lucide-react";
 import { blogPosts, recentPosts, galleryImages } from "../../data/index";
 
+/**
+ * Blog page component
+ * Displays blog post list with search, category filtering and pagination functionality
+ */
 export default function Blog() {
-  const { categorySlug } = useParams();
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
-
-  // Custom breadcrumbs for blog
-  const breadcrumbs = [
-    { label: 'Home', path: '/' },
-    { label: 'Blog', path: '/blog' }
-  ];
-
-  // Add category to breadcrumbs if viewing a specific category
-  if (categorySlug) {
-    const category = categories.find(cat => cat.id === categorySlug);
-    if (category) {
-      breadcrumbs.push({ label: category.name, path: `/blog/category/${categorySlug}` });
-    }
-  }
 
   // Categories data
   const categories = [
@@ -42,16 +31,16 @@ export default function Blog() {
     { id: 'networking', name: 'Networking', count: 2 }
   ];
 
-
-
   // Popular tags
   const popularTags = [
     'Career', 'Interview', 'Remote Work', 'Salary', 'Networking', 
     'Job Search', 'Resume', 'Skills', 'Leadership', 'Growth'
   ];
 
-
-
+  /**
+   * Handle read more button click
+   * @param {number} blogId - Blog post ID
+   */
   const handleReadMore = (blogId) => {
     // Find the blog post to get its slug
     const blog = blogPosts.find(post => post.id === blogId);
@@ -60,18 +49,34 @@ export default function Blog() {
     }
   };
 
+  /**
+   * Handle category click
+   * @param {string} categoryId - Category ID
+   */
   const handleCategoryClick = (categoryId) => {
     setSelectedCategory(categoryId);
   };
 
+  /**
+   * Handle search
+   * @param {string} term - Search keyword
+   */
   const handleSearch = (term) => {
     setSearchTerm(term);
   };
 
+  /**
+   * Handle tag click
+   * @param {string} tag - Tag name
+   */
   const handleTagClick = (tag) => {
     setSearchTerm(tag);
   };
 
+  /**
+   * Handle pagination change
+   * @param {number} page - Page number
+   */
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
@@ -80,102 +85,58 @@ export default function Blog() {
     <>
       <CandidateHeader />
       
-      <main className="bg-gray-50 min-h-screen">
+      <main className="bg-white min-h-screen">
         {/* Breadcrumb */}
-        <div className="bg-white">
-          <div className="container mx-auto px-4 py-4">
-            <Breadcrumb items={breadcrumbs} />
-          </div>
-        </div>
+        <Breadcrumb title="Blog" />
 
-        {/* Hero Section */}
-        <div className="bg-white">
-          <div className="container mx-auto px-4 py-16">
-            <div className="text-center max-w-3xl mx-auto">
-              <h1 className="text-heading-01 font-semibold text-gray-900 mb-4">
-                Career Insights & Job Market Trends
-              </h1>
-              <p className="text-body-lg text-gray-600 leading-relaxed">
-                Stay ahead in your career with expert advice, industry insights, and practical tips 
-                for job seekers and professionals at every stage of their journey.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Content */}
-        <div className="container mx-auto px-4 py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            {/* Main Content - 8 columns */}
-            <div className="lg:col-span-8">
-              {/* Blog Posts */}
-              <div className="space-y-6">
-                {blogPosts.slice(0, 8).map((blog) => (
-                  <BlogCardHorizontal
-                    key={blog.id}
-                    image={blog.image || `https://picsum.photos/400/250?random=${blog.id}`}
-                    date={new Date(blog.publishedAt).toLocaleDateString()}
-                    commentsCount={blog.comments || 0}
-                    title={blog.title}
-                    description={blog.excerpt}
-                    buttonLabel="Read More"
-                    onButtonClick={() => handleReadMore(blog.id)}
-                  />
-                ))}
-              </div>
-              
-              {/* Pagination */}
-              <div className="mt-12 flex justify-center">
-                <Pagination
-                  currentPage={currentPage}
-                  totalPages={3}
-                  onPageChange={handlePageChange}
-                />
-              </div>
-            </div>
-
-            {/* Sidebar - 4 columns */}
-            <div className="lg:col-span-4">
-              {/* Search Block */}
-              <div className="bg-white border border-gray-100 rounded-xl p-6 mb-8">
-                <h3 className="text-heading-05 font-semibold text-gray-900 mb-4">
-                  Search Articles
-                </h3>
-                <div className="relative">
-                  <KeywordInput
-                    placeholder="Search blog posts..."
-                    value={searchTerm}
-                    onChange={handleSearch}
-                    icon={Search}
-                  />
+                 {/* Main Content */}
+         <div className="container py-8">
+          <div className="grid grid-cols-12 gap-6">
+            {/* Left Sidebar - 4 columns */}
+            <div className="col-span-12 lg:col-span-4">
+              {/* Search & Categories Block */}
+              <div className="bg-white border border-gray-100 rounded-xl p-6 mb-6">
+                {/* Search Section */}
+                <div className="mb-6">
+                  <h3 className="text-heading-05 font-semibold text-gray-900 mb-4">
+                    Search Articles
+                  </h3>
+                  <div className="relative">
+                    <KeywordInput
+                      placeholder="Search blog posts..."
+                      value={searchTerm}
+                      onChange={handleSearch}
+                      icon={Search}
+                    />
+                  </div>
                 </div>
-              </div>
 
-              {/* Categories Block */}
-              <div className="bg-white border border-gray-100 rounded-xl p-6 mb-8">
-                <h3 className="text-heading-05 font-semibold text-gray-900 mb-4">
-                  Categories
-                </h3>
-                <div className="space-y-2">
-                  {categories.map((category) => (
-                    <button
-                      key={category.id}
-                      onClick={() => handleCategoryClick(category.id)}
-                      className={`w-full flex items-center justify-between p-3 rounded-lg text-left transition-colors ${
-                        selectedCategory === category.id
-                          ? 'bg-primary-50 text-primary-700'
-                          : 'hover:bg-gray-50 text-gray-700'
-                      }`}
-                    >
-                      <span className="font-medium">{category.name}</span>
-                      <span className="text-body-sm text-gray-500">({category.count})</span>
-                    </button>
-                  ))}
+                {/* Categories Section */}
+                <div>
+                  <h3 className="text-heading-05 font-semibold text-gray-900 mb-4">
+                    Categories
+                  </h3>
+                  <div className="space-y-2">
+                    {categories.map((category) => (
+                      <button
+                        key={category.id}
+                        onClick={() => handleCategoryClick(category.id)}
+                        className={`w-full flex items-center justify-between p-3 rounded-lg text-left transition-colors ${
+                          selectedCategory === category.id
+                            ? 'bg-primary-50 text-primary-700'
+                            : 'hover:bg-gray-50 text-gray-700'
+                        }`}
+                      >
+                        <span className="font-medium">{category.name}</span>
+                        <span className="text-body-sm text-gray-500">({category.count})</span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
 
               {/* Recent Posts Block */}
-              <div className="bg-white border border-gray-100 rounded-xl p-6 mb-8">
+              <div className="bg-white border border-gray-100 rounded-xl p-6 mb-6">
                 <h3 className="text-heading-05 font-semibold text-gray-900 mb-4">
                   Recent Posts
                 </h3>
@@ -192,15 +153,15 @@ export default function Blog() {
                     />
                   ))}
                 </div>
-      </div>
+              </div>
 
-              {/* Gallery Block */}
-              <div className="bg-white border border-gray-100 rounded-xl p-6 mb-8">
+              {/* Gallery Block - Limited to 6 images */}
+              <div className="bg-white border border-gray-100 rounded-xl p-6 mb-6">
                 <h3 className="text-heading-05 font-semibold text-gray-900 mb-4">
                   Gallery
                 </h3>
                 <div className="grid grid-cols-3 gap-2">
-                  {galleryImages.map((image, index) => (
+                  {galleryImages.slice(0, 6).map((image, index) => (
                     <img
                       key={index}
                       src={image}
@@ -225,6 +186,38 @@ export default function Blog() {
                       className="cursor-pointer hover:bg-primary-100 hover:text-primary-700 transition-colors"
                     />
                   ))}
+                </div>
+              </div>
+            </div>
+
+                         {/* Main Content - 8 columns */}
+             <div className="col-span-12 lg:col-span-8">
+              {/* Blog Posts */}
+              <div className="space-y-6">
+                {blogPosts.slice(0, 8).map((blog) => (
+                  <BlogCardHorizontal
+                    key={blog.id}
+                    image={blog.image || `https://picsum.photos/400/250?random=${blog.id}`}
+                    date={new Date(blog.publishedAt).toLocaleDateString()}
+                    commentsCount={blog.comments || 0}
+                    title={blog.title}
+                    description={blog.excerpt}
+                    buttonLabel="Read More"
+                    onButtonClick={() => handleReadMore(blog.id)}
+                  />
+                ))}
+              </div>
+              
+              {/* Pagination */}
+              <div className="mt-12 flex justify-end w-full">
+                <div className="flex justify-end" style={{ justifyContent: 'flex-end !important' }}>
+                  <Pagination
+                    currentPage={currentPage}
+                    totalPages={3}
+                    onPageChange={handlePageChange}
+                    showInfo={false}
+                    className="!justify-end"
+                  />
                 </div>
               </div>
             </div>

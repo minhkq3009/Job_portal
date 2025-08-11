@@ -900,22 +900,188 @@ export const blogPosts = [
     excerpt: "Discover the most effective strategies to stand out in today's competitive job market and secure the position you've always wanted.",
     image: "https://picsum.photos/400/250?random=1",
     content: `
-      <p>The job market in 2024 is more competitive than ever, but with the right strategies, you can position yourself as the ideal candidate for your dream job. Here are 10 essential tips that will give you a significant advantage.</p>
+      <p class="mb-8">The job market in 2024 is more competitive than ever, but with the right strategies, you can position yourself as the ideal candidate for your dream job. Here are 10 essential tips that will give you a significant advantage.</p>
       
-      <h2>1. Optimize Your LinkedIn Profile</h2>
-      <p>Your LinkedIn profile is often the first impression recruiters have of you. Make sure your headline is compelling, your summary tells your professional story, and your experience section highlights your achievements with quantifiable results.</p>
+      <img src="https://picsum.photos/800/400?random=101" alt="Professional networking event" class="w-full h-64 object-cover rounded-lg mb-8" />
       
-      <h2>2. Tailor Your Resume for Each Application</h2>
-      <p>Generic resumes don't work anymore. Customize your resume for each position by incorporating keywords from the job description and highlighting relevant experiences that match the role requirements.</p>
+      <h2 class="mb-6">1. Optimize Your LinkedIn Profile</h2>
+      <p class="mb-6">Your LinkedIn profile is often the first impression recruiters have of you. Make sure your headline is compelling, your summary tells your professional story, and your experience section highlights your achievements with quantifiable results.</p>
       
-      <h2>3. Build a Strong Personal Brand</h2>
-      <p>Develop a consistent professional image across all platforms. Share industry insights, engage with thought leaders, and showcase your expertise through content creation.</p>
+      <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-8">
+        <p class="text-blue-800"><strong>Pro Tip:</strong> Use keywords from your target job descriptions in your LinkedIn profile to improve your visibility in recruiter searches.</p>
+      </div>
       
-      <h2>4. Network Strategically</h2>
-      <p>Networking isn't just about collecting contacts—it's about building meaningful relationships. Attend industry events, join professional associations, and engage with peers in your field.</p>
+      <h2 class="mb-6">2. Tailor Your Resume for Each Application</h2>
+      <p class="mb-6">Generic resumes don't work anymore. Customize your resume for each position by incorporating keywords from the job description and highlighting relevant experiences that match the role requirements.</p>
       
-      <h2>5. Prepare for Modern Interview Formats</h2>
-      <p>Be ready for video interviews, panel discussions, and practical assessments. Practice your responses to common questions and prepare examples that demonstrate your problem-solving abilities.</p>
+      <img src="https://picsum.photos/800/300?random=102" alt="Resume customization process" class="w-full h-48 object-cover rounded-lg mb-6" />
+      
+      <h3 class="mb-4">Key Elements to Customize:</h3>
+      <ul class="list-disc pl-6 mb-8 space-y-2">
+        <li>Professional summary</li>
+        <li>Key skills section</li>
+        <li>Work experience descriptions</li>
+        <li>Relevant achievements</li>
+      </ul>
+      
+      <h2 class="mb-6">3. Build a Strong Personal Brand</h2>
+      <p class="mb-6">Develop a consistent professional image across all platforms. Share industry insights, engage with thought leaders, and showcase your expertise through content creation.</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h4 class="font-semibold mb-2">Content Creation</h4>
+          <p>Share valuable insights, industry trends, and professional experiences to establish yourself as a thought leader.</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg">
+          <h4 class="font-semibold mb-2">Engagement</h4>
+          <p>Actively engage with industry leaders, comment on relevant posts, and participate in professional discussions.</p>
+        </div>
+      </div>
+      
+      <h2 class="mb-6">4. Network Strategically</h2>
+      <p class="mb-6">Networking isn't just about collecting contacts—it's about building meaningful relationships. Attend industry events, join professional associations, and engage with peers in your field.</p>
+      
+      <img src="https://picsum.photos/800/400?random=103" alt="Professional networking" class="w-full h-64 object-cover rounded-lg mb-6" />
+      
+      <h3 class="mb-4">Effective Networking Strategies:</h3>
+      <ol class="list-decimal pl-6 mb-6 space-y-2">
+        <li>Attend industry conferences and workshops</li>
+        <li>Join professional associations and groups</li>
+        <li>Participate in online forums and discussions</li>
+        <li>Follow up with meaningful connections</li>
+      </ol>
+      
+      <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-8">
+        <p class="text-yellow-800"><strong>Remember:</strong> Quality connections are more valuable than quantity. Focus on building genuine relationships.</p>
+      </div>
+      
+      <h2 class="mb-6">5. Prepare for Modern Interview Formats</h2>
+      <p class="mb-6">Be ready for video interviews, panel discussions, and practical assessments. Practice your responses to common questions and prepare examples that demonstrate your problem-solving abilities.</p>
+      
+      <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
+        <h4 class="font-semibold text-green-800 mb-3">Interview Preparation Checklist:</h4>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <ul class="list-disc pl-4 space-y-1">
+            <li>Research the company thoroughly</li>
+            <li>Prepare STAR method responses</li>
+            <li>Test your technology setup</li>
+            <li>Practice with mock interviews</li>
+          </ul>
+          <ul class="list-disc pl-4 space-y-1">
+            <li>Prepare thoughtful questions</li>
+            <li>Dress professionally</li>
+            <li>Have backup plans ready</li>
+            <li>Follow up after the interview</li>
+          </ul>
+        </div>
+      </div>
+      
+      <h2 class="mb-6">6. Leverage Technology and Tools</h2>
+      <p class="mb-6">Use modern job search tools and platforms to streamline your application process and increase your chances of success.</p>
+      
+      <img src="https://picsum.photos/800/300?random=104" alt="Job search technology" class="w-full h-48 object-cover rounded-lg mb-6" />
+      
+      <h3 class="mb-4">Essential Job Search Tools:</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div class="text-center p-4 bg-white border rounded-lg">
+          <h4 class="font-semibold mb-2">Job Boards</h4>
+          <p class="text-sm text-gray-600">LinkedIn, Indeed, Glassdoor</p>
+        </div>
+        <div class="text-center p-4 bg-white border rounded-lg">
+          <h4 class="font-semibold mb-2">Resume Builders</h4>
+          <p class="text-sm text-gray-600">Canva, Resume.io, Zety</p>
+        </div>
+        <div class="text-center p-4 bg-white border rounded-lg">
+          <h4 class="font-semibold mb-2">Interview Prep</h4>
+          <p class="text-sm text-gray-600">Pramp, InterviewBit, LeetCode</p>
+        </div>
+      </div>
+      
+      <h2 class="mb-6">7. Develop In-Demand Skills</h2>
+      <p class="mb-6">Stay ahead of the curve by continuously developing skills that are in high demand in your industry.</p>
+      
+      <div class="bg-purple-50 border border-purple-200 rounded-lg p-6 mb-8">
+        <h4 class="font-semibold text-purple-800 mb-3">Top Skills for 2024:</h4>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">AI & ML</span>
+          <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Data Analysis</span>
+          <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Digital Marketing</span>
+          <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Project Management</span>
+          <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Cybersecurity</span>
+          <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Cloud Computing</span>
+          <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Leadership</span>
+          <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Communication</span>
+        </div>
+      </div>
+      
+      <h2 class="mb-6">8. Master the Art of Follow-Up</h2>
+      <p class="mb-6">Following up after interviews and applications shows professionalism and keeps you top of mind with hiring managers.</p>
+      
+      <img src="https://picsum.photos/800/400?random=105" alt="Professional follow-up" class="w-full h-64 object-cover rounded-lg mb-6" />
+      
+      <h3 class="mb-4">Follow-Up Best Practices:</h3>
+      <ul class="list-disc pl-6 mb-8 space-y-2">
+        <li>Send thank-you emails within 24 hours</li>
+        <li>Reference specific points from the interview</li>
+        <li>Reiterate your interest in the position</li>
+        <li>Provide additional information if requested</li>
+      </ul>
+      
+      <h2 class="mb-6">9. Build a Portfolio of Work</h2>
+      <p class="mb-6">Create a portfolio that showcases your best work and demonstrates your skills and expertise to potential employers.</p>
+      
+      <div class="bg-orange-50 border border-orange-200 rounded-lg p-6 mb-8">
+        <h4 class="font-semibold text-orange-800 mb-3">Portfolio Elements:</h4>
+        <div class="space-y-3">
+          <div class="flex items-center">
+            <span class="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
+            <span>Project case studies with measurable results</span>
+          </div>
+          <div class="flex items-center">
+            <span class="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
+            <span>Testimonials from clients or colleagues</span>
+          </div>
+          <div class="flex items-center">
+            <span class="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
+            <span>Certifications and achievements</span>
+          </div>
+          <div class="flex items-center">
+            <span class="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
+            <span>Blog posts or articles you've written</span>
+          </div>
+        </div>
+      </div>
+      
+      <h2 class="mb-6">10. Stay Persistent and Positive</h2>
+      <p class="mb-6">Job searching can be challenging, but maintaining a positive attitude and staying persistent will ultimately lead to success.</p>
+      
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+        <h4 class="font-semibold text-blue-800 mb-3">Maintaining Motivation:</h4>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <h5 class="font-medium mb-2">Set Realistic Goals</h5>
+            <p class="text-sm text-gray-600">Break down your job search into manageable daily and weekly goals.</p>
+          </div>
+          <div>
+            <h5 class="font-medium mb-2">Celebrate Small Wins</h5>
+            <p class="text-sm text-gray-600">Acknowledge progress, whether it's a networking connection or interview invitation.</p>
+          </div>
+          <div>
+            <h5 class="font-medium mb-2">Learn from Rejections</h5>
+            <p class="text-sm text-gray-600">Use feedback to improve your approach and refine your strategy.</p>
+          </div>
+          <div>
+            <h5 class="font-medium mb-2">Stay Connected</h5>
+            <p class="text-sm text-gray-600">Maintain relationships with mentors and peers for support and guidance.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-gray-100 border-l-4 border-gray-400 p-6 rounded-lg">
+        <h3 class="font-semibold mb-3">Final Thoughts</h3>
+        <p>Landing your dream job requires a combination of preparation, persistence, and strategic thinking. By implementing these 10 essential tips, you'll be well-positioned to stand out in today's competitive job market and achieve your career goals.</p>
+        <p class="mt-4 text-sm text-gray-600">Remember, every successful professional started somewhere. Stay focused on your goals, continue learning and growing, and don't be afraid to step outside your comfort zone.</p>
+      </div>
     `,
     author: {
       name: "Sarah Mitchell",
@@ -1338,7 +1504,7 @@ export const blogPosts = [
 
 export const relatedPosts = (currentPostId, category, limit = 3) => {
   return blogPosts
-    .filter(post => post.id !== currentPostId && post.category === category)
+    .filter(post => post.id !== currentPostId)
     .slice(0, limit);
 };
 

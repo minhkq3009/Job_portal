@@ -5,16 +5,14 @@ import Footer from "../../components/Footer/Footer";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import BlogCardHorizontal from "../../components/Blog/BlogCardHorizontal";
 import BlogCardVertical from "../../components/Blog/BlogCardVertical";
-import NavigationButton from "../../components/Button/NavigationButton";
 import Button from "../../components/Button/Button";
-import { Calendar, MessageSquare, Heart, ArrowLeft, ArrowRight, Share2, Bookmark, User, Facebook, Twitter, Linkedin, Send } from "lucide-react";
+import { Calendar, MessageSquare, ArrowLeft, User, Facebook, Twitter, Linkedin, Send } from "lucide-react";
 import { blogPosts, relatedPosts, recentPosts, galleryImages } from "../../data/index";
 
 const BlogDetail = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
   const post = blogPosts.find(p => p.slug === slug);
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [comment, setComment] = useState("");
 
   // Mock comments data
@@ -60,16 +58,6 @@ const BlogDetail = () => {
     }
   };
 
-  const nextSlide = () => {
-    const related = relatedPosts(post?.id || 1, post?.category || "");
-    setCurrentSlide((prev) => (prev + 1) % Math.max(1, related.length - 2));
-  };
-
-  const prevSlide = () => {
-    const related = relatedPosts(post?.id || 1, post?.category || "");
-    setCurrentSlide((prev) => (prev - 1 + Math.max(1, related.length - 2)) % Math.max(1, related.length - 2));
-  };
-
   if (!post) {
     return (
       <>
@@ -92,35 +80,25 @@ const BlogDetail = () => {
     );
   }
 
-  const related = relatedPosts(post.id, post.category);
+  const related = relatedPosts(post.id, post.category, 4);
 
   return (
     <>
       <CandidateHeader />
       
-      <main className="bg-gray-50 min-h-screen">
+      <main className="bg-white min-h-screen">
         {/* Breadcrumb */}
-        <div className="bg-white">
-          <div className="container mx-auto px-4 py-4">
-            <Breadcrumb 
-              items={[
-                { label: "Home", href: "/" },
-                { label: "Blog", href: "/blog" },
-                { label: post.category, href: `/blog/category/${post.categorySlug}` },
-                { label: post.title }
-              ]}
-            />
-          </div>
-        </div>
+        <Breadcrumb title={post.title} />
 
         {/* Main Content */}
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto py-8">
           <div className="grid grid-cols-12 gap-8">
             {/* Main Content - 8 columns */}
             <div className="col-span-12 lg:col-span-8">
-              {/* Blog Header */}
+              {/* Blog Article */}
               <div className="bg-white rounded-xl border border-gray-100 p-8 mb-8">
-                <div className="flex items-center gap-4 text-body-sm text-gray-500 mb-4">
+                {/* Article Header */}
+                <div className="flex items-center gap-4 text-body-sm text-gray-500 mb-6">
                   <div className="flex items-center gap-1">
                     <Calendar className="w-4 h-4" />
                     <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
@@ -131,11 +109,11 @@ const BlogDetail = () => {
                   </div>
                 </div>
                 
-                <h1 className="text-heading-01 font-semibold text-gray-900 mb-4 leading-tight">
+                <h1 className="text-heading-01 font-semibold text-gray-900 mb-6 leading-tight">
                   {post.title}
                 </h1>
                 
-                <div className="flex items-center gap-4 mb-6">
+                <div className="flex items-center gap-4 mb-8">
                   <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
                     <User className="w-6 h-6 text-gray-600" />
                   </div>
@@ -145,39 +123,38 @@ const BlogDetail = () => {
                   </div>
                 </div>
 
+                {/* Featured Image */}
                 <img 
                   src={post.image} 
                   alt={post.title}
-                  className="w-full h-64 object-cover rounded-lg mb-6"
+                  className="w-full h-80 object-cover rounded-lg mb-8"
                 />
-              </div>
 
-              {/* Blog Content */}
-              <div className="bg-white rounded-xl border border-gray-100 p-8 mb-8">
+                {/* Article Content */}
                 <div 
-                  className="prose prose-lg max-w-none prose-headings:font-medium prose-headings:text-gray-900 prose-p:text-gray-700 prose-p:leading-relaxed"
+                  className="prose prose-lg max-w-none prose-headings:font-medium prose-headings:text-gray-900 prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6"
                   dangerouslySetInnerHTML={{ __html: post.content }}
                 />
-              </div>
 
-              {/* Share This Post */}
-              <div className="bg-white rounded-xl border border-gray-100 p-6 mb-8">
-                <h3 className="text-heading-05 font-semibold text-gray-900 mb-4">
-                  Share This Post
-                </h3>
-                <div className="flex items-center gap-3">
-                  <button className="flex items-center gap-2 px-4 py-2 rounded-lg border border-blue-100 text-blue-600 hover:bg-blue-50 transition-colors">
-                    <Facebook className="w-4 h-4" />
-                    Facebook
-                  </button>
-                  <button className="flex items-center gap-2 px-4 py-2 rounded-lg border border-sky-100 text-sky-500 hover:bg-sky-50 transition-colors">
-                    <Twitter className="w-4 h-4" />
-                    Twitter
-                  </button>
-                  <button className="flex items-center gap-2 px-4 py-2 rounded-lg border border-blue-100 text-blue-700 hover:bg-blue-50 transition-colors">
-                    <Linkedin className="w-4 h-4" />
-                    LinkedIn
-                  </button>
+                {/* Share This Post */}
+                <div className="mt-8 pt-8 border-t border-gray-200">
+                  <h3 className="text-heading-05 font-semibold text-gray-900 mb-4">
+                    Share This Post
+                  </h3>
+                  <div className="flex items-center gap-3">
+                    <button className="flex items-center gap-2 px-4 py-2 rounded-lg border border-blue-100 text-blue-600 hover:bg-blue-50 transition-colors">
+                      <Facebook className="w-4 h-4" />
+                      Facebook
+                    </button>
+                    <button className="flex items-center gap-2 px-4 py-2 rounded-lg border border-sky-100 text-sky-500 hover:bg-sky-50 transition-colors">
+                      <Twitter className="w-4 h-4" />
+                      Twitter
+                    </button>
+                    <button className="flex items-center gap-2 px-4 py-2 rounded-lg border border-blue-100 text-blue-700 hover:bg-blue-50 transition-colors">
+                      <Linkedin className="w-4 h-4" />
+                      LinkedIn
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -296,40 +273,27 @@ const BlogDetail = () => {
           </div>
         </div>
 
-        {/* Related Blogs */}
-        <div className="bg-gray-50 py-16">
-          <div className="container mx-auto px-4">
-            <div className="flex items-center justify-between mb-8">
-              <h2 className="text-heading-01 font-semibold text-gray-900">Related Blogs</h2>
-              <div className="flex items-center gap-2">
-                <NavigationButton 
-                  direction="left" 
-                  onClick={prevSlide}
-                  disabled={currentSlide === 0}
-                  active={currentSlide > 0}
-                />
-                <NavigationButton 
-                  direction="right" 
-                  onClick={nextSlide}
-                  disabled={currentSlide >= related.length - 3}
-                  active={currentSlide < related.length - 3}
-                />
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {related.slice(currentSlide, currentSlide + 3).map((relatedPost) => (
-                <BlogCardVertical
-                  key={relatedPost.id}
-                  image={relatedPost.image}
-                  title={relatedPost.title}
-                  description={relatedPost.excerpt}
-                  onButtonClick={() => handleReadMore(relatedPost.id)}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
+                 {/* Related Blogs */}
+         <div className="bg-white py-16">
+           <div className="container mx-auto">
+             <h2 className="text-heading-01 font-semibold text-gray-900 mb-12 text-center">
+               Related Blogs
+             </h2>
+             
+             <div className="grid grid-cols-12 gap-6">
+               {related.slice(0, 4).map((relatedPost) => (
+                 <div key={relatedPost.id} className="col-span-12 md:col-span-6 lg:col-span-3">
+                   <BlogCardVertical
+                     image={relatedPost.image}
+                     title={relatedPost.title}
+                     description={relatedPost.excerpt}
+                     onButtonClick={() => handleReadMore(relatedPost.id)}
+                   />
+                 </div>
+               ))}
+             </div>
+           </div>
+         </div>
       </main>
       
       <Footer />
