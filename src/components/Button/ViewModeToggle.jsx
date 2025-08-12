@@ -3,7 +3,7 @@ import clsx from "clsx";
 
 export default function ViewModeToggle({ viewMode = "list", onViewModeChange }) {
   return (
-    <div className="flex items-center gap-1 p-1 bg-white border border-gray-100 rounded-md">
+    <div className="flex items-center gap-1 p-2 bg-white border border-gray-100 rounded-md">
       <button
         onClick={() => onViewModeChange("list")}
         className={clsx(

@@ -206,7 +206,7 @@ export default function FindJob() {
 
       {/* Filter Section */}
       <div className="container mx-auto px-4 md:px-6 lg:px-0">
-        <div className="flex flex-col lg:flex-row lg:items-start gap-4 py-4 md:py-6 bg-white rounded-lg">
+        <div className="flex flex-col lg:flex-row lg:items-start gap-4 py-[18px] bg-white rounded-lg">
           {/* Filter tags */}
           <div className="flex flex-wrap items-center gap-2 flex-1">
             {filters.length > 0 ? (
