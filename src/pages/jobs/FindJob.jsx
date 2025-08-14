@@ -267,22 +267,22 @@ export default function FindJob() {
       {/* Jobs Grid */}
       <div className="container mx-auto px-4 md:px-6 lg:px-0 py-6 md:py-8">
         {viewMode === "grid" ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-4 lg:grid-cols-12 gap-4 md:gap-6">
             {currentJobs.map((job) => (
-              <JobCardVertical
-                key={job.id}
-                company={job.company}
-                location={job.location}
-                title={job.title}
-                salary={job.salary}
-                topLabel={job.topLabel}
-                topVariant={job.topVariant}
-                typeLabel={job.typeLabel}
-                logo={job.logo}
-                logoText={job.logoText}
-                featured={job.featured}
-                className="h-full"
-              />
+              <div key={job.id} className="col-span-4 lg:col-span-3">
+                <JobCardVertical
+                  company={job.company}
+                  location={job.location}
+                  title={job.title}
+                  salary={job.salary}
+                  topLabel={job.topLabel}
+                  topVariant={job.topVariant}
+                  typeLabel={job.typeLabel}
+                  logo={job.logo}
+                  logoText={job.logoText}
+                  featured={job.featured}
+                />
+              </div>
             ))}
           </div>
         ) : (
