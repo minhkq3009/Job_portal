@@ -84,7 +84,7 @@ const Header = React.memo(function Header() {
         <div className="container flex items-center justify-between gap-4 lg:gap-64 py-4">
           {/* Logo + SearchInput */}
           <div className="flex items-center gap-3 lg:gap-6 flex-1">
-            <img src={Logo} alt="Logo" className="h-8 w-auto" />
+            <img src={Logo} alt="Logo" />
             <div className="hidden md:block flex-1">
               <SearchInput className="w-full max-w-none" />
             </div>
@@ -97,7 +97,7 @@ const Header = React.memo(function Header() {
                 Sign In
               </Button>
             </Link>
-            <Button variant="primary" size="medium" className="text-sm px-3 lg:px-4">
+            <Button variant="primary" size="medium" className="px-3 lg:px-4">
               Post A Job
             </Button>
           </div>

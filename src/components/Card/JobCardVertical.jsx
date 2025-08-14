@@ -2,7 +2,7 @@ import React from "react";
 import { MapPin, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import LabelTag from "../Label/LabelTag.jsx";
-import Button from "../Button/Button.jsx";
+import Button from "../Button/Button";
 import LogoCompany from "../Company/LogoCompany.jsx";
 
 export default function JobCardVertical({
@@ -17,6 +17,7 @@ export default function JobCardVertical({
   logoText = "D",
   featured = false, // enable gradient background for featured job
   hideButton = false, // hide Apply button
+  compact = false, // compact mode for mobile
 }) {
   const navigate = useNavigate();
 
@@ -26,32 +27,50 @@ export default function JobCardVertical({
   return (
     <div
       onClick={handleCardClick}
-      className={`rounded-xl p-8 hover:shadow-lg transition-all duration-200 border border-gray-100 space-y-6 hover:border-primary-500 cursor-pointer ${
+      className={`rounded-xl hover:shadow-lg transition-all duration-200 border border-gray-100 hover:border-primary-500 cursor-pointer ${
         featured ? "bg-gradient-to-r from-[#FFF6E6] to-[#FFFFFF]" : "bg-white"
+      } ${
+        compact 
+          ? "p-4 space-y-3" 
+          : "p-8 space-y-6"
       }`}
     >
       {/* Header */}
       <div className="flex items-center gap-4">
-        <LogoCompany logo={logo} logoText={logoText} size="md" />
+        <LogoCompany 
+          logo={logo} 
+          logoText={logoText} 
+          size={compact ? "sm" : "md"} 
+        />
         <div className="flex flex-col gap-[6px]">
           <div className="flex items-center gap-2">
-            <span className="text-body-md font-medium text-gray-900">{company}</span>
+            <span className={`font-medium text-gray-900 ${
+              compact ? "text-sm" : "text-body-md"
+            }`}>{company}</span>
             {topLabel && <LabelTag label={topLabel} variant={topVariant} />}
           </div>
-          <div className="flex items-center gap-1 text-sm text-gray-400">
-            <MapPin size={18} />
-            <span>{location}</span>
+          <div className="flex items-center gap-1 text-gray-400">
+            <MapPin size={compact ? 14 : 18} />
+            <span className={compact ? "text-xs" : "text-sm"}>{location}</span>
           </div>
         </div>
       </div>
 
       {/* Content */}
       <div className="flex flex-col gap-2">
-        <h3 className="text-body-xl font-medium text-gray-900">{title}</h3>
+        <h3 className={`font-medium text-gray-900 ${
+          compact ? "text-base" : "text-body-xl"
+        }`}>{title}</h3>
         <div className="flex items-center gap-2">
-          <span className="text-body-sm text-gray-500">{typeLabel}</span>
-          <span className="text-body-sm text-gray-500">•</span>
-          <span className="text-body-sm text-gray-500">{salary}</span>
+          <span className={`text-gray-500 ${
+            compact ? "text-xs" : "text-body-sm"
+          }`}>{typeLabel}</span>
+          <span className={`text-gray-500 ${
+            compact ? "text-xs" : "text-body-sm"
+          }`}>•</span>
+          <span className={`text-gray-500 ${
+            compact ? "text-xs" : "text-body-sm"
+          }`}>{salary}</span>
         </div>
       </div>
 
@@ -60,7 +79,7 @@ export default function JobCardVertical({
         <div className="pt-2">
           <Button
             variant="secondary"
-            size="medium"
+            size={compact ? "small" : "medium"}
             rightIcon={ArrowRight}
             className="w-full"
           >

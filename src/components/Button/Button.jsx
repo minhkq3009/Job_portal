@@ -16,8 +16,8 @@ export default function Button({
     "inline-flex items-center justify-center font-medium rounded transition-colors duration-200";
 
   const sizeStyles = clsx({
-    "w-12 h-12 p-3": size === "small", // 48px x 48px with 24px icon
-    "px-6 py-3 text-button": size === "medium", // 24px x 12px
+    "px-3 py-2 text-sm": size === "small", // Small padding with smaller text
+    "px-6 py-3 text-button": size === "medium", // 48px height with padding
     "px-8 py-4 text-button": size === "large", // 32px x 16px
   });
 

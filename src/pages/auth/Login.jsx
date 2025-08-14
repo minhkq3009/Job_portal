@@ -6,7 +6,7 @@ import {
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SimpleHeader from "../../components/Header/SimpleHeader.jsx";
-import SocialButton from "../../components/Button/SocialButton.jsx";
+import SocialButton from "../../components/Button/SocialButton";
 import InputField from "../../components/InputField/InputField";
 import Checkbox from "../../components/Form/Checkbox";
 import FacebookIcon from "../../assets/icons/facebook-1.svg";

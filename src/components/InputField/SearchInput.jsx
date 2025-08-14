@@ -4,7 +4,7 @@ import IndiaFlag from "../../assets/images/India.svg";
 
 export default function SearchInput({ className = "", value, onChange, placeholder }) {
   return (
-    <div className={`flex items-center justify-start px-6 py-2 w-full bg-white rounded-md shadow-sm border border-gray-100 gap-5 ${className}`}>
+    <div className={`flex items-center justify-start px-6 py-2 md:py-2 py-1 w-full bg-white rounded-md shadow-sm border border-gray-100 gap-5 ${className}`}>
       {/* Country Selector */}
       <button className="flex items-center gap-3 text-gray-700 shrink-0">
         <img
@@ -17,7 +17,7 @@ export default function SearchInput({ className = "", value, onChange, placehold
       </button>
 
       {/* Divider */}
-      <div className="w-px h-8 bg-gray-200" />
+      <div className="w-px h-6 md:h-8 bg-gray-200" />
 
       {/* Search Input */}
       <div className="flex items-center gap-2 flex-1">

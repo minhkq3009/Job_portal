@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Header from "../components/Header/Header";
+import ResponsiveHeader from "../components/Header/ResponsiveHeader";
 import KeywordInput from "../components/InputField/KeywordInput";
 import { MapPin, ArrowRight } from "lucide-react";
 import CompanyCard from "../components/Card/CompanyCard";
@@ -10,6 +10,7 @@ import WorkStep from "../components/Card/WorkStep";
 import Button from "../components/Button/Button";
 import NavigationButton from "../components/Button/NavigationButton";
 import JobCardHorizontal from "../components/Card/JobCardHorizontal";
+import JobCardVertical from "../components/Card/JobCardVertical";
 import TestimonialCard from "../components/Card/TestimonialCard";
 import Illustration from "../assets/images/Illustration.svg";
 import { featuredJobs, topCompanies, categoriesData as popularCategories, statsData, testimonialsData, popularVacancies } from "../data/index";
@@ -92,13 +93,13 @@ export default function Home() {
 
   return (
     <>
-      <Header />
+      <ResponsiveHeader />
 
       <main className="bg-gray-50">
         {/* Hero + Categories Section */}
         <section className="py-12 md:py-16 lg:py-[100px]">
           {/* Hero */}
-          <div className="container grid grid-cols-12 items-center gap-6 lg:gap-10 mb-12 md:mb-16 lg:mb-[100px]">
+          <div className="container mx-auto px-4 md:px-6 lg:px-0 grid grid-cols-12 items-center gap-6 lg:gap-10 mb-12 md:mb-16 lg:mb-[100px]">
           {/* Left Content */}
           <div className="col-span-12 lg:col-span-5">
             <div className="mb-6 lg:mb-8">
@@ -127,7 +128,7 @@ export default function Home() {
                 </div>
                                 <Link 
                   to="/find-job"
-                  className="px-4 py-3 h-12 rounded-md bg-primary-500 text-white font-medium hover:bg-primary-600 transition-all shrink-0 whitespace-nowrap min-w-fit flex items-center justify-center"
+                  className="px-3 py-2 md:px-4 md:py-3 h-10 md:h-12 rounded-md bg-primary-500 text-white font-medium hover:bg-primary-600 transition-all shrink-0 whitespace-nowrap min-w-fit flex items-center justify-center text-sm md:text-base"
                 >
                   Find Job
                 </Link>
@@ -147,7 +148,7 @@ export default function Home() {
                 </div>
                 <Link 
                   to="/find-job"
-                  className="w-full px-4 py-3 h-12 rounded-md bg-primary-500 text-white font-medium hover:bg-primary-600 transition-all flex items-center justify-center"
+                  className="w-full px-3 py-2 md:px-4 md:py-3 h-10 md:h-12 rounded-md bg-primary-500 text-white font-medium hover:bg-primary-600 transition-all flex items-center justify-center text-sm md:text-base"
                 >
                   Find Job
                 </Link>
@@ -173,7 +174,7 @@ export default function Home() {
           </div>
 
           {/* Categories */}
-          <div className="container">
+          <div className="container mx-auto px-4 md:px-6 lg:px-0">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
               {statsData.map((stat, index) => (
                 <div key={index}>
@@ -190,8 +191,8 @@ export default function Home() {
 
         {/* Popular Vacancies Section */}
         <section className="bg-white py-12 md:py-16 lg:py-[100px]">
-          <div className="container">
-            <h2 className="text-heading-01 font-semibold mb-12">
+          <div className="container mx-auto px-4 md:px-6 lg:px-0">
+            <h2 className="text-xl md:text-heading-01 font-semibold mb-7 md:mb-12">
               Most Popular Vacancies
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6 text-sm">
@@ -209,11 +210,11 @@ export default function Home() {
 
         {/* How Jobpilot Work Section */}
         <section className="bg-gray-50 py-12 md:py-16 lg:py-[100px]">
-          <div className="container text-center">
-            <h2 className="text-heading-01 font-semibold mb-8 md:mb-10 lg:mb-[50px]">
+          <div className="container mx-auto px-4 md:px-6 lg:px-0 text-center">
+            <h2 className="text-xl md:text-heading-01 font-semibold mb-8 md:mb-10 lg:mb-[50px]">
               How jobpilot work
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-10">
               <WorkStep
                 iconName="userPlus"
                 title="Create account"
@@ -240,22 +241,22 @@ export default function Home() {
 
         {/* Popular Category Section */}
         <section className="py-12 md:py-16 lg:py-[100px] bg-white border-b border-gray-200">
-          <div className="container">
+          <div className="container mx-auto px-4 md:px-6 lg:px-0">
             {/* Header */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 md:mb-10 lg:mb-[50px]">
-              <h2 className="text-heading-01 font-semibold text-gray-900">Popular category</h2>
+            <div className="flex flex-row sm:flex-row sm:items-center items-center justify-between gap-4 mb-8 md:mb-10 lg:mb-[50px]">
+              <h2 className="text-xl md:text-heading-01 font-semibold text-gray-900">Popular category</h2>
               <Button 
                 variant="tertiary" 
                 size="medium"
                 rightIcon={ArrowRight}
-                className="self-start sm:self-auto"
+                className="self-auto sm:self-start px-3 py-2 md:px-6 md:py-3 text-sm md:text-button"
               >
                 View All
               </Button>
             </div>
 
             {/* Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
               {popularCategories.map((category, index) => (
                 <CategoryCard
                   key={index}
@@ -272,24 +273,31 @@ export default function Home() {
 
         {/* Featured Job Section */}
         <section className="py-12 md:py-16 lg:py-[100px] bg-white">
-          <div className="container">
+          <div className="container mx-auto px-4 md:px-6 lg:px-0">
             {/* Header */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 md:mb-10 lg:mb-[50px]">
-              <h2 className="text-heading-01 font-semibold text-gray-900">Featured job</h2>
+            <div className="flex flex-row items-center justify-between gap-4 mb-8 md:mb-10 lg:mb-[50px]">
+              <h2 className="text-xl md:text-heading-01 font-semibold text-gray-900">Featured job</h2>
               <Button 
                 variant="tertiary" 
-                size="medium"
+                size="small"
                 rightIcon={ArrowRight}
-                className="self-start sm:self-auto"
+                className="px-3 py-2 md:px-6 md:py-3 text-sm md:text-button"
               >
                 View All
               </Button>
             </div>
 
             {/* Job list */}
-            <div className="flex flex-col gap-6">
+            <div className="grid grid-cols-1 md:flex md:flex-col gap-4 md:gap-6">
+              {featuredJobs.slice(0, 3).map((job, index) => (
+                <div key={index} className="md:hidden">
+                  <JobCardVertical {...job} compact={true} />
+                </div>
+              ))}
               {featuredJobs.map((job, index) => (
-                <JobCardHorizontal key={index} {...job} />
+                <div key={`desktop-${index}`} className="hidden md:block">
+                  <JobCardHorizontal {...job} />
+                </div>
               ))}
             </div>
           </div>
@@ -297,10 +305,10 @@ export default function Home() {
 
         {/* Top Companies Section */}
         <section className="pb-12 md:pb-16 lg:pb-[100px] bg-white">
-          <div className="container">
+          <div className="container mx-auto px-4 md:px-6 lg:px-0">
             {/* Header */}
             <div className="flex items-center justify-between mb-8 md:mb-10 lg:mb-[50px]">
-              <h2 className="text-heading-01 font-semibold text-gray-900">
+              <h2 className="text-xl md:text-heading-01 font-semibold text-gray-900">
                 Top companies
               </h2>
               <div className="flex gap-2">
@@ -367,8 +375,8 @@ export default function Home() {
 
         {/* Testimonial Section */}
         <section className="bg-gray-50 py-[100px]">
-          <div className="container mx-auto px-4">
-            <h2 className="text-center text-heading-01 text-gray-900 font-semibold mb-12">
+          <div className="container mx-auto px-4 md:px-6 lg:px-0">
+            <h2 className="text-center text-heading-04 md:text-heading-01 text-gray-900 font-semibold mb-12">
               Clients Testimonial
             </h2>
 
@@ -447,7 +455,7 @@ export default function Home() {
 
         {/* Call to Register Section */}
         <section className="py-[100px] bg-white">
-          <div className="container mx-auto px-4">
+          <div className="container mx-auto px-4 md:px-6 lg:px-0">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <CallToRegisterCard
                 title="Become a Candidate"

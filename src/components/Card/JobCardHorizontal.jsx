@@ -2,7 +2,7 @@ import React from "react";
 import { MapPin, Clock, Bookmark, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import LabelTag from "../Label/LabelTag.jsx";
-import Button from "../Button/Button.jsx";
+import Button from "../Button/Button";
 import LogoCompany from "../Company/LogoCompany.jsx";
 
 export default function JobCardHorizontal({

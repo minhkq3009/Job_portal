@@ -8,7 +8,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 import Button from "../../components/Button/Button";
-import SocialButton from "../../components/Button/SocialButton.jsx";
+import SocialButton from "../../components/Button/SocialButton";
 import InputField from "../../components/InputField/InputField";
 import Dropdown from "../../components/Dropdown/Dropdown.jsx";
 import Checkbox from "../../components/Form/Checkbox";
