@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Menu, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/icons/Logo.svg";
@@ -7,9 +7,29 @@ import Button from "../Button/Button";
 
 export default function MobileHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const headerRef = useRef(null);
+  const [overlayTop, setOverlayTop] = useState(0);
+
+  useEffect(() => {
+    if (menuOpen && headerRef.current) {
+      setOverlayTop(headerRef.current.offsetHeight || 0);
+    }
+  }, [menuOpen]);
+
+  // Lock body scroll when menu open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [menuOpen]);
 
   return (
-    <div className="w-full bg-white border-b border-gray-200">
+    <div ref={headerRef} className="w-full bg-white border-b border-gray-200 relative z-50">
       {/* Top bar */}
       <div className="flex flex-col">
                  {/* Row 1: Language + Hamburger */}
@@ -48,42 +68,51 @@ export default function MobileHeader() {
          </div>
       </div>
 
-      {/* Dropdown menu */}
+      {/* Dropdown menu + overlay */}
       {menuOpen && (
-        <div className="px-4 pb-4 bg-white shadow rounded-b-lg">
-          <ul className="text-sm space-y-3 border-t border-gray-200 pt-3">
-            <li className="text-gray-700">
-              <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
-            </li>
-            <li className="text-blue-600 font-medium">
-              <Link to="/find-job" onClick={() => setMenuOpen(false)}>Find Job</Link>
-            </li>
-            <li className="text-gray-700">
-              <Link to="/find-employers" onClick={() => setMenuOpen(false)}>Find Employers</Link>
-            </li>
-            <li className="text-gray-700">
-              <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
-            </li>
-            <li className="text-gray-700">
-              <Link to="/dashboard/job-alert" onClick={() => setMenuOpen(false)}>Job Alerts</Link>
-            </li>
-            <li className="text-gray-700">
-              <Link to="/contact" onClick={() => setMenuOpen(false)}>Customer Supports</Link>
-            </li>
-          </ul>
-          <div className="flex gap-2 mt-4">
-            <Link to="/register" onClick={() => setMenuOpen(false)}>
-              <Button variant="primary" size="medium" className="text-sm px-4 py-2">
-                Create Account
-              </Button>
-            </Link>
-            <Link to="/login" onClick={() => setMenuOpen(false)}>
-              <Button variant="secondary" size="medium" className="text-sm px-4 py-2">
-                Sign In
-              </Button>
-            </Link>
+        <>
+          {/* Overlay */}
+          <div
+            className="fixed left-0 right-0 bottom-0 bg-black/80 z-40"
+            style={{ top: overlayTop }}
+            onClick={() => setMenuOpen(false)}
+          />
+          {/* Menu Panel */}
+          <div className="relative z-50 px-4 pb-4 bg-white shadow rounded-b-lg">
+            <ul className="text-sm space-y-3 border-t border-gray-200 pt-3">
+              <li className="text-gray-700">
+                <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+              </li>
+              <li className="text-blue-600 font-medium">
+                <Link to="/find-job" onClick={() => setMenuOpen(false)}>Find Job</Link>
+              </li>
+              <li className="text-gray-700">
+                <Link to="/find-employers" onClick={() => setMenuOpen(false)}>Find Employers</Link>
+              </li>
+              <li className="text-gray-700">
+                <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
+              </li>
+              <li className="text-gray-700">
+                <Link to="/dashboard/job-alert" onClick={() => setMenuOpen(false)}>Job Alerts</Link>
+              </li>
+              <li className="text-gray-700">
+                <Link to="/contact" onClick={() => setMenuOpen(false)}>Customer Supports</Link>
+              </li>
+            </ul>
+            <div className="flex gap-2 mt-4">
+              <Link to="/register" onClick={() => setMenuOpen(false)}>
+                <Button variant="primary" size="medium" className="text-sm px-4 py-2">
+                  Create Account
+                </Button>
+              </Link>
+              <Link to="/login" onClick={() => setMenuOpen(false)}>
+                <Button variant="secondary" size="medium" className="text-sm px-4 py-2">
+                  Sign In
+                </Button>
+              </Link>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );

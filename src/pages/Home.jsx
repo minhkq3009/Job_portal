@@ -13,9 +13,19 @@ import JobCardHorizontal from "../components/Card/JobCardHorizontal";
 import JobCardVertical from "../components/Card/JobCardVertical";
 import TestimonialCard from "../components/Card/TestimonialCard";
 import Illustration from "../assets/images/Illustration.svg";
+import starIcon from "../assets/icons/star.svg";
+import quoteIcon from "../assets/icons/Quote.svg";
 import { featuredJobs, topCompanies, categoriesData as popularCategories, statsData, testimonialsData, popularVacancies } from "../data/index";
 import CallToRegisterCard from "../components/Card/CallToRegisterCard";
 import Footer from "../components/Footer/Footer";
+
+// Import Swiper
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Autoplay } from 'swiper/modules';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -25,6 +35,9 @@ export default function Home() {
   // Testimonial carousel state
   const [testimonialSlide, setTestimonialSlide] = useState(0);
   const testimonialsPerSlide = 3; // 3 testimonials per slide
+  
+  // Category tabs state
+  const [currentCategoryTab, setCurrentCategoryTab] = useState(0);
   
   // Ensure testimonialsData is defined
   const safeTestimonialsData = testimonialsData || [];
@@ -84,9 +97,11 @@ export default function Home() {
     }
   };
 
-  const getCurrentCompanies = () => {
-    const start = currentSlide * companiesPerSlide;
-    return topCompanies.slice(start, start + companiesPerSlide);
+  const getCurrentCompanies = (slideIndex = null) => {
+    const slide = slideIndex !== null ? slideIndex : currentSlide;
+    const start = slide * companiesPerSlide;
+    const companies = topCompanies.slice(start, start + companiesPerSlide);
+    return companies;
   };
 
 
@@ -94,6 +109,68 @@ export default function Home() {
   return (
     <>
       <ResponsiveHeader />
+
+      <style jsx>{`
+        .companies-swiper .swiper-pagination {
+          position: relative;
+          margin-top: 1rem;
+        }
+        
+        .companies-swiper .swiper-pagination-bullet {
+          width: 8px;
+          height: 8px;
+          background: #D1D5DB;
+          opacity: 1;
+          transition: all 0.3s ease;
+        }
+        
+        .companies-swiper .swiper-pagination-bullet-active {
+          width: 24px;
+          height: 8px;
+          background: #3B82F6;
+          border-radius: 4px;
+        }
+
+        .categories-swiper .swiper-pagination {
+          position: relative;
+          margin-top: 1rem;
+        }
+        
+        .categories-swiper .swiper-pagination-bullet {
+          width: 8px;
+          height: 8px;
+          background: #D1D5DB;
+          opacity: 1;
+          transition: all 0.3s ease;
+        }
+        
+        .categories-swiper .swiper-pagination-bullet-active {
+          width: 24px;
+          height: 8px;
+          background: #3B82F6;
+          border-radius: 4px;
+        }
+
+        .vacancies-swiper .swiper-pagination {
+          position: relative;
+          margin-top: 1rem;
+        }
+        
+        .vacancies-swiper .swiper-pagination-bullet {
+          width: 8px;
+          height: 8px;
+          background: #D1D5DB;
+          opacity: 1;
+          transition: all 0.3s ease;
+        }
+        
+        .vacancies-swiper .swiper-pagination-bullet-active {
+          width: 24px;
+          height: 8px;
+          background: #3B82F6;
+          border-radius: 4px;
+        }
+      `}</style>
 
       <main className="bg-gray-50">
         {/* Hero + Categories Section */}
@@ -182,6 +259,7 @@ export default function Home() {
                     icon={stat.icon}
                     title={stat.title}
                     subtitle={stat.subtitle}
+                    titleSize="heading-04"
                   />
                 </div>
               ))}
@@ -195,10 +273,82 @@ export default function Home() {
             <h2 className="text-xl md:text-heading-01 font-semibold mb-7 md:mb-12">
               Most Popular Vacancies
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6 text-sm">
+            
+            {/* Mobile Layout - Swiper */}
+            <div className="md:hidden">
+              <Swiper
+                modules={[Pagination]}
+                spaceBetween={16}
+                slidesPerView={1}
+                pagination={{
+                  clickable: true,
+                  dynamicBullets: true,
+                }}
+                className="vacancies-swiper"
+              >
+                {/* First tab - 3 vacancies */}
+                <SwiperSlide>
+                  <div className="grid grid-cols-1 gap-6">
+                    {popularVacancies.slice(0, 3).map((job, index) => (
+                      <PopularVacancyItem
+                        key={`mobile-tab1-${index}`}
+                        title={job.title}
+                        count={job.count}
+                        isLink={job.isLink}
+                      />
+                    ))}
+                  </div>
+                </SwiperSlide>
+
+                {/* Second tab - 3 vacancies */}
+                <SwiperSlide>
+                  <div className="grid grid-cols-1 gap-6">
+                    {popularVacancies.slice(3, 6).map((job, index) => (
+                      <PopularVacancyItem
+                        key={`mobile-tab2-${index}`}
+                        title={job.title}
+                        count={job.count}
+                        isLink={job.isLink}
+                      />
+                    ))}
+                  </div>
+                </SwiperSlide>
+
+                {/* Third tab - 3 vacancies */}
+                <SwiperSlide>
+                  <div className="grid grid-cols-1 gap-6">
+                    {popularVacancies.slice(6, 9).map((job, index) => (
+                      <PopularVacancyItem
+                        key={`mobile-tab3-${index}`}
+                        title={job.title}
+                        count={job.count}
+                        isLink={job.isLink}
+                      />
+                    ))}
+                  </div>
+                </SwiperSlide>
+
+                {/* Fourth tab - 3 vacancies */}
+                <SwiperSlide>
+                  <div className="grid grid-cols-1 gap-6">
+                    {popularVacancies.slice(9, 12).map((job, index) => (
+                      <PopularVacancyItem
+                        key={`mobile-tab4-${index}`}
+                        title={job.title}
+                        count={job.count}
+                        isLink={job.isLink}
+                      />
+                    ))}
+                  </div>
+                </SwiperSlide>
+              </Swiper>
+            </div>
+
+            {/* Desktop Layout - Grid */}
+            <div className="hidden md:grid md:grid-cols-4 gap-y-10 gap-x-6 text-sm">
               {popularVacancies.map((job, index) => (
                 <PopularVacancyItem
-                  key={index}
+                  key={`desktop-${index}`}
                   title={job.title}
                   count={job.count}
                   isLink={job.isLink}
@@ -255,11 +405,91 @@ export default function Home() {
               </Button>
             </div>
 
-            {/* Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
+            {/* Mobile Layout - Swiper with dots */}
+            <div className="md:hidden">
+              <Swiper
+                modules={[Pagination]}
+                spaceBetween={16}
+                slidesPerView={1}
+                pagination={{
+                  clickable: true,
+                  dynamicBullets: true,
+                }}
+                className="categories-swiper"
+                onSlideChange={(swiper) => setCurrentCategoryTab(swiper.activeIndex)}
+                initialSlide={currentCategoryTab}
+              >
+                {/* First slide - 3 categories */}
+                <SwiperSlide>
+                  <div className="grid grid-cols-1 gap-3">
+                    {popularCategories.slice(0, 3).map((category, index) => (
+                      <CategoryCard
+                        key={`mobile-slide1-${index}`}
+                        icon={category.icon}
+                        title={category.title}
+                        subtitle={category.subtitle}
+                        titleSize="body-lg"
+                        subtitleSize="body-sm"
+                      />
+                    ))}
+                  </div>
+                </SwiperSlide>
+
+                {/* Second slide - 3 categories */}
+                <SwiperSlide>
+                  <div className="grid grid-cols-1 gap-3">
+                    {popularCategories.slice(3, 6).map((category, index) => (
+                      <CategoryCard
+                        key={`mobile-slide2-${index}`}
+                        icon={category.icon}
+                        title={category.title}
+                        subtitle={category.subtitle}
+                        titleSize="body-lg"
+                        subtitleSize="body-sm"
+                      />
+                    ))}
+                  </div>
+                </SwiperSlide>
+
+                {/* Third slide - 3 categories */}
+                <SwiperSlide>
+                  <div className="grid grid-cols-1 gap-3">
+                    {popularCategories.slice(6, 9).map((category, index) => (
+                      <CategoryCard
+                        key={`mobile-slide3-${index}`}
+                        icon={category.icon}
+                        title={category.title}
+                        subtitle={category.subtitle}
+                        titleSize="body-lg"
+                        subtitleSize="body-sm"
+                      />
+                    ))}
+                  </div>
+                </SwiperSlide>
+
+                {/* Fourth slide - 3 categories */}
+                <SwiperSlide>
+                  <div className="grid grid-cols-1 gap-3">
+                    {popularCategories.slice(9, 12).map((category, index) => (
+                      <CategoryCard
+                        key={`mobile-slide4-${index}`}
+                        icon={category.icon}
+                        title={category.title}
+                        subtitle={category.subtitle}
+                        titleSize="body-lg"
+                        subtitleSize="body-sm"
+                      />
+                    ))}
+                  </div>
+                </SwiperSlide>
+              </Swiper>
+            </div>
+
+            {/* Desktop Layout - Grid */}
+            <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-4 gap-6">
               {popularCategories.map((category, index) => (
                 <CategoryCard
-                  key={index}
+                  key={`desktop-category-${index}`}
                   icon={category.icon}
                   title={category.title}
                   subtitle={category.subtitle}
@@ -304,14 +534,15 @@ export default function Home() {
         </section>
 
         {/* Top Companies Section */}
-        <section className="pb-12 md:pb-16 lg:pb-[100px] bg-white">
+        <section className="pb-8 md:pb-12 lg:pb-[100px] bg-white">
           <div className="container mx-auto px-4 md:px-6 lg:px-0">
             {/* Header */}
-            <div className="flex items-center justify-between mb-8 md:mb-10 lg:mb-[50px]">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 md:mb-8 lg:mb-[50px]">
               <h2 className="text-xl md:text-heading-01 font-semibold text-gray-900">
                 Top companies
               </h2>
-              <div className="flex gap-2">
+              {/* Desktop Navigation - Hidden on mobile */}
+              <div className="hidden md:flex gap-2">
                 <NavigationButton
                   direction="left"
                   onClick={prevSlide}
@@ -327,61 +558,147 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Grid - 2 rows x 4 columns */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-4">
-              {/* First row */}
-              {getCurrentCompanies().slice(0, 4).map((company, index) => (
-                <CompanyCard
-                  key={`${currentSlide}-row1-${index}`}
-                  logoText={company.logoText}
-                  company={company.company}
-                  location={company.location}
-                  showBookmark={false}
-                  onOpen={() => {}}
-                />
-              ))}
-            </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              {/* Second row */}
-              {getCurrentCompanies().slice(4, 8).map((company, index) => (
-                <CompanyCard
-                  key={`${currentSlide}-row2-${index}`}
-                  logoText={company.logoText}
-                  company={company.company}
-                  location={company.location}
-                  showBookmark={false}
-                  onOpen={() => {}}
-                />
-              ))}
+            {/* Mobile Layout - Swiper */}
+            <div className="md:hidden">
+              <Swiper
+                modules={[Pagination]}
+                spaceBetween={16}
+                slidesPerView={1}
+                pagination={{
+                  clickable: true,
+                  dynamicBullets: true,
+                }}
+                className="companies-swiper"
+                onSlideChange={(swiper) => setCurrentSlide(swiper.activeIndex)}
+                initialSlide={currentSlide}
+              >
+                {Array.from({ length: totalSlides }).map((_, slideIndex) => (
+                  <SwiperSlide key={`mobile-slide-${slideIndex}`}>
+                    <div className="grid grid-cols-1 gap-3">
+                      {getCurrentCompanies(slideIndex).slice(0, 3).map((company, index) => (
+                        <CompanyCard
+                          key={`mobile-${slideIndex}-${index}`}
+                          logoText={company.logoText}
+                          company={company.company}
+                          location={company.location}
+                          showBookmark={false}
+                          onOpen={() => {}}
+                          compact={true}
+                        />
+                      ))}
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
 
-            {/* Dots Indicator */}
-            <div className="flex justify-center gap-3">
-              {Array.from({ length: totalSlides }).map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToSlide(index)}
-                  className={`transition-all duration-300 rounded-full ${
-                    currentSlide === index
-                      ? "w-8 h-2 bg-primary-500"
-                      : "w-2 h-2 bg-gray-300 hover:bg-primary-300"
-                  }`}
-                />
-              ))}
+            {/* Desktop Layout - 2 rows x 4 columns - Hidden on mobile */}
+            <div className="hidden md:block">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-4">
+                {/* First row */}
+                {getCurrentCompanies().slice(0, 4).map((company, index) => (
+                  <CompanyCard
+                    key={`${currentSlide}-row1-${index}`}
+                    logoText={company.logoText}
+                    company={company.company}
+                    location={company.location}
+                    showBookmark={false}
+                    onOpen={() => {}}
+                  />
+                ))}
+              </div>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                {/* Second row */}
+                {getCurrentCompanies().slice(4, 8).map((company, index) => (
+                  <CompanyCard
+                    key={`${currentSlide}-row2-${index}`}
+                    logoText={company.logoText}
+                    company={company.company}
+                    location={company.location}
+                    showBookmark={false}
+                    onOpen={() => {}}
+                  />
+                ))}
+              </div>
+
+              {/* Desktop Dots Indicator */}
+              <div className="flex justify-center gap-3">
+                {Array.from({ length: totalSlides }).map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToSlide(index)}
+                    className={`transition-all duration-300 rounded-full ${
+                      currentSlide === index
+                        ? "w-8 h-2 bg-primary-500"
+                        : "w-2 h-2 bg-gray-300 hover:bg-primary-300"
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
         {/* Testimonial Section */}
-        <section className="bg-gray-50 py-[100px]">
+        <section className="bg-gray-50 py-12 md:py-[100px]">
           <div className="container mx-auto px-4 md:px-6 lg:px-0">
-            <h2 className="text-center text-heading-04 md:text-heading-01 text-gray-900 font-semibold mb-12">
+            <h2 className="text-center text-heading-04 md:text-heading-01 text-gray-900 font-semibold mb-8 md:mb-12">
               Clients Testimonial
             </h2>
 
-            {/* Container with flexbox to center buttons and cards */}
-            <div className="flex items-center gap-8">
+            {/* Mobile Layout - Horizontal scroll */}
+            <div className="md:hidden">
+              <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
+                {safeTestimonialsData.map((item, idx) => (
+                  <div key={`mobile-testimonial-${idx}`} className="flex-shrink-0 w-[280px]">
+                    <div className="rounded-xl bg-white shadow-sm flex flex-col w-full p-4">
+                      {/* Stars and Content */}
+                      <div className="text-sm h-[120px] overflow-hidden">
+                        {/* Stars */}
+                        <div className="flex gap-1 mb-3">
+                          {Array.from({ length: item.rating || 5 }).map((_, starIdx) => (
+                            <img
+                              key={starIdx}
+                              src={starIcon}
+                              alt="star"
+                              className="w-5 h-5"
+                            />
+                          ))}
+                        </div>
+
+                        {/* Content */}
+                        <p className="text-gray-600 leading-relaxed text-sm line-clamp-4 overflow-hidden">{item.content}</p>
+                      </div>
+
+                      {/* Author and Quote */}
+                      <div className="flex items-center justify-between w-full mt-4">
+                        <div className="flex items-center gap-2 flex-1 min-w-0">
+                          <img
+                            src={item.avatar}
+                            alt={item.name}
+                            className="rounded-full object-cover flex-shrink-0 w-8 h-8"
+                          />
+                          <div className="flex flex-col flex-1 min-w-0">
+                            <span className="font-semibold text-gray-900 truncate text-sm">{item.name}</span>
+                            <span className="text-gray-500 truncate text-xs">{item.title}</span>
+                          </div>
+                        </div>
+
+                        <img
+                          src={quoteIcon}
+                          alt="quote"
+                          className="text-gray-300 flex-shrink-0 w-8 h-8"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Desktop Layout - Carousel with navigation buttons */}
+            <div className="hidden md:flex items-center gap-8">
               {/* Left Navigation Button */}
               <div style={{ transform: 'translateY(-40px)' }}>
                 <NavigationButton
@@ -399,22 +716,22 @@ export default function Home() {
                   const endIndex = startIndex + testimonialsPerSlide;
                   const slideTestimonials = safeTestimonialsData.slice(startIndex, endIndex);
                   
-                                        return (
-                      <div 
-                        key={slideIndex}
-                        className="transition-transform duration-500 ease-in-out cursor-grab active:cursor-grabbing"
-                        style={{ 
-                          transform: `translateX(${(slideIndex - testimonialSlide) * 100}%)`,
-                          position: slideIndex === 0 ? 'relative' : 'absolute',
-                          top: slideIndex === 0 ? 'auto' : 0,
-                          left: slideIndex === 0 ? 'auto' : 0,
-                          right: slideIndex === 0 ? 'auto' : 0,
-                          width: '100%'
-                        }}
-                        onTouchStart={handleTouchStart}
-                        onTouchMove={handleTouchMove}
-                        onTouchEnd={handleTouchEnd}
-                      >
+                  return (
+                    <div 
+                      key={slideIndex}
+                      className="transition-transform duration-500 ease-in-out cursor-grab active:cursor-grabbing"
+                      style={{ 
+                        transform: `translateX(${(slideIndex - testimonialSlide) * 100}%)`,
+                        position: slideIndex === 0 ? 'relative' : 'absolute',
+                        top: slideIndex === 0 ? 'auto' : 0,
+                        left: slideIndex === 0 ? 'auto' : 0,
+                        right: slideIndex === 0 ? 'auto' : 0,
+                        width: '100%'
+                      }}
+                      onTouchStart={handleTouchStart}
+                      onTouchMove={handleTouchMove}
+                      onTouchEnd={handleTouchEnd}
+                    >
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
                         {slideTestimonials.map((item, idx) => (
                           <TestimonialCard key={`slide-${slideIndex}-${idx}`} {...item} />
@@ -436,27 +753,42 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Dots Indicator */}
-            <div className="flex justify-center gap-3">
-                {Array.from({ length: totalTestimonialSlides }).map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setTestimonialSlide(index)}
-                    className={`transition-all duration-300 rounded-full ${
-                      testimonialSlide === index
-                        ? "w-8 h-2 bg-primary-500"
-                        : "w-2 h-2 bg-gray-300 hover:bg-primary-300"
-                    }`}
-                  />
-                ))}
+            {/* Desktop Dots Indicator */}
+            <div className="hidden md:flex justify-center gap-3">
+              {Array.from({ length: totalTestimonialSlides }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setTestimonialSlide(index)}
+                  className={`transition-all duration-300 rounded-full ${
+                    testimonialSlide === index
+                      ? "w-8 h-2 bg-primary-500"
+                      : "w-2 h-2 bg-gray-300 hover:bg-primary-300"
+                  }`}
+                />
+              ))}
             </div>
           </div>
         </section>
 
         {/* Call to Register Section */}
-        <section className="py-[100px] bg-white">
+        <section className="py-12 md:py-16 lg:py-[100px] bg-white">
           <div className="container mx-auto px-4 md:px-6 lg:px-0">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Mobile Layout - Stacked */}
+            <div className="md:hidden space-y-4">
+              <CallToRegisterCard
+                title="Become a Candidate"
+                desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus a dolor convallis efficitur."
+                variant="light"
+              />
+              <CallToRegisterCard
+                title="Become an Employers"
+                desc="Cras in massa pellentesque, mollis ligula non, luctus dui. Morbi sed efficitur dolor."
+                variant="dark"
+              />
+            </div>
+
+            {/* Desktop Layout - Side by side */}
+            <div className="hidden md:grid md:grid-cols-2 gap-6">
               <CallToRegisterCard
                 title="Become a Candidate"
                 desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus a dolor convallis efficitur."

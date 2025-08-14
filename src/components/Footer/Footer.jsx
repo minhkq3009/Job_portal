@@ -10,7 +10,7 @@ import Logo from "../../assets/icons/Logo.svg";
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-white">
-      <div className="py-24">
+      <div className="py-12 md:py-24">
         <div className="container mx-auto px-4 flex flex-col md:flex-row md:justify-between gap-10">
         {/* Column 1 - Logo + Contact */}
         <div className="md:max-w-xs">
@@ -25,8 +25,8 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* Menu Group - 4 columns */}
-        <div className="flex flex-col md:flex-row gap-32">
+        {/* Menu Group - 4 columns (mobile: 2 columns) */}
+        <div className="grid grid-cols-2 gap-8 md:flex md:flex-row md:gap-32">
           {/* Column 2 - Quick Link */}
           <div>
             <h4 className="text-body-xl font-semibold mb-6">Quick Link</h4>
@@ -77,7 +77,7 @@ const Footer = () => {
 
       {/* Bottom */}
       <div className="border-t border-gray-700">
-        <div className="container mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+        <div className="container mx-auto px-4 py-4 md:py-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
         <p>© 2024 MyJob – Job Portal. All rights reserved.</p>
         <div className="flex gap-4 mt-4 md:mt-0">
           <Facebook className="w-4 h-4 hover:text-white cursor-pointer transition-colors" />

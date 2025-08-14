@@ -4,31 +4,37 @@ export default function CategoryCard({ icon, title, subtitle, titleSize = "headi
   // Map custom size names to actual Tailwind classes
   const getTitleClass = (size) => {
     switch (size) {
+      case "heading-01":
+        return "md:text-heading-01";
+      case "heading-02":
+        return "md:text-heading-02";
+      case "heading-03":
+        return "md:text-heading-03";
       case "heading-04":
-        return "text-heading-04";
+        return "md:text-heading-04";
       case "body-lg":
-        return "text-body-lg";
+        return "md:text-body-lg";
       case "text-xl":
-        return "text-xl";
+        return "md:text-xl";
       case "text-lg":
-        return "text-lg";
+        return "md:text-lg";
       default:
-        return "text-heading-04";
+        return "md:text-heading-04";
     }
   };
 
   const getSubtitleClass = (size) => {
     switch (size) {
       case "body-md":
-        return "text-body-md";
+        return "md:text-body-md";
       case "body-sm":
-        return "text-body-sm";
+        return "md:text-body-sm";
       case "text-sm":
-        return "text-sm";
+        return "md:text-sm";
       case "text-base":
-        return "text-base";
+        return "md:text-base";
       default:
-        return "text-body-md";
+        return "md:text-body-md";
     }
   };
 
@@ -41,8 +47,8 @@ export default function CategoryCard({ icon, title, subtitle, titleSize = "headi
 
       {/* Text content */}
       <div className="flex flex-col gap-0.5 md:gap-[6px]">
-        <h3 className={`text-body-md md:${getTitleClass(titleSize)} font-semibold text-gray-900`}>{title}</h3>
-        <p className={`text-body-xs md:${getSubtitleClass(subtitleSize)} text-gray-500`}>{subtitle}</p>
+        <h3 className={`text-body-md ${getTitleClass(titleSize)} font-semibold text-gray-900`}>{title}</h3>
+        <p className={`text-body-xs ${getSubtitleClass(subtitleSize)} text-gray-500`}>{subtitle}</p>
       </div>
     </div>
   );
