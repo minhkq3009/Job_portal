@@ -49,17 +49,17 @@ export default function JobCardHorizontal({
   return (
     <div
       onClick={handleCardClick}
-      className={`rounded-xl p-8 border border-gray-100 hover:shadow-lg transition-all duration-200 flex justify-between items-center gap-5 hover:border-primary-500 cursor-pointer ${
+      className={`rounded-xl p-4 sm:p-8 border border-gray-100 hover:shadow-lg transition-all duration-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-5 hover:border-primary-500 cursor-pointer ${
         featured ? "bg-gradient-to-r from-[#FFF6E6] to-[#FFFFFF]" : "bg-white"
       }`}
     >
       {/* Left */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-start sm:items-center gap-4 w-full sm:w-auto">
         <LogoCompany logo={logo} logoText={logoText} size="lg" companyName={title} />
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <h3 className="text-body-lg font-medium text-gray-900">{title}</h3>
+            <h3 className="text-body-lg font-medium text-gray-900 break-words">{title}</h3>
             {topLabel && topLabel.trim() !== "" && <LabelTag label={topLabel} variant={topVariant} />}
             {typeLabel && typeLabel.trim() !== "" && <LabelTag label={typeLabel} variant={typeVariant} />}
           </div>
@@ -81,9 +81,10 @@ export default function JobCardHorizontal({
       </div>
 
       {/* Right */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 w-full sm:w-auto justify-end sm:justify-start">
+        {/* Desktop: Bookmark first, then button */}
         <Bookmark 
-          className={`w-5 h-5 cursor-pointer transition-colors ${
+          className={`w-5 h-5 cursor-pointer transition-colors hidden sm:block ${
             isBookmarked 
               ? 'text-primary-500 fill-primary-500' 
               : 'text-gray-400 hover:text-primary-500'
@@ -104,9 +105,22 @@ export default function JobCardHorizontal({
               onApply();
             }
           }}
+          className="flex-1 sm:flex-none"
         >
           {isExpired ? "Deadline Expired" : "Apply Job"}
         </Button>
+        {/* Mobile: Bookmark after button */}
+        <Bookmark 
+          className={`w-5 h-5 cursor-pointer transition-colors sm:hidden ${
+            isBookmarked 
+              ? 'text-primary-500 fill-primary-500' 
+              : 'text-gray-400 hover:text-primary-500'
+          }`}
+          onClick={(e) => {
+            e.stopPropagation();
+            onBookmark && onBookmark();
+          }}
+        />
       </div>
     </div>
   );

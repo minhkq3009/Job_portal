@@ -55,24 +55,24 @@ export default function FindEmployers() {
         <div className="container mx-auto">
           <div className="bg-white p-3 rounded-md">
             <div className="flex flex-col md:flex-row gap-4 items-center">
-              <div className="flex flex-col md:flex-row gap-4 items-center flex-1">
-                <div className="flex-1 min-w-0">
-                  <KeywordInput placeholder="Company name, industry..." className="border-0 shadow-none" />
+              <div className="flex flex-col md:flex-row gap-4 items-center flex-1 w-full md:w-auto">
+                <div className="flex-1 min-w-0 w-full md:w-auto">
+                  <KeywordInput placeholder="Company name, industry..." className="border-0 shadow-none w-full" />
                 </div>
-                <div className="w-px h-12 bg-gray-50" />
-                <div className="flex-1 min-w-0">
+                <div className="hidden md:block w-px h-12 bg-gray-50" />
+                <div className="flex-1 min-w-0 w-full md:w-auto">
                   <KeywordInput 
                     Icon={MapPin}
                     placeholder="Your Location" 
-                    className="border-0 shadow-none"
+                    className="border-0 shadow-none w-full"
                   />
                 </div>
-                <div className="w-px h-12 bg-gray-50" />
-                <div className="flex-1 min-w-0">
+                <div className="hidden md:block w-px h-12 bg-gray-50" />
+                <div className="flex-1 min-w-0 w-full md:w-auto">
                   <CategorySelect />
                 </div>
               </div>
-              <div className="md:ml-3">
+              <div className="md:ml-3 w-full md:w-auto">
                 <Button variant="primary" size="medium" className="w-full md:w-auto">
                   Find Employers
                 </Button>
@@ -137,8 +137,9 @@ export default function FindEmployers() {
           {/* Main Content Area - 8 columns */}
           <div className="lg:col-span-8">
             {/* Results Header */}
-            <div className="mb-6">
-              <h2 className="text-body-sm font-medium text-gray-500">
+            <div className="mb-4 sm:mb-6">
+              {/* Desktop/Tablet full text */}
+              <h2 className="text-body-sm font-medium text-gray-500 hidden md:block">
                 Showing {startIndex + 1} to {Math.min(endIndex, totalCompanies)} of {totalCompanies} results
               </h2>
             </div>
@@ -165,14 +166,28 @@ export default function FindEmployers() {
             </div>
             
             {/* Pagination */}
-            <div className="flex justify-center">
-              <Pagination 
-                currentPage={currentPage}
-                totalPages={totalPages}
-                totalItems={totalCompanies}
-                itemsPerPage={selectedPerPage}
-                onPageChange={setCurrentPage}
-              />
+            <div className="flex justify-center mt-6 sm:mt-8">
+              {/* Mobile: hide info */}
+              <div className="w-full sm:hidden flex justify-center">
+                <Pagination 
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  totalItems={totalCompanies}
+                  itemsPerPage={selectedPerPage}
+                  onPageChange={setCurrentPage}
+                  showInfo={false}
+                />
+              </div>
+              {/* Tablet/Desktop: show info */}
+              <div className="hidden sm:flex w-full justify-center">
+                <Pagination 
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  totalItems={totalCompanies}
+                  itemsPerPage={selectedPerPage}
+                  onPageChange={setCurrentPage}
+                />
+              </div>
             </div>
           </div>
         </div>
