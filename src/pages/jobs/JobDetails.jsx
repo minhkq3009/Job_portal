@@ -23,7 +23,7 @@ export default function JobDetails() {
   // Use data from jobsData instead of hardcoded array
   const relatedJobs = [...featuredJobs, ...featuredJobs].slice(0, 12);
 
-  const jobsPerSlide = 6; // 2 rows x 3 columns = 6 jobs per slide
+  const jobsPerSlide = 8; // 2 rows x 4 columns = 8 jobs per slide
   const totalSlides = Math.ceil(relatedJobs.length / jobsPerSlide);
 
   const nextSlide = () => {
@@ -102,66 +102,109 @@ Nam dapibus consectetur erat in euismod. Cras urna augue, mollis venenatis augue
         <div className="container mx-auto">
           {/* Job Header */}
           <div className="bg-white py-8 rounded-xl mb-4">
-            <div className="flex items-center justify-between gap-6">
-              {/* Left Side - Avatar + Job Info */}
-              <div className="flex items-center gap-6">
-                {/* Company Avatar 96x96 */}
-                <div className="w-24 h-24 rounded-xl overflow-hidden flex-shrink-0">
-                  <img 
-                    src={jobData.logo} 
-                    alt={`${jobData.company} logo`}
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                
-            {/* Job Info Column - 24px from avatar */}
-                <div className="flex flex-col gap-2">
-                  {/* Title + Tags - 8px gap */}
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <h1 className="text-heading-04 font-medium text-gray-900">{jobData.title}</h1>
-                    <LabelTag label="Featured" variant="warning" />
-                    <LabelTag label="Urgent" variant="danger" />
-                  </div>
-                  
-                  {/* Company Info - 6px icon-text gap, 20px block gap */}
-                  <div className="flex items-center gap-5">
-                    <div className="flex items-center gap-1.5">
-                      <Instagram size={16} className="text-gray-500" />
-                      <span className="text-body-sm text-primary-500 hover:underline cursor-pointer">@dribbble</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <Phone size={16} className="text-gray-500" />
-                      <span className="text-body-sm text-gray-700">+1-202-555-0178</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <Mail size={16} className="text-gray-500" />
-                      <span className="text-body-sm text-primary-500 hover:underline cursor-pointer">contact@dribbble.com</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+               {/* Left Side - Logo + Job Info Column */}
+               <div className="flex flex-col gap-4 sm:gap-6 w-full lg:w-auto">
+                 {/* Desktop Layout - Original structure */}
+                 <div className="hidden sm:flex flex-row items-start sm:items-center gap-4 sm:gap-6">
+                   {/* Company Avatar 96x96 */}
+                   <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden flex-shrink-0">
+                     <img 
+                       src={jobData.logo} 
+                       alt={`${jobData.company} logo`}
+                       className="w-full h-full object-contain"
+                     />
+                   </div>
+                   
+                   {/* Title + Tags + Contact Info = 1 div col */}
+                   <div className="flex flex-col gap-3">
+                     {/* Title + Tags */}
+                     <div className="flex flex-row items-center gap-3">
+                       <h1 className="text-body-lg sm:text-heading-04 font-medium text-gray-900 break-words">{jobData.title}</h1>
+                       <div className="flex items-center gap-2">
+                         <LabelTag label="Featured" variant="warning" />
+                         <LabelTag label="Urgent" variant="danger" />
+                       </div>
+                     </div>
+                     
+                     {/* Contact Info */}
+                     <div className="flex flex-row items-center gap-5">
+                       <div className="flex items-center gap-1.5">
+                         <Instagram size={16} className="text-gray-500 flex-shrink-0" />
+                         <span className="text-body-sm text-primary-500 hover:underline cursor-pointer">@dribbble</span>
+                       </div>
+                       <div className="flex items-center gap-1.5">
+                         <Phone size={16} className="text-gray-500 flex-shrink-0" />
+                         <span className="text-body-sm text-gray-700">+1-202-555-0178</span>
+                       </div>
+                       <div className="flex items-center gap-1.5">
+                         <Mail size={16} className="text-gray-500 flex-shrink-0" />
+                         <span className="text-body-sm text-primary-500 hover:underline cursor-pointer">contact@dribbble.com</span>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                 
+                 {/* Mobile Layout - Logo + Title+Tags = div row */}
+                 <div className="sm:hidden flex flex-row items-start gap-4">
+                   {/* Company Avatar 96x96 */}
+                   <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0">
+                     <img 
+                       src={jobData.logo} 
+                       alt={`${jobData.company} logo`}
+                       className="w-full h-full object-contain"
+                     />
+                   </div>
+                   
+                   {/* Title + Tags */}
+                   <div className="flex flex-col gap-3">
+                     <h1 className="text-body-lg font-medium text-gray-900 break-words">{jobData.title}</h1>
+                     <div className="flex items-center gap-2">
+                       <LabelTag label="Featured" variant="warning" />
+                       <LabelTag label="Urgent" variant="danger" />
+                     </div>
+                   </div>
+                 </div>
+                 
+                 {/* Mobile Layout - Contact Info = div col */}
+                 <div className="sm:hidden flex flex-col gap-3">
+                   <div className="flex items-center gap-1.5">
+                     <Instagram size={16} className="text-gray-500 flex-shrink-0" />
+                     <span className="text-body-sm text-primary-500 hover:underline cursor-pointer">@dribbble</span>
+                   </div>
+                   <div className="flex items-center gap-1.5">
+                     <Phone size={16} className="text-gray-500 flex-shrink-0" />
+                     <span className="text-body-sm text-gray-700">+1-202-555-0178</span>
+                   </div>
+                   <div className="flex items-center gap-1.5">
+                     <Mail size={16} className="text-gray-500 flex-shrink-0" />
+                     <span className="text-body-sm text-primary-500 hover:underline cursor-pointer">contact@dribbble.com</span>
+                   </div>
+                 </div>
+               </div>
               
               {/* Right Side - Actions */}
-              <div className="flex flex-col items-end gap-3">
-                <div className="flex items-center gap-3">
+              <div className="flex flex-col sm:flex-row lg:flex-col items-start sm:items-center lg:items-end gap-3 w-full lg:w-auto">
+                <div className="flex items-center gap-3 w-full sm:w-auto">
                   {/* Bookmark Icon */}
-                  <button className="w-14 h-14 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors">
-                    <Bookmark size={24} className="text-gray-500" />
+                  <button className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors">
+                    <Bookmark size={20} className="sm:w-6 sm:h-6 text-gray-500" />
                   </button>
                   
                   {/* Apply Button */}
                   <Button 
                     variant="primary" 
-                    size="large" 
+                    size="medium" 
                     rightIcon={ArrowRight}
                     onClick={handleApplyClick}
+                    className="flex-1 sm:flex-none"
                   >
                     Apply Now
                   </Button>
                 </div>
                 
                 {/* Job Expire Text */}
-                <p className="text-body-sm text-gray-500">
+                <p className="text-body-sm text-gray-500 text-center sm:text-left lg:text-right">
                   Job expire in: <span className="text-gray-900 font-medium">{jobData.deadline}</span>
                 </p>
               </div>
@@ -187,32 +230,34 @@ Nam dapibus consectetur erat in euismod. Cras urna augue, mollis venenatis augue
                 </div>
 
                 {/* Share Job */}
-                <div className="flex items-center gap-4 text-sm">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 text-sm">
                   <span className="text-gray-900 font-medium whitespace-nowrap">
                     Share this job:
                   </span>
 
-                  <button className="flex items-center gap-2 px-3 py-1.5 rounded-md border text-blue-600 border-blue-100 hover:bg-blue-50 transition">
-                    <Facebook size={16} />
-                    Facebook
-                  </button>
+                  <div className="flex flex-wrap gap-2 sm:gap-3">
+                    <button className="flex items-center gap-2 px-3 py-1.5 rounded-md border text-blue-600 border-blue-100 hover:bg-blue-50 transition">
+                      <Facebook size={16} />
+                      <span className="hidden sm:inline">Facebook</span>
+                    </button>
 
-                  <button className="flex items-center gap-2 px-3 py-1.5 rounded-md border text-sky-500 border-blue-100 hover:bg-blue-50 transition">
-                    <Twitter size={16} />
-                    Twitter
-                  </button>
+                    <button className="flex items-center gap-2 px-3 py-1.5 rounded-md border text-sky-500 border-blue-100 hover:bg-blue-50 transition">
+                      <Twitter size={16} />
+                      <span className="hidden sm:inline">Twitter</span>
+                    </button>
 
-                  <button className="flex items-center gap-2 px-3 py-1.5 rounded-md border text-blue-700 border-blue-100 hover:bg-blue-50 transition">
-                    <Linkedin size={16} />
-                    LinkedIn
-                  </button>
+                    <button className="flex items-center gap-2 px-3 py-1.5 rounded-md border text-blue-700 border-blue-100 hover:bg-blue-50 transition">
+                      <Linkedin size={16} />
+                      <span className="hidden sm:inline">LinkedIn</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Right Side - Job Overview */}
             <div className="lg:w-[35%]">
-              <section className="p-8 border-2 border-gray-50 rounded-xl bg-white">
+              <section className="p-4 sm:p-8 border-2 border-gray-50 rounded-xl bg-white">
                 <h2 className="text-body-xl font-semibold mb-6">Job Overview</h2>
                 <div className="flex flex-wrap">
                   {[
@@ -236,7 +281,7 @@ Nam dapibus consectetur erat in euismod. Cras urna augue, mollis venenatis augue
               </section>
 
               {/* Company Info Card */}
-              <div className="p-8 rounded-xl border-2 border-gray-50 bg-white max-w-xl space-y-8 mt-4">
+              <div className="p-4 sm:p-8 rounded-xl border-2 border-gray-50 bg-white max-w-xl space-y-8 mt-4">
                 {/* Header */}
                 <div className="flex items-start gap-8">
                   <img
@@ -305,10 +350,10 @@ Nam dapibus consectetur erat in euismod. Cras urna augue, mollis venenatis augue
       </div>
 
       {/* Related Jobs */}
-      <div className="bg-gray-50 py-16">
+      <div className="bg-gray-50 py-8 sm:py-16">
         <div className="container mx-auto">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-heading-01 font-semibold text-gray-900">Related Jobs</h2>
+          <div className="flex flex-row items-center justify-between gap-4 mb-6 sm:mb-8">
+            <h2 className="text-heading-04 sm:text-heading-02 lg:text-heading-01 font-semibold text-gray-900">Related Jobs</h2>
             <div className="flex items-center gap-2">
               <NavigationButton 
                 direction="left" 
@@ -325,34 +370,34 @@ Nam dapibus consectetur erat in euismod. Cras urna augue, mollis venenatis augue
             </div>
           </div>
           
-          <div className="grid grid-cols-3 gap-x-6 gap-y-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-x-6 lg:gap-y-8">
             {getCurrentJobs().map((job) => (
               <div
                 key={job.id}
                 onClick={() => window.location.href = `/jobs/job-details`}
-                className={`rounded-xl p-8 hover:shadow-lg transition-all duration-200 border border-gray-100 space-y-6 hover:border-primary-500 cursor-pointer ${
+                className={`rounded-xl p-4 sm:p-6 lg:p-8 hover:shadow-lg transition-all duration-200 border border-gray-100 space-y-4 sm:space-y-6 hover:border-primary-500 cursor-pointer ${
                   job.featured ? "bg-gradient-to-r from-[#FFF6E6] to-[#FFFFFF]" : "bg-white"
                 }`}
               >
                 {/* Header */}
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3 sm:gap-4">
                   <LogoCompany logo={dribbbleLogo} logoText={job.logoText} size="md" />
-                  <div className="flex flex-col gap-[6px]">
-                    <div className="flex items-center gap-2">
-                      <span className="text-body-md font-medium text-gray-900">{job.company}</span>
+                  <div className="flex flex-col gap-[6px] flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="text-body-md font-medium text-gray-900 break-words">{job.company}</span>
                       {job.topLabel && <LabelTag label={job.topLabel} variant={job.topVariant} />}
                     </div>
                     <div className="flex items-center gap-1 text-sm text-gray-400">
                       <MapPin size={18} />
-                      <span>{job.location}</span>
+                      <span className="truncate">{job.location}</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Content */}
                 <div className="flex flex-col gap-2">
-                  <h3 className="text-body-xl font-medium text-gray-900">{job.title}</h3>
-                  <div className="flex items-center gap-2">
+                  <h3 className="text-body-lg sm:text-body-xl font-medium text-gray-900 break-words">{job.title}</h3>
+                  <div className="flex items-center gap-2 flex-wrap">
                     <span className="text-body-sm text-gray-500">{job.typeLabel}</span>
                     <span className="text-body-sm text-gray-500">•</span>
                     <span className="text-body-sm text-gray-500">{job.salary}</span>

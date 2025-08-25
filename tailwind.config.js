@@ -105,7 +105,7 @@ export default {
       container: {
         center: true,
         padding: {
-          DEFAULT: '24px',
+          DEFAULT: '16px',
           sm: '0px',
         },
       },
