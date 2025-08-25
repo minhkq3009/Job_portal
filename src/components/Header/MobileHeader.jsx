@@ -1,14 +1,14 @@
 import { useState, useRef, useEffect } from "react";
-import { Menu, Search } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Menu, Search, Bell, User } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import Logo from "../../assets/icons/Logo.svg";
 import FlagUS from "../../assets/images/FlagUS.svg";
-import Button from "../Button/Button";
 
 export default function MobileHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const headerRef = useRef(null);
   const [overlayTop, setOverlayTop] = useState(0);
+  const location = useLocation();
 
   useEffect(() => {
     if (menuOpen && headerRef.current) {
@@ -59,11 +59,17 @@ export default function MobileHeader() {
             />
            <div className="flex items-center space-x-3">
              <Search className="w-5 h-5 text-gray-600" />
-                           <Link to="/login">
-                <Button variant="primary" size="small" className="text-sm px-3 py-1">
-                  Post A Jobs
-                </Button>
-              </Link>
+             <div className="flex items-center space-x-2">
+               <button className="relative p-2 text-gray-600 hover:text-gray-800">
+                 <Bell size={20} />
+                 <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+               </button>
+               <button className="p-1 text-gray-600 hover:text-gray-800">
+                 <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
+                   <User size={16} />
+                 </div>
+               </button>
+             </div>
            </div>
          </div>
       </div>
@@ -80,37 +86,25 @@ export default function MobileHeader() {
           {/* Menu Panel */}
           <div className="relative z-50 px-4 pb-4 bg-white shadow rounded-b-lg">
             <ul className="text-sm space-y-3 border-t border-gray-200 pt-3">
-              <li className="text-gray-700">
+              <li className={location.pathname === "/" ? "text-blue-600 font-medium" : "text-gray-700"}>
                 <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
               </li>
-              <li className="text-blue-600 font-medium">
+              <li className={location.pathname === "/find-job" || location.pathname.startsWith("/jobs/") ? "text-blue-600 font-medium" : "text-gray-700"}>
                 <Link to="/find-job" onClick={() => setMenuOpen(false)}>Find Job</Link>
               </li>
-              <li className="text-gray-700">
+              <li className={location.pathname === "/find-employers" || location.pathname.startsWith("/companies/") ? "text-blue-600 font-medium" : "text-gray-700"}>
                 <Link to="/find-employers" onClick={() => setMenuOpen(false)}>Find Employers</Link>
               </li>
-              <li className="text-gray-700">
+              <li className={location.pathname === "/dashboard" || location.pathname.startsWith("/dashboard") ? "text-blue-600 font-medium" : "text-gray-700"}>
                 <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Dashboard</Link>
               </li>
-              <li className="text-gray-700">
+              <li className={location.pathname === "/dashboard/job-alert" ? "text-blue-600 font-medium" : "text-gray-700"}>
                 <Link to="/dashboard/job-alert" onClick={() => setMenuOpen(false)}>Job Alerts</Link>
               </li>
-              <li className="text-gray-700">
+              <li className={location.pathname === "/contact" ? "text-blue-600 font-medium" : "text-gray-700"}>
                 <Link to="/contact" onClick={() => setMenuOpen(false)}>Customer Supports</Link>
               </li>
             </ul>
-            <div className="flex gap-2 mt-4">
-              <Link to="/register" onClick={() => setMenuOpen(false)}>
-                <Button variant="primary" size="medium" className="text-sm px-4 py-2">
-                  Create Account
-                </Button>
-              </Link>
-              <Link to="/login" onClick={() => setMenuOpen(false)}>
-                <Button variant="secondary" size="medium" className="text-sm px-4 py-2">
-                  Sign In
-                </Button>
-              </Link>
-            </div>
           </div>
         </>
       )}

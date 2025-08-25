@@ -65,6 +65,11 @@ export default function Breadcrumb({ title, customBreadcrumbs }) {
       'applications': 'Applications'
     };
     
+    // Custom path mappings for better navigation
+    const customPaths = {
+      'jobs': '/find-job'  // Redirect 'jobs' to 'find-job' page
+    };
+    
     let currentPath = '';
     pathSegments.forEach((segment, index) => {
       currentPath += `/${segment}`;
@@ -78,7 +83,7 @@ export default function Breadcrumb({ title, customBreadcrumbs }) {
       
       breadcrumbs.push({
         label,
-        path: currentPath,
+        path: customPaths[segment] || currentPath,  // Use custom path if available
         isLast: index === pathSegments.length - 1
       });
     });

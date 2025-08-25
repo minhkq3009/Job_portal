@@ -1,4 +1,4 @@
-import CandidateHeader from "../../components/Header/CandidateHeader.jsx";
+import CandidateHeader from "../../components/Header/CandidateHeader";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import KeywordInput from "../../components/InputField/KeywordInput";
 import CategorySelect from "../../components/InputField/CategorySelect";
@@ -23,9 +23,11 @@ export default function FindJob() {
   const [filters, setFilters] = useState(["Design", "New York"]);
   const [selectedSort, setSelectedSort] = useState("latest");
   const [selectedPerPage, setSelectedPerPage] = useState(12);
-  const [viewMode, setViewMode] = useState("list");
+  const [viewMode, setViewMode] = useState("grid");
   const [currentPage, setCurrentPage] = useState(1);
   const [advancedFilters, setAdvancedFilters] = useState({});
+  const [selectedLocation, setSelectedLocation] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   // Calculate pagination
   const totalJobs = allJobs.length;
@@ -145,27 +147,62 @@ export default function FindJob() {
               <div className="flex-1 min-w-0">
                 <KeywordInput placeholder="Job title, keyword..." className="border-0 shadow-none px-4" />
               </div>
+              
+              {/* Location dropdown */}
               <div className="flex-1 min-w-0">
-                <KeywordInput 
-                  Icon={MapPin}
-                  placeholder="Your Location" 
-                  className="border-0 shadow-none px-4"
+                <Dropdown
+                  options={[
+                    { value: "", label: "Select Location" },
+                    { value: "new-york", label: "New York" },
+                    { value: "los-angeles", label: "Los Angeles" },
+                    { value: "chicago", label: "Chicago" },
+                    { value: "houston", label: "Houston" },
+                    { value: "phoenix", label: "Phoenix" },
+                    { value: "philadelphia", label: "Philadelphia" },
+                    { value: "san-antonio", label: "San Antonio" },
+                    { value: "san-diego", label: "San Diego" },
+                    { value: "dallas", label: "Dallas" },
+                    { value: "san-jose", label: "San Jose" }
+                  ]}
+                  defaultValue={selectedLocation || "Select Location"}
+                  onSelect={(option) => setSelectedLocation(option.value)}
+                  className="w-full"
                 />
               </div>
+              
+              {/* Category dropdown */}
               <div className="flex-1 min-w-0">
-                <CategorySelect />
+                <Dropdown
+                  options={[
+                    { value: "", label: "Select Category" },
+                    { value: "design", label: "Design" },
+                    { value: "development", label: "Development" },
+                    { value: "marketing", label: "Marketing" },
+                    { value: "sales", label: "Sales" },
+                    { value: "customer-service", label: "Customer Service" },
+                    { value: "finance", label: "Finance" },
+                    { value: "hr", label: "Human Resources" },
+                    { value: "operations", label: "Operations" },
+                    { value: "product", label: "Product" },
+                    { value: "engineering", label: "Engineering" }
+                  ]}
+                  defaultValue={selectedCategory || "Select Category"}
+                  onSelect={(option) => setSelectedCategory(option.value)}
+                  className="w-full"
+                />
               </div>
+              
               <div className="flex gap-2">
                 <Button 
                   variant="tertiary" 
-                  size="medium" 
-                  className="flex-1 border-0" 
+                  size="small" 
+                  className="flex-1 border-0 h-10 text-sm" 
                   onClick={() => setShowAdvance(true)} 
                   leftIcon={Filter}
                 >
-                  Advanced Filter
+                  Filter
                 </Button>
-                <Button variant="primary" size="medium" className="flex-1">
+                <Button variant="primary" size="small" className="flex-1 h-10 text-sm">
                   Find Job
                 </Button>
               </div>
@@ -254,22 +291,25 @@ export default function FindJob() {
               className="w-full sm:w-32"
             />
 
-            {/* View mode toggle */}
-            <ViewModeToggle
-              viewMode={viewMode}
-              onViewModeChange={setViewMode}
-              className="w-full sm:w-auto"
-            />
+            {/* View mode toggle - Hidden on mobile */}
+            <div className="hidden md:block">
+              <ViewModeToggle
+                viewMode={viewMode}
+                onViewModeChange={setViewMode}
+                className="w-full sm:w-auto"
+              />
+            </div>
           </div>
         </div>
       </div>
 
       {/* Jobs Grid */}
       <div className="container mx-auto px-4 md:px-6 lg:px-0 py-6 md:py-8">
-        {viewMode === "grid" ? (
-          <div className="grid grid-cols-4 lg:grid-cols-12 gap-4 md:gap-6">
+        {/* Mobile: Always grid view */}
+        <div className="block md:hidden">
+          <div className="grid grid-cols-1 gap-4">
             {currentJobs.map((job) => (
-              <div key={job.id} className="col-span-4 lg:col-span-3">
+              <div key={job.id}>
                 <JobCardVertical
                   company={job.company}
                   location={job.location}
@@ -285,29 +325,53 @@ export default function FindJob() {
               </div>
             ))}
           </div>
-        ) : (
-          <div className="space-y-4 md:space-y-6">
-            {currentJobs.map((job) => (
-              <JobCardHorizontal
-                key={job.id}
-                location={job.location}
-                title={job.title}
-                salary={job.salary}
-                time={job.time}
-                topLabel={job.topLabel}
-                topVariant={job.topVariant}
-                typeLabel={job.typeLabel}
-                typeVariant={job.typeVariant}
-                logo={job.logo}
-                logoText={job.logoText}
-                featured={job.featured}
-                companyId={job.companyId}
-                isBookmarked={job.isBookmarked}
-                isExpired={job.isExpired}
-              />
-            ))}
-          </div>
-        )}
+        </div>
+
+        {/* Desktop: Toggle between grid and list view */}
+        <div className="hidden md:block">
+          {viewMode === "grid" ? (
+            <div className="grid grid-cols-4 lg:grid-cols-12 gap-4 md:gap-6">
+              {currentJobs.map((job) => (
+                <div key={job.id} className="col-span-4 lg:col-span-3">
+                  <JobCardVertical
+                    company={job.company}
+                    location={job.location}
+                    title={job.title}
+                    salary={job.salary}
+                    topLabel={job.topLabel}
+                    topVariant={job.topVariant}
+                    typeLabel={job.typeLabel}
+                    logo={job.logo}
+                    logoText={job.logoText}
+                    featured={job.featured}
+                  />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="space-y-4 md:space-y-6">
+              {currentJobs.map((job) => (
+                <JobCardHorizontal
+                  key={job.id}
+                  location={job.location}
+                  title={job.title}
+                  salary={job.salary}
+                  time={job.time}
+                  topLabel={job.topLabel}
+                  topVariant={job.topVariant}
+                  typeLabel={job.typeLabel}
+                  typeVariant={job.typeVariant}
+                  logo={job.logo}
+                  logoText={job.logoText}
+                  featured={job.featured}
+                  companyId={job.companyId}
+                  isBookmarked={job.isBookmarked}
+                  isExpired={job.isExpired}
+                />
+              ))}
+            </div>
+          )}
+        </div>
 
         {/* Pagination */}
         <div className="mt-8 md:mt-12 flex justify-center">
